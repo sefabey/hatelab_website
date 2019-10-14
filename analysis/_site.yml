@@ -1,7 +1,7 @@
-name: "hatelab_website"
+name: hatelab_website
 output_dir: ../docs
 navbar:
-  title: "hatelab_website"
+  title: hatelab_website
   left:
   - text: Home
     href: index.html
@@ -9,6 +9,10 @@ navbar:
     href: about.html
   - text: License
     href: license.html
+  right:
+  - icon: fa-github
+    text: Source code
+    href: https://github.com/sefabey/hatelab_website
 output:
   workflowr::wflow_html:
     toc: yes
