@@ -9,3 +9,5 @@ editor_options:
 ---
 
 Welcome to my research website.
+
+Click on this [link](initial_numbers.html) to see the number of tweets in the multiple-keyword Brexit dataset classified as hate speech by the anti-Muslim classifier and the hate-speech to all tweets ratio.
