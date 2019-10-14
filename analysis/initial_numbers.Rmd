@@ -1,0 +1,64 @@
+---
+title: "Initial Hate Numbers"
+author: "Sefa Ozalp"
+date: "14/10/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load Packages 
+
+```{r}
+library(tidyverse)
+library(lubridate)
+library(scales)
+
+```
+
+
+## Load Dataset
+
+```{r}
+brexit_data_class <- read_csv('/Users/sefaozalp/Documents/Work/09/brexit_boris_data_am_classified.csv',
+  col_types = cols(.default = col_character())) 
+```
+
+## Data Wrangling 
+
+```{r}
+brexit_data_class <- brexit_data_class %>% 
+  mutate(timestamp_parsed=as_datetime(timestamp_parsed)) %>% 
+  mutate(antimuslim= ifelse(No == "No", FALSE,TRUE)) %>% 
+  mutate(hour=floor_date(timestamp_parsed, "hour")) %>%
+  mutate(hour=as.POSIXct(hour)) %>%
+  mutate(day=floor_date(timestamp_parsed, "day")) %>%
+  mutate(day=as.POSIXct(day))
+```
+
+## Calculate Daily Count of Tweets
+
+```{r}
+brexit_data_class %>% 
+  count(day)
+```
+
+## Calculate Daily Ratios
+
+```{r}
+daily_ratios <- brexit_data_class %>% 
+  # filter(amtimuslim==TRUE) %>% 
+  count(day, antimuslim) %>% 
+  pivot_wider(names_from = antimuslim, values_from = n, names_prefix = "antimuslim_") %>% 
+  mutate(total_n= antimuslim_FALSE+antimuslim_TRUE) %>% 
+  mutate(day_ratio= antimuslim_TRUE/total_n) %>% 
+  select(day, day_ratio, everything())
+
+daily_ratios
+```
+
+
+
+
