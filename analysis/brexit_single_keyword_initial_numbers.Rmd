@@ -1,0 +1,239 @@
+---
+title: "Brexit single keyword initial numbers"
+author: "Sefa Ozalp"
+date: "18/10/2019"
+output: 
+   workflowr::wflow_html:
+    number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Load Packages
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(lubridate)
+library(fs)
+library(scales)
+library(hrbrthemes)
+library(gridExtra)
+```
+
+# Data I/O
+
+
+## Read the data and have a peek
+List .csv paths containing the data
+Map them to read_csv
+Print the data and check
+```{r, message=F}
+brexit_data <- dir_ls(here::here("data/initial_batch_job")) %>% 
+  map_df(read_csv)
+
+brexit_data %>% 
+  rmarkdown::paged_table()
+```
+
+The dataset looks good but not quite perfect. If we look at rows 18 and 19, we see that the date **2019-03-31** appears twice but the values are different in other columns. This stems from the data handling methodology of the COSMOS; the last hour of each day is saved under the directory of the next day. Although this is mostly resolved when data are aggregated monthly, there still remains dangling hourly data for each monthly cut off. This results in 7 duplicate dates, as we had 7 monthly - cut-offs. I'll handle that here by grouping by date and summing values and recalculating daily ratios. 
+
+## Process the dataset accordingly
+```{r}
+brexit_data_processed <-  brexit_data %>% 
+  group_by(day) %>% 
+  summarise(antimuslim_FALSE= sum (antimuslim_FALSE), antimuslim_TRUE= sum(antimuslim_TRUE), total_n= sum(total_n) ) %>% 
+  mutate(day_ratio=antimuslim_TRUE/total_n) %>% 
+  select(day,day_ratio, everything() )
+
+brexit_data_processed %>% nrow()
+```
+
+7 rows have been dropped. Except the last days of each month, all remaining rows should have exactly the same values as the earlier dataset. I'll test this by anti-joining the processed dataset and raw dataset while using the day_ratio column, which I have just recalculated for the former, as key.
+
+```{r}
+brexit_data%>% 
+  anti_join(brexit_data_processed, by = "day_ratio") %>% 
+  rmarkdown::paged_table()
+```
+
+## Print the Processed Dataset
+```{r}
+brexit_data_processed %>% 
+  rmarkdown::paged_table()
+```
+
+
+# Visualisations 
+
+
+## Initial Plot of Hate Speech
+```{r}
+initial_plot_hs <- brexit_data_processed %>% 
+  ggplot()+
+  aes(x= day, y=antimuslim_TRUE)+
+  geom_line()+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))+
+  scale_y_continuous(labels = comma,
+                     breaks = seq(from=0, to=30000, by=5000),
+                     limits=c(0, 30000)
+  )+
+  scale_x_datetime(date_labels="%d %b %y",date_breaks  ="1 month")+
+  labs(title="Tweets classified as anti-Muslim hate speech sent per day", 
+       subtitle= "Data: Single keyword Brexit Dataset")+
+  NULL
+
+initial_plot_hs
+```
+
+## Initial Plot of the Ratio of Hate Speech 
+
+The ratio visualised here is the ratio of the total number of HS to the total number of tweets
+
+```{r}
+initial_plot_ratio <- brexit_data_processed %>% 
+  ggplot()+
+  aes(x= day, y=day_ratio)+
+  geom_line()+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))+
+  scale_y_continuous(
+                     breaks = seq(from=0, to=0.07, by=0.01),
+                     limits=c(0, 0.07)
+  )+
+  scale_x_datetime(date_labels="%d %b %y",date_breaks  ="1 month")+
+  labs(title="Ratio of hate speech to total number of tweets per day", 
+       subtitle= "Data: Single keyword Brexit Dataset")+
+  NULL
+
+initial_plot_ratio
+```
+
+## Plot HS counts and Ratio Together
+
+```{r}
+gridExtra::grid.arrange(initial_plot_hs, initial_plot_ratio,nrow=2)
+```
+
+
+## Plot of Count of Hate Speech Faceted by Month
+
+### Plot of HS Count Using the Same Scale for Y
+We are using same Y scale for all months here. This is useful to see the difference between months.
+
+```{r, fig.width=8, fig.height=13}
+initial_plot_hs_faceted <- brexit_data_processed %>% 
+  mutate(month=as.factor( month(day))) %>% 
+  mutate(day_x=day(day)) %>% 
+  ggplot()+
+  aes(x= day_x, y=antimuslim_TRUE, color=month )+
+  geom_line()+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 360, 
+                                   hjust = 1))+
+  scale_y_continuous(labels = comma,
+                     breaks = seq(from=0, to=30000, by=10000),
+                     limits=c(0, 30000)
+  )+
+  # scale_x_datetime(date_labels="%d %b %y",date_breaks  ="1 day")+
+  scale_x_continuous(labels = seq(1,31,1), breaks = seq(1,31,1))+
+  labs(title="Tweets classified as anti-Muslim hate speech sent per day", 
+       subtitle= "Data: Single keyword Brexit Dataset")+
+  facet_grid(rows = vars(month), scales = "free")+
+  NULL
+
+initial_plot_hs_faceted
+```
+
+
+
+### Plot of HS Counts Using Free Scales for Y 
+
+We are using different Y scale for each month in this plot. This plot is useful to see the patterns of HS counts each month, independent of other months within the dataset.
+
+```{r, fig.width=8, fig.height=13}
+initial_plot_hs_faceted_free <- brexit_data_processed %>% 
+  mutate(month=as.factor( month(day))) %>% 
+  mutate(day_x=day(day)) %>% 
+  ggplot()+
+  aes(x= day_x, y=antimuslim_TRUE, color=month )+
+  geom_line()+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 360, 
+                                   hjust = 1))+
+  # scale_y_continuous(labels = comma,
+  #                    breaks = seq(from=0, to=30000, by=10000),
+  #                    limits=c(0, 30000)
+  # )+
+  # scale_x_datetime(date_labels="%d %b %y",date_breaks  ="1 day")+
+  scale_x_continuous(labels = seq(1,31,1), breaks = seq(1,31,1))+
+  labs(title="Tweets classified as anti-Muslim hate speech sent per day", 
+       subtitle= "Data: Single keyword Brexit Dataset")+
+  facet_grid(rows = vars(month), scales = "free")+
+  NULL
+
+initial_plot_hs_faceted_free
+```
+
+
+## Plot of Ratio of Hate Speech Faceted by Month
+
+### Same Scale
+
+```{r, fig.width=8, fig.height=13}
+initial_plot_ratio_faceted <- brexit_data_processed %>% 
+  mutate(month=as.factor( month(day))) %>% 
+  mutate(day_x=day(day)) %>% 
+  ggplot()+
+  aes(x= day_x, y=day_ratio, color=month )+
+  geom_line()+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 360, 
+                                   hjust = 1))+
+  scale_y_continuous(
+                     breaks = seq(from=0, to=0.07, by=0.01),
+                     limits=c(0, 0.07)
+  )+
+  # scale_x_datetime(date_labels="%d %b %y",date_breaks  ="1 day")+
+  scale_x_continuous(labels = seq(1,31,1), breaks = seq(1,31,1))+
+  labs(title="Tweets classified as anti-Muslim hate speech sent per day", 
+       subtitle= "Data: Single keyword Brexit Dataset")+
+  facet_grid(rows = vars(month), scales = "free")+
+  NULL
+
+initial_plot_ratio_faceted
+```
+
+### Free Scales
+
+```{r, fig.width=8, fig.height=13}
+initial_plot_ratio_faceted <- brexit_data_processed %>% 
+  mutate(month=as.factor( month(day))) %>% 
+  mutate(day_x=day(day)) %>% 
+  ggplot()+
+  aes(x= day_x, y=day_ratio, color=month )+
+  geom_line()+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 360, 
+                                   hjust = 1))+
+  # scale_y_continuous(
+  #                    breaks = seq(from=0, to=0.07, by=0.01),
+  #                    limits=c(0, 0.07)
+  # )+
+  # scale_x_datetime(date_labels="%d %b %y",date_breaks  ="1 day")+
+  scale_x_continuous(labels = seq(1,31,1), breaks = seq(1,31,1))+
+  labs(title="Tweets classified as anti-Muslim hate speech sent per day", 
+       subtitle= "Data: Single keyword Brexit Dataset")+
+  facet_grid(rows = vars(month), scales = "free")+
+  NULL
+
+initial_plot_ratio_faceted
+```
+# Export the processed Dataset
+
+```{r}
+# brexit_data_processed %>% 
+#   write_csv()
+```
+
