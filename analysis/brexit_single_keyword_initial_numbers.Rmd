@@ -63,6 +63,49 @@ brexit_data_processed %>%
   rmarkdown::paged_table()
 ```
 
+# Very Brief Summary of the Dataset
+
+## Summary of the Dataset
+
+```{r}
+brexit_data_processed %>%
+  skimr::skim()
+```
+
+
+##Total Number of Tweets in the Dataset
+```{r}
+brexit_data_processed %>%
+  summarise(total_tweets=sum(total_n))
+```
+
+##Total Number of Tweets Classified as Hate Speech
+
+```{r}
+brexit_data_processed %>%
+  summarise(total_tweets=sum(antimuslim_TRUE))
+```
+
+
+## The number of tweets aggregated monthly
+```{r}
+
+brexit_data_processed %>%
+  mutate(month=month(day)) %>% 
+  group_by(month) %>% 
+  summarise(monthly_aggregate=sum(total_n))
+```
+
+
+## The number of HS tweets aggregated monthly
+```{r}
+
+brexit_data_processed %>%
+  mutate(month=month(day)) %>% 
+  group_by(month) %>% 
+  summarise(monthly_aggregate=sum(antimuslim_TRUE))
+```
+
 
 # Visualisations 
 
@@ -230,8 +273,9 @@ initial_plot_ratio_faceted <- brexit_data_processed %>%
 
 initial_plot_ratio_faceted
 ```
-# Export the processed Dataset
 
+# Export the processed Dataset
+Since all the above looks good
 ```{r}
 # brexit_data_processed %>% 
 #   write_csv()
