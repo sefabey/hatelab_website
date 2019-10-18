@@ -277,7 +277,7 @@ initial_plot_ratio_faceted
 # Export the processed Dataset
 Since all the above looks good
 ```{r}
-# brexit_data_processed %>% 
-#   write_csv()
+brexit_data_processed %>%
+  write_csv("data/brexit_initial_aggregate_data.csv")
 ```
 
