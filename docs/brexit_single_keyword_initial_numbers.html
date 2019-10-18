@@ -498,10 +498,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree9432c06a980248bbe7ff6bb933ae539aa2337cc4targetblank9432c06a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sefabey/hatelab_website/tree/9432c06a980248bbe7ff6bb933ae539aa2337cc4" target="_blank">9432c06</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetreece0de5508ff430fbb80d4dc804c1c6711fa7157ftargetblankce0de55a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sefabey/hatelab_website/tree/ce0de5508ff430fbb80d4dc804c1c6711fa7157f" target="_blank">ce0de55</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree9432c06a980248bbe7ff6bb933ae539aa2337cc4targetblank9432c06a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetreece0de5508ff430fbb80d4dc804c1c6711fa7157ftargetblankce0de55a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -552,6 +552,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sefabey/hatelab_website/blob/ce0de5508ff430fbb80d4dc804c1c6711fa7157f/analysis/brexit_single_keyword_initial_numbers.Rmd" target="_blank">ce0de55</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2019-10-18
+</td>
+<td>
+add summary stats
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sefabey/hatelab_website/99e28b765fa811a263417a0f0a3d723a039f1b17/docs/brexit_single_keyword_initial_numbers.html" target="_blank">99e28b7</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2019-10-18
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -667,10 +701,87 @@ brexit_data_processed %&gt;% nrow()</code></pre>
 </div>
 </div>
 </div>
+<div id="very-brief-summary-of-the-dataset" class="section level1">
+<h1><span class="header-section-number">3</span> Very Brief Summary of the Dataset</h1>
+<div id="summary-of-the-dataset" class="section level2">
+<h2><span class="header-section-number">3.1</span> Summary of the Dataset</h2>
+<pre class="r"><code>brexit_data_processed %&gt;%
+  skimr::skim()</code></pre>
+<pre><code>Skim summary statistics
+ n obs: 215 
+ n variables: 5 
+
+── Variable type:numeric ──────────────────────────────────────────────────────────────
+         variable missing complete   n       mean          sd         p0
+ antimuslim_FALSE       0      215 215 369067.63  177338.91   59556     
+  antimuslim_TRUE       0      215 215   5917.12    3945.45    1000     
+        day_ratio       0      215 215      0.016      0.0075     0.0069
+          total_n       0      215 215 374984.75  179960.07   60556     
+        p25        p50        p75      p100     hist
+ 241700     327565     448028.5   966080    ▁▇▇▃▂▁▁▁
+   3299.5     4823       7568.5    27687    ▇▆▂▁▁▁▁▁
+      0.011      0.014      0.017      0.06 ▇▆▂▁▁▁▁▁
+ 245418.5   331255     462535.5   977009    ▁▇▇▃▂▁▁▁
+
+── Variable type:POSIXct ──────────────────────────────────────────────────────────────
+ variable missing complete   n        min        max     median n_unique
+      day       0      215 215 2019-03-14 2019-10-14 2019-06-29      215</code></pre>
+<p>##Total Number of Tweets in the Dataset</p>
+<pre class="r"><code>brexit_data_processed %&gt;%
+  summarise(total_tweets=sum(total_n))</code></pre>
+<pre><code># A tibble: 1 x 1
+  total_tweets
+         &lt;dbl&gt;
+1     80621721</code></pre>
+<p>##Total Number of Tweets Classified as Hate Speech</p>
+<pre class="r"><code>brexit_data_processed %&gt;%
+  summarise(total_tweets=sum(antimuslim_TRUE))</code></pre>
+<pre><code># A tibble: 1 x 1
+  total_tweets
+         &lt;dbl&gt;
+1      1272180</code></pre>
+</div>
+<div id="the-number-of-tweets-aggregated-monthly" class="section level2">
+<h2><span class="header-section-number">3.2</span> The number of tweets aggregated monthly</h2>
+<pre class="r"><code>brexit_data_processed %&gt;%
+  mutate(month=month(day)) %&gt;% 
+  group_by(month) %&gt;% 
+  summarise(monthly_aggregate=sum(total_n))</code></pre>
+<pre><code># A tibble: 8 x 2
+  month monthly_aggregate
+  &lt;dbl&gt;             &lt;dbl&gt;
+1     3          11071895
+2     4          11788096
+3     5          11719520
+4     6           7157173
+5     7           7733109
+6     8          10419806
+7     9          15311147
+8    10           5420975</code></pre>
+</div>
+<div id="the-number-of-hs-tweets-aggregated-monthly" class="section level2">
+<h2><span class="header-section-number">3.3</span> The number of HS tweets aggregated monthly</h2>
+<pre class="r"><code>brexit_data_processed %&gt;%
+  mutate(month=month(day)) %&gt;% 
+  group_by(month) %&gt;% 
+  summarise(monthly_aggregate=sum(antimuslim_TRUE))</code></pre>
+<pre><code># A tibble: 8 x 2
+  month monthly_aggregate
+  &lt;dbl&gt;             &lt;dbl&gt;
+1     3            162068
+2     4            204603
+3     5            224272
+4     6             98344
+5     7            149356
+6     8            162387
+7     9            201182
+8    10             69968</code></pre>
+</div>
+</div>
 <div id="visualisations" class="section level1">
-<h1><span class="header-section-number">3</span> Visualisations</h1>
+<h1><span class="header-section-number">4</span> Visualisations</h1>
 <div id="initial-plot-of-hate-speech" class="section level2">
-<h2><span class="header-section-number">3.1</span> Initial Plot of Hate Speech</h2>
+<h2><span class="header-section-number">4.1</span> Initial Plot of Hate Speech</h2>
 <pre class="r"><code>initial_plot_hs &lt;- brexit_data_processed %&gt;% 
   ggplot()+
   aes(x= day, y=antimuslim_TRUE)+
@@ -687,300 +798,7 @@ brexit_data_processed %&gt;% nrow()</code></pre>
   NULL
 
 initial_plot_hs</code></pre>
-<p><img src="figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-6-1">
-Past versions of unnamed-chunk-6-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-6-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sefabey/hatelab_website/blob/2517f44e5914acb6869490cd31d23c5073c3225d/docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-6-1.png" target="_blank">2517f44</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-10-18
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div id="initial-plot-of-the-ratio-of-hate-speech" class="section level2">
-<h2><span class="header-section-number">3.2</span> Initial Plot of the Ratio of Hate Speech</h2>
-<p>The ratio visualised here is the ratio of the total number of HS to the total number of tweets</p>
-<pre class="r"><code>initial_plot_ratio &lt;- brexit_data_processed %&gt;% 
-  ggplot()+
-  aes(x= day, y=day_ratio)+
-  geom_line()+
-  theme_minimal()+
-  theme(axis.text.x = element_text(angle = 60, hjust = 1))+
-  scale_y_continuous(
-                     breaks = seq(from=0, to=0.07, by=0.01),
-                     limits=c(0, 0.07)
-  )+
-  scale_x_datetime(date_labels=&quot;%d %b %y&quot;,date_breaks  =&quot;1 month&quot;)+
-  labs(title=&quot;Ratio of hate speech to total number of tweets per day&quot;, 
-       subtitle= &quot;Data: Single keyword Brexit Dataset&quot;)+
-  NULL
-
-initial_plot_ratio</code></pre>
-<p><img src="figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-7-1">
-Past versions of unnamed-chunk-7-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-7-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sefabey/hatelab_website/blob/2517f44e5914acb6869490cd31d23c5073c3225d/docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-7-1.png" target="_blank">2517f44</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-10-18
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div id="plot-hs-counts-and-ratio-together" class="section level2">
-<h2><span class="header-section-number">3.3</span> Plot HS counts and Ratio Together</h2>
-<pre class="r"><code>gridExtra::grid.arrange(initial_plot_hs, initial_plot_ratio,nrow=2)</code></pre>
-<p><img src="figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-8-1">
-Past versions of unnamed-chunk-8-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-8-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sefabey/hatelab_website/blob/2517f44e5914acb6869490cd31d23c5073c3225d/docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-8-1.png" target="_blank">2517f44</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-10-18
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div id="plot-of-count-of-hate-speech-faceted-by-month" class="section level2">
-<h2><span class="header-section-number">3.4</span> Plot of Count of Hate Speech Faceted by Month</h2>
-<div id="plot-of-hs-count-using-the-same-scale-for-y" class="section level3">
-<h3><span class="header-section-number">3.4.1</span> Plot of HS Count Using the Same Scale for Y</h3>
-<p>We are using same Y scale for all months here. This is useful to see the difference between months.</p>
-<pre class="r"><code>initial_plot_hs_faceted &lt;- brexit_data_processed %&gt;% 
-  mutate(month=as.factor( month(day))) %&gt;% 
-  mutate(day_x=day(day)) %&gt;% 
-  ggplot()+
-  aes(x= day_x, y=antimuslim_TRUE, color=month )+
-  geom_line()+
-  theme_minimal()+
-  theme(axis.text.x = element_text(angle = 360, 
-                                   hjust = 1))+
-  scale_y_continuous(labels = comma,
-                     breaks = seq(from=0, to=30000, by=10000),
-                     limits=c(0, 30000)
-  )+
-  # scale_x_datetime(date_labels=&quot;%d %b %y&quot;,date_breaks  =&quot;1 day&quot;)+
-  scale_x_continuous(labels = seq(1,31,1), breaks = seq(1,31,1))+
-  labs(title=&quot;Tweets classified as anti-Muslim hate speech sent per day&quot;, 
-       subtitle= &quot;Data: Single keyword Brexit Dataset&quot;)+
-  facet_grid(rows = vars(month), scales = &quot;free&quot;)+
-  NULL
-
-initial_plot_hs_faceted</code></pre>
-<p><img src="figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-9-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-9-1">
-Past versions of unnamed-chunk-9-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-9-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sefabey/hatelab_website/blob/2517f44e5914acb6869490cd31d23c5073c3225d/docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-9-1.png" target="_blank">2517f44</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-10-18
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div id="plot-of-hs-counts-using-free-scales-for-y" class="section level3">
-<h3><span class="header-section-number">3.4.2</span> Plot of HS Counts Using Free Scales for Y</h3>
-<p>We are using different Y scale for each month in this plot. This plot is useful to see the patterns of HS counts each month, independent of other months within the dataset.</p>
-<pre class="r"><code>initial_plot_hs_faceted_free &lt;- brexit_data_processed %&gt;% 
-  mutate(month=as.factor( month(day))) %&gt;% 
-  mutate(day_x=day(day)) %&gt;% 
-  ggplot()+
-  aes(x= day_x, y=antimuslim_TRUE, color=month )+
-  geom_line()+
-  theme_minimal()+
-  theme(axis.text.x = element_text(angle = 360, 
-                                   hjust = 1))+
-  # scale_y_continuous(labels = comma,
-  #                    breaks = seq(from=0, to=30000, by=10000),
-  #                    limits=c(0, 30000)
-  # )+
-  # scale_x_datetime(date_labels=&quot;%d %b %y&quot;,date_breaks  =&quot;1 day&quot;)+
-  scale_x_continuous(labels = seq(1,31,1), breaks = seq(1,31,1))+
-  labs(title=&quot;Tweets classified as anti-Muslim hate speech sent per day&quot;, 
-       subtitle= &quot;Data: Single keyword Brexit Dataset&quot;)+
-  facet_grid(rows = vars(month), scales = &quot;free&quot;)+
-  NULL
-
-initial_plot_hs_faceted_free</code></pre>
-<p><img src="figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-10-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-10-1">
-Past versions of unnamed-chunk-10-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-10-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/sefabey/hatelab_website/blob/2517f44e5914acb6869490cd31d23c5073c3225d/docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-10-1.png" target="_blank">2517f44</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-10-18
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-<div id="plot-of-ratio-of-hate-speech-faceted-by-month" class="section level2">
-<h2><span class="header-section-number">3.5</span> Plot of Ratio of Hate Speech Faceted by Month</h2>
-<div id="same-scale" class="section level3">
-<h3><span class="header-section-number">3.5.1</span> Same Scale</h3>
-<pre class="r"><code>initial_plot_ratio_faceted &lt;- brexit_data_processed %&gt;% 
-  mutate(month=as.factor( month(day))) %&gt;% 
-  mutate(day_x=day(day)) %&gt;% 
-  ggplot()+
-  aes(x= day_x, y=day_ratio, color=month )+
-  geom_line()+
-  theme_minimal()+
-  theme(axis.text.x = element_text(angle = 360, 
-                                   hjust = 1))+
-  scale_y_continuous(
-                     breaks = seq(from=0, to=0.07, by=0.01),
-                     limits=c(0, 0.07)
-  )+
-  # scale_x_datetime(date_labels=&quot;%d %b %y&quot;,date_breaks  =&quot;1 day&quot;)+
-  scale_x_continuous(labels = seq(1,31,1), breaks = seq(1,31,1))+
-  labs(title=&quot;Tweets classified as anti-Muslim hate speech sent per day&quot;, 
-       subtitle= &quot;Data: Single keyword Brexit Dataset&quot;)+
-  facet_grid(rows = vars(month), scales = &quot;free&quot;)+
-  NULL
-
-initial_plot_ratio_faceted</code></pre>
-<p><img src="figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-11-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-11-1">
 Past versions of unnamed-chunk-11-1.png
@@ -1019,30 +837,26 @@ Sefa Ozalp
 </div>
 </div>
 </div>
-<div id="free-scales" class="section level3">
-<h3><span class="header-section-number">3.5.2</span> Free Scales</h3>
-<pre class="r"><code>initial_plot_ratio_faceted &lt;- brexit_data_processed %&gt;% 
-  mutate(month=as.factor( month(day))) %&gt;% 
-  mutate(day_x=day(day)) %&gt;% 
+<div id="initial-plot-of-the-ratio-of-hate-speech" class="section level2">
+<h2><span class="header-section-number">4.2</span> Initial Plot of the Ratio of Hate Speech</h2>
+<p>The ratio visualised here is the ratio of the total number of HS to the total number of tweets</p>
+<pre class="r"><code>initial_plot_ratio &lt;- brexit_data_processed %&gt;% 
   ggplot()+
-  aes(x= day_x, y=day_ratio, color=month )+
+  aes(x= day, y=day_ratio)+
   geom_line()+
   theme_minimal()+
-  theme(axis.text.x = element_text(angle = 360, 
-                                   hjust = 1))+
-  # scale_y_continuous(
-  #                    breaks = seq(from=0, to=0.07, by=0.01),
-  #                    limits=c(0, 0.07)
-  # )+
-  # scale_x_datetime(date_labels=&quot;%d %b %y&quot;,date_breaks  =&quot;1 day&quot;)+
-  scale_x_continuous(labels = seq(1,31,1), breaks = seq(1,31,1))+
-  labs(title=&quot;Tweets classified as anti-Muslim hate speech sent per day&quot;, 
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))+
+  scale_y_continuous(
+                     breaks = seq(from=0, to=0.07, by=0.01),
+                     limits=c(0, 0.07)
+  )+
+  scale_x_datetime(date_labels=&quot;%d %b %y&quot;,date_breaks  =&quot;1 month&quot;)+
+  labs(title=&quot;Ratio of hate speech to total number of tweets per day&quot;, 
        subtitle= &quot;Data: Single keyword Brexit Dataset&quot;)+
-  facet_grid(rows = vars(month), scales = &quot;free&quot;)+
   NULL
 
-initial_plot_ratio_faceted</code></pre>
-<p><img src="figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-12-1.png" width="768" style="display: block; margin: auto;" /></p>
+initial_plot_ratio</code></pre>
+<p><img src="figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-12-1">
 Past versions of unnamed-chunk-12-1.png
@@ -1081,10 +895,123 @@ Sefa Ozalp
 </div>
 </div>
 </div>
+<div id="plot-hs-counts-and-ratio-together" class="section level2">
+<h2><span class="header-section-number">4.3</span> Plot HS counts and Ratio Together</h2>
+<pre class="r"><code>gridExtra::grid.arrange(initial_plot_hs, initial_plot_ratio,nrow=2)</code></pre>
+<p><img src="figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="plot-of-count-of-hate-speech-faceted-by-month" class="section level2">
+<h2><span class="header-section-number">4.4</span> Plot of Count of Hate Speech Faceted by Month</h2>
+<div id="plot-of-hs-count-using-the-same-scale-for-y" class="section level3">
+<h3><span class="header-section-number">4.4.1</span> Plot of HS Count Using the Same Scale for Y</h3>
+<p>We are using same Y scale for all months here. This is useful to see the difference between months.</p>
+<pre class="r"><code>initial_plot_hs_faceted &lt;- brexit_data_processed %&gt;% 
+  mutate(month=as.factor( month(day))) %&gt;% 
+  mutate(day_x=day(day)) %&gt;% 
+  ggplot()+
+  aes(x= day_x, y=antimuslim_TRUE, color=month )+
+  geom_line()+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 360, 
+                                   hjust = 1))+
+  scale_y_continuous(labels = comma,
+                     breaks = seq(from=0, to=30000, by=10000),
+                     limits=c(0, 30000)
+  )+
+  # scale_x_datetime(date_labels=&quot;%d %b %y&quot;,date_breaks  =&quot;1 day&quot;)+
+  scale_x_continuous(labels = seq(1,31,1), breaks = seq(1,31,1))+
+  labs(title=&quot;Tweets classified as anti-Muslim hate speech sent per day&quot;, 
+       subtitle= &quot;Data: Single keyword Brexit Dataset&quot;)+
+  facet_grid(rows = vars(month), scales = &quot;free&quot;)+
+  NULL
+
+initial_plot_hs_faceted</code></pre>
+<p><img src="figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-14-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="plot-of-hs-counts-using-free-scales-for-y" class="section level3">
+<h3><span class="header-section-number">4.4.2</span> Plot of HS Counts Using Free Scales for Y</h3>
+<p>We are using different Y scale for each month in this plot. This plot is useful to see the patterns of HS counts each month, independent of other months within the dataset.</p>
+<pre class="r"><code>initial_plot_hs_faceted_free &lt;- brexit_data_processed %&gt;% 
+  mutate(month=as.factor( month(day))) %&gt;% 
+  mutate(day_x=day(day)) %&gt;% 
+  ggplot()+
+  aes(x= day_x, y=antimuslim_TRUE, color=month )+
+  geom_line()+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 360, 
+                                   hjust = 1))+
+  # scale_y_continuous(labels = comma,
+  #                    breaks = seq(from=0, to=30000, by=10000),
+  #                    limits=c(0, 30000)
+  # )+
+  # scale_x_datetime(date_labels=&quot;%d %b %y&quot;,date_breaks  =&quot;1 day&quot;)+
+  scale_x_continuous(labels = seq(1,31,1), breaks = seq(1,31,1))+
+  labs(title=&quot;Tweets classified as anti-Muslim hate speech sent per day&quot;, 
+       subtitle= &quot;Data: Single keyword Brexit Dataset&quot;)+
+  facet_grid(rows = vars(month), scales = &quot;free&quot;)+
+  NULL
+
+initial_plot_hs_faceted_free</code></pre>
+<p><img src="figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-15-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="plot-of-ratio-of-hate-speech-faceted-by-month" class="section level2">
+<h2><span class="header-section-number">4.5</span> Plot of Ratio of Hate Speech Faceted by Month</h2>
+<div id="same-scale" class="section level3">
+<h3><span class="header-section-number">4.5.1</span> Same Scale</h3>
+<pre class="r"><code>initial_plot_ratio_faceted &lt;- brexit_data_processed %&gt;% 
+  mutate(month=as.factor( month(day))) %&gt;% 
+  mutate(day_x=day(day)) %&gt;% 
+  ggplot()+
+  aes(x= day_x, y=day_ratio, color=month )+
+  geom_line()+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 360, 
+                                   hjust = 1))+
+  scale_y_continuous(
+                     breaks = seq(from=0, to=0.07, by=0.01),
+                     limits=c(0, 0.07)
+  )+
+  # scale_x_datetime(date_labels=&quot;%d %b %y&quot;,date_breaks  =&quot;1 day&quot;)+
+  scale_x_continuous(labels = seq(1,31,1), breaks = seq(1,31,1))+
+  labs(title=&quot;Tweets classified as anti-Muslim hate speech sent per day&quot;, 
+       subtitle= &quot;Data: Single keyword Brexit Dataset&quot;)+
+  facet_grid(rows = vars(month), scales = &quot;free&quot;)+
+  NULL
+
+initial_plot_ratio_faceted</code></pre>
+<p><img src="figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-16-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="free-scales" class="section level3">
+<h3><span class="header-section-number">4.5.2</span> Free Scales</h3>
+<pre class="r"><code>initial_plot_ratio_faceted &lt;- brexit_data_processed %&gt;% 
+  mutate(month=as.factor( month(day))) %&gt;% 
+  mutate(day_x=day(day)) %&gt;% 
+  ggplot()+
+  aes(x= day_x, y=day_ratio, color=month )+
+  geom_line()+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 360, 
+                                   hjust = 1))+
+  # scale_y_continuous(
+  #                    breaks = seq(from=0, to=0.07, by=0.01),
+  #                    limits=c(0, 0.07)
+  # )+
+  # scale_x_datetime(date_labels=&quot;%d %b %y&quot;,date_breaks  =&quot;1 day&quot;)+
+  scale_x_continuous(labels = seq(1,31,1), breaks = seq(1,31,1))+
+  labs(title=&quot;Tweets classified as anti-Muslim hate speech sent per day&quot;, 
+       subtitle= &quot;Data: Single keyword Brexit Dataset&quot;)+
+  facet_grid(rows = vars(month), scales = &quot;free&quot;)+
+  NULL
+
+initial_plot_ratio_faceted</code></pre>
+<p><img src="figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-17-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
 </div>
 </div>
 <div id="export-the-processed-dataset" class="section level1">
-<h1><span class="header-section-number">4</span> Export the processed Dataset</h1>
+<h1><span class="header-section-number">5</span> Export the processed Dataset</h1>
+<p>Since all the above looks good</p>
 <pre class="r"><code># brexit_data_processed %&gt;% 
 #   write_csv()</code></pre>
 <br>
@@ -1119,23 +1046,24 @@ loaded via a namespace (and not attached):
  [1] tidyselect_0.2.5  xfun_0.9          reshape2_1.4.3   
  [4] haven_2.1.1       lattice_0.20-38   colorspace_1.4-1 
  [7] vctrs_0.2.0       generics_0.0.2    htmltools_0.3.6  
-[10] yaml_2.2.0        rlang_0.4.0       pillar_1.4.2     
-[13] glue_1.3.1        withr_2.1.2       gdtools_0.2.0    
-[16] modelr_0.1.5      readxl_1.3.1      plyr_1.8.4       
-[19] lifecycle_0.1.0   munsell_0.5.0     gtable_0.3.0     
-[22] workflowr_1.4.0   cellranger_1.1.0  rvest_0.3.4      
-[25] evaluate_0.14     labeling_0.3      knitr_1.25       
-[28] extrafont_0.17    Rttf2pt1_1.3.7    broom_0.5.2      
-[31] Rcpp_1.0.2        backports_1.1.4   jsonlite_1.6     
-[34] systemfonts_0.1.1 hms_0.5.1         digest_0.6.21    
-[37] stringi_1.4.3     grid_3.6.1        rprojroot_1.3-2  
-[40] here_0.1          cli_1.1.0         tools_3.6.1      
-[43] magrittr_1.5      lazyeval_0.2.2    crayon_1.3.4     
-[46] whisker_0.4       extrafontdb_1.0   pkgconfig_2.0.3  
-[49] zeallot_0.1.0     xml2_1.2.2        assertthat_0.2.1 
-[52] rmarkdown_1.15    httr_1.4.1        rstudioapi_0.10  
-[55] R6_2.4.0          nlme_3.1-141      git2r_0.26.1     
-[58] compiler_3.6.1   </code></pre>
+[10] yaml_2.2.0        utf8_1.1.4        rlang_0.4.0      
+[13] pillar_1.4.2      glue_1.3.1        withr_2.1.2      
+[16] gdtools_0.2.0     modelr_0.1.5      readxl_1.3.1     
+[19] plyr_1.8.4        lifecycle_0.1.0   munsell_0.5.0    
+[22] gtable_0.3.0      workflowr_1.4.0   cellranger_1.1.0 
+[25] rvest_0.3.4       evaluate_0.14     labeling_0.3     
+[28] knitr_1.25        extrafont_0.17    fansi_0.4.0      
+[31] Rttf2pt1_1.3.7    broom_0.5.2       Rcpp_1.0.2       
+[34] backports_1.1.4   jsonlite_1.6      systemfonts_0.1.1
+[37] hms_0.5.1         digest_0.6.21     stringi_1.4.3    
+[40] grid_3.6.1        rprojroot_1.3-2   here_0.1         
+[43] cli_1.1.0         tools_3.6.1       magrittr_1.5     
+[46] lazyeval_0.2.2    crayon_1.3.4      whisker_0.4      
+[49] extrafontdb_1.0   pkgconfig_2.0.3   zeallot_0.1.0    
+[52] xml2_1.2.2        skimr_1.0.7       assertthat_0.2.1 
+[55] rmarkdown_1.15    httr_1.4.1        rstudioapi_0.10  
+[58] R6_2.4.0          nlme_3.1-141      git2r_0.26.1     
+[61] compiler_3.6.1   </code></pre>
 </div>
 </div>
 
