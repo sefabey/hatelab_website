@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Sefa Ozalp" />
+
+
+<title>Brexit single keyword initial numbers</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">hatelab_website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/sefabey/hatelab_website">
+    <span class="fa fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Brexit single keyword initial numbers</h1>
+<h4 class="author">Sefa Ozalp</h4>
+<h4 class="date">18/10/2019</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2019-10-18
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+</p>
+<p>
+<strong>Knit directory:</strong> <code>hatelab_website/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.4.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20191014code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20191014)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20191014code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20191014)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree0f0f782f487ffc621fc4addf6f586048382532a6targetblank0f0f782a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sefabey/hatelab_website/tree/0f0f782f487ffc621fc4addf6f586048382532a6" target="_blank">0f0f782</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree0f0f782f487ffc621fc4addf6f586048382532a6targetblank0f0f782a" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .DS_Store
+    Ignored:    .Rhistory
+    Ignored:    .Rproj.user/
+    Ignored:    docs/figure/
+
+Untracked files:
+    Untracked:  data/initial_batch_job/
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the R Markdown and HTML files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view them.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sefabey/hatelab_website/blob/0f0f782f487ffc621fc4addf6f586048382532a6/analysis/brexit_single_keyword_initial_numbers.Rmd" target="_blank">0f0f782</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2019-10-18
+</td>
+<td>
+wflow_publish(c(“analysis/index.Rmd”,
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div id="load-packages" class="section level1">
+<h1><span class="header-section-number">1</span> Load Packages</h1>
+<pre class="r"><code>library(tidyverse)
+library(lubridate)
+library(fs)
+library(scales)
+library(hrbrthemes)
+library(gridExtra)</code></pre>
+</div>
+<div id="data-io" class="section level1">
+<h1><span class="header-section-number">2</span> Data I/O</h1>
+<div id="read-the-data-and-have-a-peek" class="section level2">
+<h2><span class="header-section-number">2.1</span> Read the data and have a peek</h2>
+<p>List .csv paths containing the data Map them to read_csv Print the data and check</p>
+<pre class="r"><code>brexit_data &lt;- dir_ls(here::here(&quot;data/initial_batch_job&quot;)) %&gt;% 
+  map_df(read_csv)
+
+brexit_data %&gt;% 
+  rmarkdown::paged_table()</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["day"],"name":[1],"type":["S3: POSIXct"],"align":["right"]},{"label":["day_ratio"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["antimuslim_FALSE"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["antimuslim_TRUE"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["total_n"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"2019-03-14","2":"0.012453122","3":"269386","4":"3397","5":"272783"},{"1":"2019-03-15","2":"0.011245885","3":"426243","4":"4848","5":"431091"},{"1":"2019-03-16","2":"0.013106493","3":"368584","4":"4895","5":"373479"},{"1":"2019-03-17","2":"0.012715986","3":"397911","4":"5125","5":"403036"},{"1":"2019-03-18","2":"0.013170918","3":"467606","4":"6241","5":"473847"},{"1":"2019-03-19","2":"0.007345292","3":"514349","4":"3806","5":"518155"},{"1":"2019-03-20","2":"0.009680324","3":"751206","4":"7343","5":"758549"},{"1":"2019-03-21","2":"0.010444570","3":"845965","4":"8929","5":"854894"},{"1":"2019-03-22","2":"0.012563013","3":"712026","4":"9059","5":"721085"},{"1":"2019-03-23","2":"0.027890995","3":"767273","4":"22014","5":"789287"},{"1":"2019-03-24","2":"0.019719986","3":"591499","4":"11899","5":"603398"},{"1":"2019-03-25","2":"0.009549732","3":"601132","4":"5796","5":"606928"},{"1":"2019-03-26","2":"0.013196623","3":"632987","4":"8465","5":"641452"},{"1":"2019-03-27","2":"0.013813317","3":"874147","4":"12244","5":"886391"},{"1":"2019-03-28","2":"0.014703162","3":"665703","4":"9934","5":"675637"},{"1":"2019-03-29","2":"0.025721435","3":"916498","4":"24196","5":"940694"},{"1":"2019-03-30","2":"0.015452333","3":"623389","4":"9784","5":"633173"},{"1":"2019-03-31","2":"0.008286904","3":"471509","4":"3940","5":"475449"},{"1":"2019-03-31","2":"0.012174743","3":"12414","4":"153","5":"12567"},{"1":"2019-04-01","2":"0.009406287","3":"667572","4":"6339","5":"673911"},{"1":"2019-04-02","2":"0.010105492","3":"818717","4":"8358","5":"827075"},{"1":"2019-04-03","2":"0.014855794","3":"752728","4":"11351","5":"764079"},{"1":"2019-04-04","2":"0.018509017","3":"654256","4":"12338","5":"666594"},{"1":"2019-04-05","2":"0.016893486","3":"572924","4":"9845","5":"582769"},{"1":"2019-04-06","2":"0.038799850","3":"413937","4":"16709","5":"430646"},{"1":"2019-04-07","2":"0.021248348","3":"492454","4":"10691","5":"503145"},{"1":"2019-04-08","2":"0.013622892","3":"522191","4":"7212","5":"529403"},{"1":"2019-04-09","2":"0.011872629","3":"496784","4":"5969","5":"502753"},{"1":"2019-04-10","2":"0.014299614","3":"548078","4":"7951","5":"556029"},{"1":"2019-04-11","2":"0.019992787","3":"608657","4":"12417","5":"621074"},{"1":"2019-04-12","2":"0.032475219","3":"485502","4":"16296","5":"501798"},{"1":"2019-04-13","2":"0.023607812","3":"373181","4":"9023","5":"382204"},{"1":"2019-04-14","2":"0.017249138","3":"329765","4":"5788","5":"335553"},{"1":"2019-04-15","2":"0.013372235","3":"266131","4":"3607","5":"269738"},{"1":"2019-04-16","2":"0.008102594","3":"256709","4":"2097","5":"258806"},{"1":"2019-04-17","2":"0.008548165","3":"322436","4":"2780","5":"325216"},{"1":"2019-04-18","2":"0.014425801","3":"283529","4":"4150","5":"287679"},{"1":"2019-04-19","2":"0.019025739","3":"191289","4":"3710","5":"194999"},{"1":"2019-04-20","2":"0.014738084","3":"173680","4":"2598","5":"176278"},{"1":"2019-04-21","2":"0.014190991","3":"169639","4":"2442","5":"172081"},{"1":"2019-04-22","2":"0.041553093","3":"175460","4":"7607","5":"183067"},{"1":"2019-04-23","2":"0.024461608","3":"230389","4":"5777","5":"236166"},{"1":"2019-04-24","2":"0.012498791","3":"285771","4":"3617","5":"289388"},{"1":"2019-04-25","2":"0.027016407","3":"252570","4":"7013","5":"259583"},{"1":"2019-04-26","2":"0.015107689","3":"245837","4":"3771","5":"249608"},{"1":"2019-04-27","2":"0.013808820","3":"204254","4":"2860","5":"207114"},{"1":"2019-04-28","2":"0.014085715","3":"241479","4":"3450","5":"244929"},{"1":"2019-04-29","2":"0.019645722","3":"242572","4":"4861","5":"247433"},{"1":"2019-04-30","2":"0.012761194","3":"297227","4":"3842","5":"301069"},{"1":"2019-04-30","2":"0.016942723","3":"7775","4":"134","5":"7909"},{"1":"2019-05-01","2":"0.017479515","3":"287176","4":"5109","5":"292285"},{"1":"2019-05-02","2":"0.021858035","3":"240172","4":"5367","5":"245539"},{"1":"2019-05-03","2":"0.030324455","3":"525281","4":"16427","5":"541708"},{"1":"2019-05-04","2":"0.026448907","3":"349315","4":"9490","5":"358805"},{"1":"2019-05-05","2":"0.021253848","3":"303011","4":"6580","5":"309591"},{"1":"2019-05-06","2":"0.012184011","3":"267790","4":"3303","5":"271093"},{"1":"2019-05-07","2":"0.011686283","3":"272063","4":"3217","5":"275280"},{"1":"2019-05-08","2":"0.014305128","3":"303182","4":"4400","5":"307582"},{"1":"2019-05-09","2":"0.011752503","3":"337278","4":"4011","5":"341289"},{"1":"2019-05-10","2":"0.036408454","3":"299438","4":"11314","5":"310752"},{"1":"2019-05-11","2":"0.042198583","3":"258320","4":"11381","5":"269701"},{"1":"2019-05-12","2":"0.018602372","3":"334424","4":"6339","5":"340763"},{"1":"2019-05-13","2":"0.018717553","3":"336259","4":"6414","5":"342673"},{"1":"2019-05-14","2":"0.022890303","3":"333724","4":"7818","5":"341542"},{"1":"2019-05-15","2":"0.016513640","3":"59556","4":"1000","5":"60556"},{"1":"2019-05-16","2":"0.012906182","3":"211091","4":"2760","5":"213851"},{"1":"2019-05-17","2":"0.015191311","3":"346825","4":"5350","5":"352175"},{"1":"2019-05-18","2":"0.017373368","3":"323463","4":"5719","5":"329182"},{"1":"2019-05-19","2":"0.020341508","3":"310443","4":"6446","5":"316889"},{"1":"2019-05-20","2":"0.027965483","3":"428953","4":"12341","5":"441294"},{"1":"2019-05-21","2":"0.019102025","3":"495378","4":"9647","5":"505025"},{"1":"2019-05-22","2":"0.019802232","3":"578994","4":"11697","5":"590691"},{"1":"2019-05-23","2":"0.020970117","3":"551279","4":"11808","5":"563087"},{"1":"2019-05-24","2":"0.026895978","3":"541257","4":"14960","5":"556217"},{"1":"2019-05-25","2":"0.024324959","3":"294889","4":"7352","5":"302241"},{"1":"2019-05-26","2":"0.013858970","3":"531033","4":"7463","5":"538496"},{"1":"2019-05-27","2":"0.012707026","3":"944247","4":"12153","5":"956400"},{"1":"2019-05-28","2":"0.011119542","3":"461378","4":"5188","5":"466566"},{"1":"2019-05-29","2":"0.009851234","3":"362138","4":"3603","5":"365741"},{"1":"2019-05-30","2":"0.009365083","3":"318714","4":"3013","5":"321727"},{"1":"2019-05-31","2":"0.008861089","3":"281422","4":"2516","5":"283938"},{"1":"2019-05-31","2":"0.012571262","3":"6755","4":"86","5":"6841"},{"1":"2019-06-01","2":"0.021818152","3":"241921","4":"5396","5":"247317"},{"1":"2019-06-02","2":"0.020677698","3":"376759","4":"7955","5":"384714"},{"1":"2019-06-03","2":"0.013130410","3":"318900","4":"4243","5":"323143"},{"1":"2019-06-04","2":"0.011669093","3":"335398","4":"3960","5":"339358"},{"1":"2019-06-05","2":"0.010248273","3":"318126","4":"3294","5":"321420"},{"1":"2019-06-06","2":"0.013394094","3":"327565","4":"4447","5":"332012"},{"1":"2019-06-07","2":"0.016415000","3":"345558","4":"5767","5":"351325"},{"1":"2019-06-08","2":"0.010051196","3":"189496","4":"1924","5":"191420"},{"1":"2019-06-09","2":"0.006902875","3":"190624","4":"1325","5":"191949"},{"1":"2019-06-10","2":"0.017844403","3":"231278","4":"4202","5":"235480"},{"1":"2019-06-11","2":"0.014492925","3":"250101","4":"3678","5":"253779"},{"1":"2019-06-12","2":"0.013580043","3":"298540","4":"4110","5":"302650"},{"1":"2019-06-13","2":"0.014661029","3":"235833","4":"3509","5":"239342"},{"1":"2019-06-14","2":"0.012469392","3":"183498","4":"2317","5":"185815"},{"1":"2019-06-15","2":"0.016282945","3":"142879","4":"2365","5":"145244"},{"1":"2019-06-16","2":"0.025798307","3":"207579","4":"5497","5":"213076"},{"1":"2019-06-17","2":"0.009170884","3":"214785","4":"1988","5":"216773"},{"1":"2019-06-18","2":"0.012049857","3":"279007","4":"3403","5":"282410"},{"1":"2019-06-19","2":"0.014003173","3":"205745","4":"2922","5":"208667"},{"1":"2019-06-20","2":"0.012454478","3":"223446","4":"2818","5":"226264"},{"1":"2019-06-21","2":"0.010004771","3":"136950","4":"1384","5":"138334"},{"1":"2019-06-22","2":"0.024918937","3":"130812","4":"3343","5":"134155"},{"1":"2019-06-23","2":"0.008908570","3":"227843","4":"2048","5":"229891"},{"1":"2019-06-24","2":"0.009270357","3":"243024","4":"2274","5":"245298"},{"1":"2019-06-25","2":"0.011335486","3":"218308","4":"2503","5":"220811"},{"1":"2019-06-26","2":"0.010812914","3":"226235","4":"2473","5":"228708"},{"1":"2019-06-27","2":"0.012800282","3":"212706","4":"2758","5":"215464"},{"1":"2019-06-28","2":"0.013265267","3":"205079","4":"2757","5":"207836"},{"1":"2019-06-29","2":"0.009020511","3":"154461","4":"1406","5":"155867"},{"1":"2019-06-30","2":"0.012064882","3":"181867","4":"2221","5":"184088"},{"1":"2019-06-30","2":"0.012491782","3":"4506","4":"57","5":"4563"},{"1":"2019-07-01","2":"0.048864503","3":"209577","4":"10767","5":"220344"},{"1":"2019-07-02","2":"0.013983602","3":"388805","4":"5514","5":"394319"},{"1":"2019-07-03","2":"0.009700499","3":"278903","4":"2732","5":"281635"},{"1":"2019-07-04","2":"0.014331007","3":"270782","4":"3937","5":"274719"},{"1":"2019-07-05","2":"0.013198489","3":"202467","4":"2708","5":"205175"},{"1":"2019-07-06","2":"0.016049259","3":"147017","4":"2398","5":"149415"},{"1":"2019-07-07","2":"0.009488462","3":"188948","4":"1810","5":"190758"},{"1":"2019-07-08","2":"0.010930292","3":"255993","4":"2829","5":"258822"},{"1":"2019-07-09","2":"0.010678209","3":"325938","4":"3518","5":"329456"},{"1":"2019-07-10","2":"0.013321883","3":"233229","4":"3149","5":"236378"},{"1":"2019-07-11","2":"0.014120173","3":"156119","4":"2236","5":"158355"},{"1":"2019-07-12","2":"0.014796839","3":"150209","4":"2256","5":"152465"},{"1":"2019-07-13","2":"0.041341499","3":"168907","4":"7284","5":"176191"},{"1":"2019-07-14","2":"0.022070966","3":"184766","4":"4170","5":"188936"},{"1":"2019-07-15","2":"0.014793333","3":"161367","4":"2423","5":"163790"},{"1":"2019-07-16","2":"0.016213852","3":"193434","4":"3188","5":"196622"},{"1":"2019-07-17","2":"0.017393481","3":"204165","4":"3614","5":"207779"},{"1":"2019-07-18","2":"0.015716539","3":"251511","4":"4016","5":"255527"},{"1":"2019-07-19","2":"0.015356204","3":"216470","4":"3376","5":"219846"},{"1":"2019-07-20","2":"0.010034011","3":"175518","4":"1779","5":"177297"},{"1":"2019-07-21","2":"0.010734899","3":"188363","4":"2044","5":"190407"},{"1":"2019-07-22","2":"0.016524107","3":"229381","4":"3854","5":"233235"},{"1":"2019-07-23","2":"0.059592172","3":"436921","4":"27687","5":"464608"},{"1":"2019-07-24","2":"0.037919182","3":"338131","4":"13327","5":"351458"},{"1":"2019-07-25","2":"0.015268449","3":"289258","4":"4485","5":"293743"},{"1":"2019-07-26","2":"0.013172436","3":"231266","4":"3087","5":"234353"},{"1":"2019-07-27","2":"0.027924287","3":"206604","4":"5935","5":"212539"},{"1":"2019-07-28","2":"0.009264804","3":"277925","4":"2599","5":"280524"},{"1":"2019-07-29","2":"0.013925948","3":"355883","4":"5026","5":"360909"},{"1":"2019-07-30","2":"0.012593170","3":"337939","4":"4310","5":"342249"},{"1":"2019-07-31","2":"0.009642721","3":"320132","4":"3117","5":"323249"},{"1":"2019-07-31","2":"0.022608044","3":"7825","4":"181","5":"8006"},{"1":"2019-08-01","2":"0.016079211","3":"353568","4":"5778","5":"359346"},{"1":"2019-08-02","2":"0.010056413","3":"343946","4":"3494","5":"347440"},{"1":"2019-08-03","2":"0.010345511","3":"224706","4":"2349","5":"227055"},{"1":"2019-08-04","2":"0.010326885","3":"210357","4":"2195","5":"212552"},{"1":"2019-08-05","2":"0.009970490","3":"207330","4":"2088","5":"209418"},{"1":"2019-08-06","2":"0.020474474","3":"279154","4":"5835","5":"284989"},{"1":"2019-08-07","2":"0.014949274","3":"289731","4":"4397","5":"294128"},{"1":"2019-08-08","2":"0.012239997","3":"268164","4":"3323","5":"271487"},{"1":"2019-08-09","2":"0.008971664","3":"301230","4":"2727","5":"303957"},{"1":"2019-08-10","2":"0.009549139","3":"263660","4":"2542","5":"266202"},{"1":"2019-08-11","2":"0.010525799","3":"322248","4":"3428","5":"325676"},{"1":"2019-08-12","2":"0.012478565","3":"320190","4":"4046","5":"324236"},{"1":"2019-08-13","2":"0.016735940","3":"303041","4":"5158","5":"308199"},{"1":"2019-08-14","2":"0.027896335","3":"340734","4":"9778","5":"350512"},{"1":"2019-08-15","2":"0.015745923","3":"385990","4":"6175","5":"392165"},{"1":"2019-08-16","2":"0.013506896","3":"273959","4":"3751","5":"277710"},{"1":"2019-08-17","2":"0.012604959","3":"250590","4":"3199","5":"253789"},{"1":"2019-08-18","2":"0.022187602","3":"402317","4":"9129","5":"411446"},{"1":"2019-08-19","2":"0.015491406","3":"378833","4":"5961","5":"384794"},{"1":"2019-08-20","2":"0.009668832","3":"359717","4":"3512","5":"363229"},{"1":"2019-08-21","2":"0.008509563","3":"310046","4":"2661","5":"312707"},{"1":"2019-08-22","2":"0.010481030","3":"257835","4":"2731","5":"260566"},{"1":"2019-08-23","2":"0.010442122","3":"192754","4":"2034","5":"194788"},{"1":"2019-08-24","2":"0.011851151","3":"190023","4":"2279","5":"192302"},{"1":"2019-08-25","2":"0.017303493","3":"250679","4":"4414","5":"255093"},{"1":"2019-08-26","2":"0.016051155","3":"278980","4":"4551","5":"283531"},{"1":"2019-08-27","2":"0.028010654","3":"380979","4":"10979","5":"391958"},{"1":"2019-08-28","2":"0.014046565","3":"867781","4":"12363","5":"880144"},{"1":"2019-08-29","2":"0.021032182","3":"568934","4":"12223","5":"581157"},{"1":"2019-08-30","2":"0.028412706","3":"447380","4":"13083","5":"460463"},{"1":"2019-08-31","2":"0.014195436","3":"421185","4":"6065","5":"427250"},{"1":"2019-08-31","2":"0.012069115","3":"11378","4":"139","5":"11517"},{"1":"2019-09-01","2":"0.009970541","3":"478902","4":"4823","5":"483725"},{"1":"2019-09-02","2":"0.010771871","3":"657075","4":"7155","5":"664230"},{"1":"2019-09-03","2":"0.011186181","3":"966080","4":"10929","5":"977009"},{"1":"2019-09-04","2":"0.011442276","3":"957950","4":"11088","5":"969038"},{"1":"2019-09-05","2":"0.010720428","3":"747836","4":"8104","5":"755940"},{"1":"2019-09-06","2":"0.014229656","3":"580046","4":"8373","5":"588419"},{"1":"2019-09-07","2":"0.013145927","3":"535994","4":"7140","5":"543134"},{"1":"2019-09-08","2":"0.014494233","3":"559786","4":"8233","5":"568019"},{"1":"2019-09-09","2":"0.012184882","3":"658766","4":"8126","5":"666892"},{"1":"2019-09-10","2":"0.009116795","3":"507028","4":"4665","5":"511693"},{"1":"2019-09-11","2":"0.014017568","3":"615115","4":"8745","5":"623860"},{"1":"2019-09-12","2":"0.012237197","3":"607807","4":"7530","5":"615337"},{"1":"2019-09-13","2":"0.013040734","3":"431619","4":"5703","5":"437322"},{"1":"2019-09-14","2":"0.027063195","3":"332255","4":"9242","5":"341497"},{"1":"2019-09-15","2":"0.014882716","3":"335726","4":"5072","5":"340798"},{"1":"2019-09-16","2":"0.011210724","3":"407750","4":"4623","5":"412373"},{"1":"2019-09-17","2":"0.010991169","3":"357589","4":"3974","5":"361563"},{"1":"2019-09-18","2":"0.008526716","3":"393370","4":"3383","5":"396753"},{"1":"2019-09-19","2":"0.011478785","3":"343780","4":"3992","5":"347772"},{"1":"2019-09-20","2":"0.017357948","3":"302017","4":"5335","5":"307352"},{"1":"2019-09-21","2":"0.016927243","3":"240320","4":"4138","5":"244458"},{"1":"2019-09-22","2":"0.015563965","3":"290069","4":"4586","5":"294655"},{"1":"2019-09-23","2":"0.021836460","3":"413144","4":"9223","5":"422367"},{"1":"2019-09-24","2":"0.011936082","3":"630201","4":"7613","5":"637814"},{"1":"2019-09-25","2":"0.014291301","3":"519226","4":"7528","5":"526754"},{"1":"2019-09-26","2":"0.015415681","3":"495879","4":"7764","5":"503643"},{"1":"2019-09-27","2":"0.010790466","3":"477807","4":"5212","5":"483019"},{"1":"2019-09-28","2":"0.010887201","3":"439537","4":"4838","5":"444375"},{"1":"2019-09-29","2":"0.020677831","3":"407257","4":"8599","5":"415856"},{"1":"2019-09-30","2":"0.012747212","3":"409238","4":"5284","5":"414522"},{"1":"2019-09-30","2":"0.014783720","3":"10796","4":"162","5":"10958"},{"1":"2019-10-01","2":"0.013195399","3":"411985","4":"5509","5":"417494"},{"1":"2019-10-02","2":"0.012088853","3":"435000","4":"5323","5":"440323"},{"1":"2019-10-03","2":"0.008932654","3":"448677","4":"4044","5":"452721"},{"1":"2019-10-04","2":"0.018145557","3":"394840","4":"7297","5":"402137"},{"1":"2019-10-05","2":"0.016020959","3":"332764","4":"5418","5":"338182"},{"1":"2019-10-06","2":"0.011343976","3":"353142","4":"4052","5":"357194"},{"1":"2019-10-07","2":"0.011209574","3":"350809","4":"3977","5":"354786"},{"1":"2019-10-08","2":"0.008787272","3":"519674","4":"4607","5":"524281"},{"1":"2019-10-09","2":"0.016550544","3":"491768","4":"8276","5":"500044"},{"1":"2019-10-10","2":"0.017266239","3":"410994","4":"7221","5":"418215"},{"1":"2019-10-11","2":"0.012962327","3":"393602","4":"5169","5":"398771"},{"1":"2019-10-12","2":"0.009579074","3":"300567","4":"2907","5":"303474"},{"1":"2019-10-13","2":"0.009936157","3":"328920","4":"3301","5":"332221"},{"1":"2019-10-14","2":"0.015828236","3":"178265","4":"2867","5":"181132"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>The dataset looks good but not quite perfect. If we look at rows 18 and 19, we see that the date <strong>2019-03-31</strong> appears twice but the values are different in other columns. This stems from the data handling methodology of the COSMOS; the last hour of each day is saved under the directory of the next day. Although this is mostly resolved when data are aggregated monthly, there still remains dangling hourly data for each monthly cut off. This results in 7 duplicate dates, as we had 7 monthly - cut-offs. I’ll handle that here by grouping by date and summing values and recalculating daily ratios.</p>
+</div>
+<div id="process-the-dataset-accordingly" class="section level2">
+<h2><span class="header-section-number">2.2</span> Process the dataset accordingly</h2>
+<pre class="r"><code>brexit_data_processed &lt;-  brexit_data %&gt;% 
+  group_by(day) %&gt;% 
+  summarise(antimuslim_FALSE= sum (antimuslim_FALSE), antimuslim_TRUE= sum(antimuslim_TRUE), total_n= sum(total_n) ) %&gt;% 
+  mutate(day_ratio=antimuslim_TRUE/total_n) %&gt;% 
+  select(day,day_ratio, everything() )
+
+brexit_data_processed %&gt;% nrow()</code></pre>
+<pre><code>[1] 215</code></pre>
+<p>7 rows have been dropped. Except the last days of each month, all remaining rows should have exactly the same values as the earlier dataset. I’ll test this by anti-joining the processed dataset and raw dataset while using the day_ratio column, which I have just recalculated for the former, as key.</p>
+<pre class="r"><code>brexit_data%&gt;% 
+  anti_join(brexit_data_processed, by = &quot;day_ratio&quot;) %&gt;% 
+  rmarkdown::paged_table()</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["day"],"name":[1],"type":["S3: POSIXct"],"align":["right"]},{"label":["day_ratio"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["antimuslim_FALSE"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["antimuslim_TRUE"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["total_n"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"2019-03-31","2":"0.008286904","3":"471509","4":"3940","5":"475449"},{"1":"2019-03-31","2":"0.012174743","3":"12414","4":"153","5":"12567"},{"1":"2019-04-30","2":"0.012761194","3":"297227","4":"3842","5":"301069"},{"1":"2019-04-30","2":"0.016942723","3":"7775","4":"134","5":"7909"},{"1":"2019-05-31","2":"0.008861089","3":"281422","4":"2516","5":"283938"},{"1":"2019-05-31","2":"0.012571262","3":"6755","4":"86","5":"6841"},{"1":"2019-06-30","2":"0.012064882","3":"181867","4":"2221","5":"184088"},{"1":"2019-06-30","2":"0.012491782","3":"4506","4":"57","5":"4563"},{"1":"2019-07-31","2":"0.009642721","3":"320132","4":"3117","5":"323249"},{"1":"2019-07-31","2":"0.022608044","3":"7825","4":"181","5":"8006"},{"1":"2019-08-31","2":"0.014195436","3":"421185","4":"6065","5":"427250"},{"1":"2019-08-31","2":"0.012069115","3":"11378","4":"139","5":"11517"},{"1":"2019-09-30","2":"0.012747212","3":"409238","4":"5284","5":"414522"},{"1":"2019-09-30","2":"0.014783720","3":"10796","4":"162","5":"10958"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="print-the-processed-dataset" class="section level2">
+<h2><span class="header-section-number">2.3</span> Print the Processed Dataset</h2>
+<pre class="r"><code>brexit_data_processed %&gt;% 
+  rmarkdown::paged_table()</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["day"],"name":[1],"type":["S3: POSIXct"],"align":["right"]},{"label":["day_ratio"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["antimuslim_FALSE"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["antimuslim_TRUE"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["total_n"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"2019-03-14","2":"0.012453122","3":"269386","4":"3397","5":"272783"},{"1":"2019-03-15","2":"0.011245885","3":"426243","4":"4848","5":"431091"},{"1":"2019-03-16","2":"0.013106493","3":"368584","4":"4895","5":"373479"},{"1":"2019-03-17","2":"0.012715986","3":"397911","4":"5125","5":"403036"},{"1":"2019-03-18","2":"0.013170918","3":"467606","4":"6241","5":"473847"},{"1":"2019-03-19","2":"0.007345292","3":"514349","4":"3806","5":"518155"},{"1":"2019-03-20","2":"0.009680324","3":"751206","4":"7343","5":"758549"},{"1":"2019-03-21","2":"0.010444570","3":"845965","4":"8929","5":"854894"},{"1":"2019-03-22","2":"0.012563013","3":"712026","4":"9059","5":"721085"},{"1":"2019-03-23","2":"0.027890995","3":"767273","4":"22014","5":"789287"},{"1":"2019-03-24","2":"0.019719986","3":"591499","4":"11899","5":"603398"},{"1":"2019-03-25","2":"0.009549732","3":"601132","4":"5796","5":"606928"},{"1":"2019-03-26","2":"0.013196623","3":"632987","4":"8465","5":"641452"},{"1":"2019-03-27","2":"0.013813317","3":"874147","4":"12244","5":"886391"},{"1":"2019-03-28","2":"0.014703162","3":"665703","4":"9934","5":"675637"},{"1":"2019-03-29","2":"0.025721435","3":"916498","4":"24196","5":"940694"},{"1":"2019-03-30","2":"0.015452333","3":"623389","4":"9784","5":"633173"},{"1":"2019-03-31","2":"0.008387020","3":"483923","4":"4093","5":"488016"},{"1":"2019-04-01","2":"0.009406287","3":"667572","4":"6339","5":"673911"},{"1":"2019-04-02","2":"0.010105492","3":"818717","4":"8358","5":"827075"},{"1":"2019-04-03","2":"0.014855794","3":"752728","4":"11351","5":"764079"},{"1":"2019-04-04","2":"0.018509017","3":"654256","4":"12338","5":"666594"},{"1":"2019-04-05","2":"0.016893486","3":"572924","4":"9845","5":"582769"},{"1":"2019-04-06","2":"0.038799850","3":"413937","4":"16709","5":"430646"},{"1":"2019-04-07","2":"0.021248348","3":"492454","4":"10691","5":"503145"},{"1":"2019-04-08","2":"0.013622892","3":"522191","4":"7212","5":"529403"},{"1":"2019-04-09","2":"0.011872629","3":"496784","4":"5969","5":"502753"},{"1":"2019-04-10","2":"0.014299614","3":"548078","4":"7951","5":"556029"},{"1":"2019-04-11","2":"0.019992787","3":"608657","4":"12417","5":"621074"},{"1":"2019-04-12","2":"0.032475219","3":"485502","4":"16296","5":"501798"},{"1":"2019-04-13","2":"0.023607812","3":"373181","4":"9023","5":"382204"},{"1":"2019-04-14","2":"0.017249138","3":"329765","4":"5788","5":"335553"},{"1":"2019-04-15","2":"0.013372235","3":"266131","4":"3607","5":"269738"},{"1":"2019-04-16","2":"0.008102594","3":"256709","4":"2097","5":"258806"},{"1":"2019-04-17","2":"0.008548165","3":"322436","4":"2780","5":"325216"},{"1":"2019-04-18","2":"0.014425801","3":"283529","4":"4150","5":"287679"},{"1":"2019-04-19","2":"0.019025739","3":"191289","4":"3710","5":"194999"},{"1":"2019-04-20","2":"0.014738084","3":"173680","4":"2598","5":"176278"},{"1":"2019-04-21","2":"0.014190991","3":"169639","4":"2442","5":"172081"},{"1":"2019-04-22","2":"0.041553093","3":"175460","4":"7607","5":"183067"},{"1":"2019-04-23","2":"0.024461608","3":"230389","4":"5777","5":"236166"},{"1":"2019-04-24","2":"0.012498791","3":"285771","4":"3617","5":"289388"},{"1":"2019-04-25","2":"0.027016407","3":"252570","4":"7013","5":"259583"},{"1":"2019-04-26","2":"0.015107689","3":"245837","4":"3771","5":"249608"},{"1":"2019-04-27","2":"0.013808820","3":"204254","4":"2860","5":"207114"},{"1":"2019-04-28","2":"0.014085715","3":"241479","4":"3450","5":"244929"},{"1":"2019-04-29","2":"0.019645722","3":"242572","4":"4861","5":"247433"},{"1":"2019-04-30","2":"0.012868230","3":"305002","4":"3976","5":"308978"},{"1":"2019-05-01","2":"0.017479515","3":"287176","4":"5109","5":"292285"},{"1":"2019-05-02","2":"0.021858035","3":"240172","4":"5367","5":"245539"},{"1":"2019-05-03","2":"0.030324455","3":"525281","4":"16427","5":"541708"},{"1":"2019-05-04","2":"0.026448907","3":"349315","4":"9490","5":"358805"},{"1":"2019-05-05","2":"0.021253848","3":"303011","4":"6580","5":"309591"},{"1":"2019-05-06","2":"0.012184011","3":"267790","4":"3303","5":"271093"},{"1":"2019-05-07","2":"0.011686283","3":"272063","4":"3217","5":"275280"},{"1":"2019-05-08","2":"0.014305128","3":"303182","4":"4400","5":"307582"},{"1":"2019-05-09","2":"0.011752503","3":"337278","4":"4011","5":"341289"},{"1":"2019-05-10","2":"0.036408454","3":"299438","4":"11314","5":"310752"},{"1":"2019-05-11","2":"0.042198583","3":"258320","4":"11381","5":"269701"},{"1":"2019-05-12","2":"0.018602372","3":"334424","4":"6339","5":"340763"},{"1":"2019-05-13","2":"0.018717553","3":"336259","4":"6414","5":"342673"},{"1":"2019-05-14","2":"0.022890303","3":"333724","4":"7818","5":"341542"},{"1":"2019-05-15","2":"0.016513640","3":"59556","4":"1000","5":"60556"},{"1":"2019-05-16","2":"0.012906182","3":"211091","4":"2760","5":"213851"},{"1":"2019-05-17","2":"0.015191311","3":"346825","4":"5350","5":"352175"},{"1":"2019-05-18","2":"0.017373368","3":"323463","4":"5719","5":"329182"},{"1":"2019-05-19","2":"0.020341508","3":"310443","4":"6446","5":"316889"},{"1":"2019-05-20","2":"0.027965483","3":"428953","4":"12341","5":"441294"},{"1":"2019-05-21","2":"0.019102025","3":"495378","4":"9647","5":"505025"},{"1":"2019-05-22","2":"0.019802232","3":"578994","4":"11697","5":"590691"},{"1":"2019-05-23","2":"0.020970117","3":"551279","4":"11808","5":"563087"},{"1":"2019-05-24","2":"0.026895978","3":"541257","4":"14960","5":"556217"},{"1":"2019-05-25","2":"0.024324959","3":"294889","4":"7352","5":"302241"},{"1":"2019-05-26","2":"0.013858970","3":"531033","4":"7463","5":"538496"},{"1":"2019-05-27","2":"0.012707026","3":"944247","4":"12153","5":"956400"},{"1":"2019-05-28","2":"0.011119542","3":"461378","4":"5188","5":"466566"},{"1":"2019-05-29","2":"0.009851234","3":"362138","4":"3603","5":"365741"},{"1":"2019-05-30","2":"0.009365083","3":"318714","4":"3013","5":"321727"},{"1":"2019-05-31","2":"0.008948377","3":"288177","4":"2602","5":"290779"},{"1":"2019-06-01","2":"0.021818152","3":"241921","4":"5396","5":"247317"},{"1":"2019-06-02","2":"0.020677698","3":"376759","4":"7955","5":"384714"},{"1":"2019-06-03","2":"0.013130410","3":"318900","4":"4243","5":"323143"},{"1":"2019-06-04","2":"0.011669093","3":"335398","4":"3960","5":"339358"},{"1":"2019-06-05","2":"0.010248273","3":"318126","4":"3294","5":"321420"},{"1":"2019-06-06","2":"0.013394094","3":"327565","4":"4447","5":"332012"},{"1":"2019-06-07","2":"0.016415000","3":"345558","4":"5767","5":"351325"},{"1":"2019-06-08","2":"0.010051196","3":"189496","4":"1924","5":"191420"},{"1":"2019-06-09","2":"0.006902875","3":"190624","4":"1325","5":"191949"},{"1":"2019-06-10","2":"0.017844403","3":"231278","4":"4202","5":"235480"},{"1":"2019-06-11","2":"0.014492925","3":"250101","4":"3678","5":"253779"},{"1":"2019-06-12","2":"0.013580043","3":"298540","4":"4110","5":"302650"},{"1":"2019-06-13","2":"0.014661029","3":"235833","4":"3509","5":"239342"},{"1":"2019-06-14","2":"0.012469392","3":"183498","4":"2317","5":"185815"},{"1":"2019-06-15","2":"0.016282945","3":"142879","4":"2365","5":"145244"},{"1":"2019-06-16","2":"0.025798307","3":"207579","4":"5497","5":"213076"},{"1":"2019-06-17","2":"0.009170884","3":"214785","4":"1988","5":"216773"},{"1":"2019-06-18","2":"0.012049857","3":"279007","4":"3403","5":"282410"},{"1":"2019-06-19","2":"0.014003173","3":"205745","4":"2922","5":"208667"},{"1":"2019-06-20","2":"0.012454478","3":"223446","4":"2818","5":"226264"},{"1":"2019-06-21","2":"0.010004771","3":"136950","4":"1384","5":"138334"},{"1":"2019-06-22","2":"0.024918937","3":"130812","4":"3343","5":"134155"},{"1":"2019-06-23","2":"0.008908570","3":"227843","4":"2048","5":"229891"},{"1":"2019-06-24","2":"0.009270357","3":"243024","4":"2274","5":"245298"},{"1":"2019-06-25","2":"0.011335486","3":"218308","4":"2503","5":"220811"},{"1":"2019-06-26","2":"0.010812914","3":"226235","4":"2473","5":"228708"},{"1":"2019-06-27","2":"0.012800282","3":"212706","4":"2758","5":"215464"},{"1":"2019-06-28","2":"0.013265267","3":"205079","4":"2757","5":"207836"},{"1":"2019-06-29","2":"0.009020511","3":"154461","4":"1406","5":"155867"},{"1":"2019-06-30","2":"0.012075208","3":"186373","4":"2278","5":"188651"},{"1":"2019-07-01","2":"0.048864503","3":"209577","4":"10767","5":"220344"},{"1":"2019-07-02","2":"0.013983602","3":"388805","4":"5514","5":"394319"},{"1":"2019-07-03","2":"0.009700499","3":"278903","4":"2732","5":"281635"},{"1":"2019-07-04","2":"0.014331007","3":"270782","4":"3937","5":"274719"},{"1":"2019-07-05","2":"0.013198489","3":"202467","4":"2708","5":"205175"},{"1":"2019-07-06","2":"0.016049259","3":"147017","4":"2398","5":"149415"},{"1":"2019-07-07","2":"0.009488462","3":"188948","4":"1810","5":"190758"},{"1":"2019-07-08","2":"0.010930292","3":"255993","4":"2829","5":"258822"},{"1":"2019-07-09","2":"0.010678209","3":"325938","4":"3518","5":"329456"},{"1":"2019-07-10","2":"0.013321883","3":"233229","4":"3149","5":"236378"},{"1":"2019-07-11","2":"0.014120173","3":"156119","4":"2236","5":"158355"},{"1":"2019-07-12","2":"0.014796839","3":"150209","4":"2256","5":"152465"},{"1":"2019-07-13","2":"0.041341499","3":"168907","4":"7284","5":"176191"},{"1":"2019-07-14","2":"0.022070966","3":"184766","4":"4170","5":"188936"},{"1":"2019-07-15","2":"0.014793333","3":"161367","4":"2423","5":"163790"},{"1":"2019-07-16","2":"0.016213852","3":"193434","4":"3188","5":"196622"},{"1":"2019-07-17","2":"0.017393481","3":"204165","4":"3614","5":"207779"},{"1":"2019-07-18","2":"0.015716539","3":"251511","4":"4016","5":"255527"},{"1":"2019-07-19","2":"0.015356204","3":"216470","4":"3376","5":"219846"},{"1":"2019-07-20","2":"0.010034011","3":"175518","4":"1779","5":"177297"},{"1":"2019-07-21","2":"0.010734899","3":"188363","4":"2044","5":"190407"},{"1":"2019-07-22","2":"0.016524107","3":"229381","4":"3854","5":"233235"},{"1":"2019-07-23","2":"0.059592172","3":"436921","4":"27687","5":"464608"},{"1":"2019-07-24","2":"0.037919182","3":"338131","4":"13327","5":"351458"},{"1":"2019-07-25","2":"0.015268449","3":"289258","4":"4485","5":"293743"},{"1":"2019-07-26","2":"0.013172436","3":"231266","4":"3087","5":"234353"},{"1":"2019-07-27","2":"0.027924287","3":"206604","4":"5935","5":"212539"},{"1":"2019-07-28","2":"0.009264804","3":"277925","4":"2599","5":"280524"},{"1":"2019-07-29","2":"0.013925948","3":"355883","4":"5026","5":"360909"},{"1":"2019-07-30","2":"0.012593170","3":"337939","4":"4310","5":"342249"},{"1":"2019-07-31","2":"0.009956076","3":"327957","4":"3298","5":"331255"},{"1":"2019-08-01","2":"0.016079211","3":"353568","4":"5778","5":"359346"},{"1":"2019-08-02","2":"0.010056413","3":"343946","4":"3494","5":"347440"},{"1":"2019-08-03","2":"0.010345511","3":"224706","4":"2349","5":"227055"},{"1":"2019-08-04","2":"0.010326885","3":"210357","4":"2195","5":"212552"},{"1":"2019-08-05","2":"0.009970490","3":"207330","4":"2088","5":"209418"},{"1":"2019-08-06","2":"0.020474474","3":"279154","4":"5835","5":"284989"},{"1":"2019-08-07","2":"0.014949274","3":"289731","4":"4397","5":"294128"},{"1":"2019-08-08","2":"0.012239997","3":"268164","4":"3323","5":"271487"},{"1":"2019-08-09","2":"0.008971664","3":"301230","4":"2727","5":"303957"},{"1":"2019-08-10","2":"0.009549139","3":"263660","4":"2542","5":"266202"},{"1":"2019-08-11","2":"0.010525799","3":"322248","4":"3428","5":"325676"},{"1":"2019-08-12","2":"0.012478565","3":"320190","4":"4046","5":"324236"},{"1":"2019-08-13","2":"0.016735940","3":"303041","4":"5158","5":"308199"},{"1":"2019-08-14","2":"0.027896335","3":"340734","4":"9778","5":"350512"},{"1":"2019-08-15","2":"0.015745923","3":"385990","4":"6175","5":"392165"},{"1":"2019-08-16","2":"0.013506896","3":"273959","4":"3751","5":"277710"},{"1":"2019-08-17","2":"0.012604959","3":"250590","4":"3199","5":"253789"},{"1":"2019-08-18","2":"0.022187602","3":"402317","4":"9129","5":"411446"},{"1":"2019-08-19","2":"0.015491406","3":"378833","4":"5961","5":"384794"},{"1":"2019-08-20","2":"0.009668832","3":"359717","4":"3512","5":"363229"},{"1":"2019-08-21","2":"0.008509563","3":"310046","4":"2661","5":"312707"},{"1":"2019-08-22","2":"0.010481030","3":"257835","4":"2731","5":"260566"},{"1":"2019-08-23","2":"0.010442122","3":"192754","4":"2034","5":"194788"},{"1":"2019-08-24","2":"0.011851151","3":"190023","4":"2279","5":"192302"},{"1":"2019-08-25","2":"0.017303493","3":"250679","4":"4414","5":"255093"},{"1":"2019-08-26","2":"0.016051155","3":"278980","4":"4551","5":"283531"},{"1":"2019-08-27","2":"0.028010654","3":"380979","4":"10979","5":"391958"},{"1":"2019-08-28","2":"0.014046565","3":"867781","4":"12363","5":"880144"},{"1":"2019-08-29","2":"0.021032182","3":"568934","4":"12223","5":"581157"},{"1":"2019-08-30","2":"0.028412706","3":"447380","4":"13083","5":"460463"},{"1":"2019-08-31","2":"0.014139623","3":"432563","4":"6204","5":"438767"},{"1":"2019-09-01","2":"0.009970541","3":"478902","4":"4823","5":"483725"},{"1":"2019-09-02","2":"0.010771871","3":"657075","4":"7155","5":"664230"},{"1":"2019-09-03","2":"0.011186181","3":"966080","4":"10929","5":"977009"},{"1":"2019-09-04","2":"0.011442276","3":"957950","4":"11088","5":"969038"},{"1":"2019-09-05","2":"0.010720428","3":"747836","4":"8104","5":"755940"},{"1":"2019-09-06","2":"0.014229656","3":"580046","4":"8373","5":"588419"},{"1":"2019-09-07","2":"0.013145927","3":"535994","4":"7140","5":"543134"},{"1":"2019-09-08","2":"0.014494233","3":"559786","4":"8233","5":"568019"},{"1":"2019-09-09","2":"0.012184882","3":"658766","4":"8126","5":"666892"},{"1":"2019-09-10","2":"0.009116795","3":"507028","4":"4665","5":"511693"},{"1":"2019-09-11","2":"0.014017568","3":"615115","4":"8745","5":"623860"},{"1":"2019-09-12","2":"0.012237197","3":"607807","4":"7530","5":"615337"},{"1":"2019-09-13","2":"0.013040734","3":"431619","4":"5703","5":"437322"},{"1":"2019-09-14","2":"0.027063195","3":"332255","4":"9242","5":"341497"},{"1":"2019-09-15","2":"0.014882716","3":"335726","4":"5072","5":"340798"},{"1":"2019-09-16","2":"0.011210724","3":"407750","4":"4623","5":"412373"},{"1":"2019-09-17","2":"0.010991169","3":"357589","4":"3974","5":"361563"},{"1":"2019-09-18","2":"0.008526716","3":"393370","4":"3383","5":"396753"},{"1":"2019-09-19","2":"0.011478785","3":"343780","4":"3992","5":"347772"},{"1":"2019-09-20","2":"0.017357948","3":"302017","4":"5335","5":"307352"},{"1":"2019-09-21","2":"0.016927243","3":"240320","4":"4138","5":"244458"},{"1":"2019-09-22","2":"0.015563965","3":"290069","4":"4586","5":"294655"},{"1":"2019-09-23","2":"0.021836460","3":"413144","4":"9223","5":"422367"},{"1":"2019-09-24","2":"0.011936082","3":"630201","4":"7613","5":"637814"},{"1":"2019-09-25","2":"0.014291301","3":"519226","4":"7528","5":"526754"},{"1":"2019-09-26","2":"0.015415681","3":"495879","4":"7764","5":"503643"},{"1":"2019-09-27","2":"0.010790466","3":"477807","4":"5212","5":"483019"},{"1":"2019-09-28","2":"0.010887201","3":"439537","4":"4838","5":"444375"},{"1":"2019-09-29","2":"0.020677831","3":"407257","4":"8599","5":"415856"},{"1":"2019-09-30","2":"0.012799662","3":"420034","4":"5446","5":"425480"},{"1":"2019-10-01","2":"0.013195399","3":"411985","4":"5509","5":"417494"},{"1":"2019-10-02","2":"0.012088853","3":"435000","4":"5323","5":"440323"},{"1":"2019-10-03","2":"0.008932654","3":"448677","4":"4044","5":"452721"},{"1":"2019-10-04","2":"0.018145557","3":"394840","4":"7297","5":"402137"},{"1":"2019-10-05","2":"0.016020959","3":"332764","4":"5418","5":"338182"},{"1":"2019-10-06","2":"0.011343976","3":"353142","4":"4052","5":"357194"},{"1":"2019-10-07","2":"0.011209574","3":"350809","4":"3977","5":"354786"},{"1":"2019-10-08","2":"0.008787272","3":"519674","4":"4607","5":"524281"},{"1":"2019-10-09","2":"0.016550544","3":"491768","4":"8276","5":"500044"},{"1":"2019-10-10","2":"0.017266239","3":"410994","4":"7221","5":"418215"},{"1":"2019-10-11","2":"0.012962327","3":"393602","4":"5169","5":"398771"},{"1":"2019-10-12","2":"0.009579074","3":"300567","4":"2907","5":"303474"},{"1":"2019-10-13","2":"0.009936157","3":"328920","4":"3301","5":"332221"},{"1":"2019-10-14","2":"0.015828236","3":"178265","4":"2867","5":"181132"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div id="visualisations" class="section level1">
+<h1><span class="header-section-number">3</span> Visualisations</h1>
+<div id="initial-plot-of-hate-speech" class="section level2">
+<h2><span class="header-section-number">3.1</span> Initial Plot of Hate Speech</h2>
+<pre class="r"><code>initial_plot_hs &lt;- brexit_data_processed %&gt;% 
+  ggplot()+
+  aes(x= day, y=antimuslim_TRUE)+
+  geom_line()+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))+
+  scale_y_continuous(labels = comma,
+                     breaks = seq(from=0, to=30000, by=5000),
+                     limits=c(0, 30000)
+  )+
+  scale_x_datetime(date_labels=&quot;%d %b %y&quot;,date_breaks  =&quot;1 month&quot;)+
+  labs(title=&quot;Tweets classified as anti-Muslim hate speech sent per day&quot;, 
+       subtitle= &quot;Data: Single keyword Brexit Dataset&quot;)+
+  NULL
+
+initial_plot_hs</code></pre>
+<p><img src="figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="initial-plot-of-the-ratio-of-hate-speech" class="section level2">
+<h2><span class="header-section-number">3.2</span> Initial Plot of the Ratio of Hate Speech</h2>
+<p>The ratio visualised here is the ratio of the total number of HS to the total number of tweets</p>
+<pre class="r"><code>initial_plot_ratio &lt;- brexit_data_processed %&gt;% 
+  ggplot()+
+  aes(x= day, y=day_ratio)+
+  geom_line()+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))+
+  scale_y_continuous(
+                     breaks = seq(from=0, to=0.07, by=0.01),
+                     limits=c(0, 0.07)
+  )+
+  scale_x_datetime(date_labels=&quot;%d %b %y&quot;,date_breaks  =&quot;1 month&quot;)+
+  labs(title=&quot;Ratio of hate speech to total number of tweets per day&quot;, 
+       subtitle= &quot;Data: Single keyword Brexit Dataset&quot;)+
+  NULL
+
+initial_plot_ratio</code></pre>
+<p><img src="figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="plot-hs-counts-and-ratio-together" class="section level2">
+<h2><span class="header-section-number">3.3</span> Plot HS counts and Ratio Together</h2>
+<pre class="r"><code>gridExtra::grid.arrange(initial_plot_hs, initial_plot_ratio,nrow=2)</code></pre>
+<p><img src="figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="plot-of-count-of-hate-speech-faceted-by-month" class="section level2">
+<h2><span class="header-section-number">3.4</span> Plot of Count of Hate Speech Faceted by Month</h2>
+<div id="plot-of-hs-count-using-the-same-scale-for-y" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Plot of HS Count Using the Same Scale for Y</h3>
+<p>We are using same Y scale for all months here. This is useful to see the difference between months.</p>
+<pre class="r"><code>initial_plot_hs_faceted &lt;- brexit_data_processed %&gt;% 
+  mutate(month=as.factor( month(day))) %&gt;% 
+  mutate(day_x=day(day)) %&gt;% 
+  ggplot()+
+  aes(x= day_x, y=antimuslim_TRUE, color=month )+
+  geom_line()+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 360, 
+                                   hjust = 1))+
+  scale_y_continuous(labels = comma,
+                     breaks = seq(from=0, to=30000, by=10000),
+                     limits=c(0, 30000)
+  )+
+  # scale_x_datetime(date_labels=&quot;%d %b %y&quot;,date_breaks  =&quot;1 day&quot;)+
+  scale_x_continuous(labels = seq(1,31,1), breaks = seq(1,31,1))+
+  labs(title=&quot;Tweets classified as anti-Muslim hate speech sent per day&quot;, 
+       subtitle= &quot;Data: Single keyword Brexit Dataset&quot;)+
+  facet_grid(rows = vars(month), scales = &quot;free&quot;)+
+  NULL
+
+initial_plot_hs_faceted</code></pre>
+<p><img src="figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-9-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="plot-of-hs-counts-using-free-scales-for-y" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> Plot of HS Counts Using Free Scales for Y</h3>
+<p>We are using different Y scale for each month in this plot. This plot is useful to see the patterns of HS counts each month, independent of other months within the dataset.</p>
+<pre class="r"><code>initial_plot_hs_faceted_free &lt;- brexit_data_processed %&gt;% 
+  mutate(month=as.factor( month(day))) %&gt;% 
+  mutate(day_x=day(day)) %&gt;% 
+  ggplot()+
+  aes(x= day_x, y=antimuslim_TRUE, color=month )+
+  geom_line()+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 360, 
+                                   hjust = 1))+
+  # scale_y_continuous(labels = comma,
+  #                    breaks = seq(from=0, to=30000, by=10000),
+  #                    limits=c(0, 30000)
+  # )+
+  # scale_x_datetime(date_labels=&quot;%d %b %y&quot;,date_breaks  =&quot;1 day&quot;)+
+  scale_x_continuous(labels = seq(1,31,1), breaks = seq(1,31,1))+
+  labs(title=&quot;Tweets classified as anti-Muslim hate speech sent per day&quot;, 
+       subtitle= &quot;Data: Single keyword Brexit Dataset&quot;)+
+  facet_grid(rows = vars(month), scales = &quot;free&quot;)+
+  NULL
+
+initial_plot_hs_faceted_free</code></pre>
+<p><img src="figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-10-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="plot-of-ratio-of-hate-speech-faceted-by-month" class="section level2">
+<h2><span class="header-section-number">3.5</span> Plot of Ratio of Hate Speech Faceted by Month</h2>
+<div id="same-scale" class="section level3">
+<h3><span class="header-section-number">3.5.1</span> Same Scale</h3>
+<pre class="r"><code>initial_plot_ratio_faceted &lt;- brexit_data_processed %&gt;% 
+  mutate(month=as.factor( month(day))) %&gt;% 
+  mutate(day_x=day(day)) %&gt;% 
+  ggplot()+
+  aes(x= day_x, y=day_ratio, color=month )+
+  geom_line()+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 360, 
+                                   hjust = 1))+
+  scale_y_continuous(
+                     breaks = seq(from=0, to=0.07, by=0.01),
+                     limits=c(0, 0.07)
+  )+
+  # scale_x_datetime(date_labels=&quot;%d %b %y&quot;,date_breaks  =&quot;1 day&quot;)+
+  scale_x_continuous(labels = seq(1,31,1), breaks = seq(1,31,1))+
+  labs(title=&quot;Tweets classified as anti-Muslim hate speech sent per day&quot;, 
+       subtitle= &quot;Data: Single keyword Brexit Dataset&quot;)+
+  facet_grid(rows = vars(month), scales = &quot;free&quot;)+
+  NULL
+
+initial_plot_ratio_faceted</code></pre>
+<p><img src="figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-11-1.png" width="768" style="display: block; margin: auto;" /></p>
+</div>
+<div id="free-scales" class="section level3">
+<h3><span class="header-section-number">3.5.2</span> Free Scales</h3>
+<pre class="r"><code>initial_plot_ratio_faceted &lt;- brexit_data_processed %&gt;% 
+  mutate(month=as.factor( month(day))) %&gt;% 
+  mutate(day_x=day(day)) %&gt;% 
+  ggplot()+
+  aes(x= day_x, y=day_ratio, color=month )+
+  geom_line()+
+  theme_minimal()+
+  theme(axis.text.x = element_text(angle = 360, 
+                                   hjust = 1))+
+  # scale_y_continuous(
+  #                    breaks = seq(from=0, to=0.07, by=0.01),
+  #                    limits=c(0, 0.07)
+  # )+
+  # scale_x_datetime(date_labels=&quot;%d %b %y&quot;,date_breaks  =&quot;1 day&quot;)+
+  scale_x_continuous(labels = seq(1,31,1), breaks = seq(1,31,1))+
+  labs(title=&quot;Tweets classified as anti-Muslim hate speech sent per day&quot;, 
+       subtitle= &quot;Data: Single keyword Brexit Dataset&quot;)+
+  facet_grid(rows = vars(month), scales = &quot;free&quot;)+
+  NULL
+
+initial_plot_ratio_faceted</code></pre>
+<p><img src="figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-12-1.png" width="768" style="display: block; margin: auto;" /> # Export the processed Dataset</p>
+<pre class="r"><code># brexit_data_processed %&gt;% 
+#   write_csv()</code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 3.6.1 (2019-07-05)
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+Running under: macOS Mojave 10.14.6
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_GB.UTF-8/en_GB.UTF-8/en_GB.UTF-8/C/en_GB.UTF-8/en_GB.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] gridExtra_2.3    hrbrthemes_0.6.0 scales_1.0.0     fs_1.3.1        
+ [5] lubridate_1.7.4  forcats_0.4.0    stringr_1.4.0    dplyr_0.8.3     
+ [9] purrr_0.3.2      readr_1.3.1      tidyr_1.0.0      tibble_2.1.3    
+[13] ggplot2_3.2.1    tidyverse_1.2.1 
+
+loaded via a namespace (and not attached):
+ [1] tidyselect_0.2.5  xfun_0.9          reshape2_1.4.3   
+ [4] haven_2.1.1       lattice_0.20-38   colorspace_1.4-1 
+ [7] vctrs_0.2.0       generics_0.0.2    htmltools_0.3.6  
+[10] yaml_2.2.0        rlang_0.4.0       pillar_1.4.2     
+[13] glue_1.3.1        withr_2.1.2       gdtools_0.2.0    
+[16] modelr_0.1.5      readxl_1.3.1      plyr_1.8.4       
+[19] lifecycle_0.1.0   munsell_0.5.0     gtable_0.3.0     
+[22] workflowr_1.4.0   cellranger_1.1.0  rvest_0.3.4      
+[25] evaluate_0.14     labeling_0.3      knitr_1.25       
+[28] extrafont_0.17    Rttf2pt1_1.3.7    broom_0.5.2      
+[31] Rcpp_1.0.2        backports_1.1.4   jsonlite_1.6     
+[34] systemfonts_0.1.1 hms_0.5.1         digest_0.6.21    
+[37] stringi_1.4.3     grid_3.6.1        rprojroot_1.3-2  
+[40] here_0.1          cli_1.1.0         tools_3.6.1      
+[43] magrittr_1.5      lazyeval_0.2.2    crayon_1.3.4     
+[46] whisker_0.4       extrafontdb_1.0   pkgconfig_2.0.3  
+[49] zeallot_0.1.0     xml2_1.2.2        assertthat_0.2.1 
+[52] rmarkdown_1.15    httr_1.4.1        rstudioapi_0.10  
+[55] R6_2.4.0          nlme_3.1-141      git2r_0.26.1     
+[58] compiler_3.6.1   </code></pre>
+</div>
+</div>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
