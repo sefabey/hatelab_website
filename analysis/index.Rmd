@@ -8,7 +8,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-Welcome to my research website.
+This is a website for hosting HateLab's hate speech tracker data.
 
 Click on this [link](initial_numbers.html) to see the number of tweets in the multiple-keyword Brexit dataset classified as hate speech by the anti-Muslim classifier and the hate-speech to all tweets ratio.
 
