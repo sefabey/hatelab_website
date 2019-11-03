@@ -25,7 +25,7 @@ Currently, the HSD visualises six different classification results over time:
 5. Anti-Semitism Classifier
 6. Sexual-orientation Classifier
 
-The 'Brexit' data collection is running since April 2019 on the dashboard. When we select dates from September 01 to September 31, we get the following visualisation ![September 2019 visualisation from HSD](/Users/sefaozalp/Documents/Work/hatelab_website/output/HSD_Brexit_Sep19.png). 
+The 'Brexit' data collection is running since April 2019 on the dashboard. When we select dates from September 01 to September 31, we get the following visualisation ![September 2019 visualisation from HSD](../output/HSD_Brexit_Sep19.png). 
 
 This can 
 
