@@ -1,7 +1,8 @@
 library(tidyverse)
 library(fs)
 library(lubridate)
-
+library(plotly)
+library(hrbrthemes)
 # Data Import=====
 folder <- "/Users/sefaozalp/Desktop/dash_comparison" #without forward slash
 
@@ -114,7 +115,7 @@ static_plot <- final_hate_counts %>%
   geom_line(aes(y=xrw_n), colour= xrw_col, size=0.5) +
   hrbrthemes::theme_ipsum_rc()
 
-
+static_plot
 
 
 
@@ -138,6 +139,7 @@ static_plot2 <- final_hate_counts %>%
        subtitle = "Data were collected from Twitter streaming API using the keyword 'brexit' in real time",
        caption = "@SefaOzalp, HateLab, 2019",
        y="Number of Tweets (per minute)")+
+  scale_y_continuous(breaks = seq(0,1400,200))+
   NULL
 
 # static_plot2
@@ -152,11 +154,6 @@ ggsave(static_plot2,
 
 # plotly
 
-library(plotly)
-
-Sys.setenv("plotly_username"="sefaozalp")
-Sys.setenv("plotly_api_key"="NWCWC9SNztKHswl3sAXS")
-
 static_plot3 <- final_hate_counts %>%
   ggplot(aes(x=date_minutes))+
   geom_line(aes(y=is_hate_n, colour= "Any Hate Class"),size=0.5)+
@@ -169,7 +166,9 @@ static_plot3 <- final_hate_counts %>%
   scale_colour_manual(name = "Classifier",
                       values = c( "Any Hate Class"=allpost_col, "Antimuslim"=antimuslim_col, "Antisemitism"=antisem_col, "Sexual Orientation"=sexorient_col, "Far Right"=fr_col, "XRW"=  xrw_col)
   )+
-  theme(legend.position="bottom")
+  theme(legend.position="bottom")+
+  scale_y_continuous(breaks = seq(0,1400,200))
+
 
 dynamic_plot1 <- ggplotly(static_plot3) %>%
   layout(legend = list(orientation = 'h', x = 100, y = -0.1))

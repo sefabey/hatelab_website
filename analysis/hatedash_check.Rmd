@@ -9,15 +9,16 @@ editor_options:
 
 # Introduction
 
-Currently, line graphs in the Hate Speech Dashboards (HSD) for tweets classified with different classifiers are counter-intuitive. For most classifiers, the hate speech classsification results seem disproportunately high. This prompts us to think our HS classifiers perform poorly i.e. too many false positives are outputted. However, we are not sure if this is the case. Put simply, deployment of classifiers and post classification data aggregation might also be the culprits behind unreasonable trends observed.
+Currently, line graphs in the Hate Speech Dashboards (HSD) for tweets classified with different classifiers look counter-intuitive. For most classifiers, classsification results seem disproportunately high. This has been prompting us to think our HS classifiers perform poorly i.e. too many false positives are outputted. Although this might be the case to a certain extent, we are not sure if this is the only culprit. Put simply, deployment of classifiers and post classification data aggregation might also be the reasons why we observe counter-intuitive trends.
 
-This document will present a fact checking excercise for the dashboard. Drawing on a dataset collected with COSMOS 1.5 using single 'brexit' keyword for teh whole month of September 2019, I will classify the tweets using same classifiers the dashboard uses, aggregate and visualise the results independent of the dashboard. 
+This document will present a fact checking excercise for the dashboard. Drawing on a same dataset collected with COSMOS 1.5 during September 2019, I will produce the same line charts as the HSD using same classifiers. The difference is, I will collect, process, classify and finally visualise the same dateset independently. 
 
 
 # What Does the HSD Output and What's Wrong With It?
 
 
-Currently, the HSD visualises six different classification results over time:
+Currently, the HSD visualises six different classification results (counts of tweets classified as Yes class) over time on the same line chart. We have different lines representing:
+
 1. Posts (all tweets classified as HS by any of the classiers) 
 2. Extreme Right Wing Classifier
 3. Anti-Muslim Classifier
@@ -25,18 +26,37 @@ Currently, the HSD visualises six different classification results over time:
 5. Anti-Semitism Classifier
 6. Sexual-orientation Classifier
 
-The 'Brexit' data collection is running since April 2019 on the dashboard. When we select dates from September 01 to September 31, we get the following visualisation.
+The 'Brexit' data collection has been running since April 2019 on the HSD. When we select dates from September 01 to September 31, we get the following visualisation: 
 
-```{r pressure, echo=FALSE, fig.cap="September 2019 from HSD", out.width = '100%'}
-library(png)
-knitr::include_graphics(here::here("/output/HSD_Brexit_Sep19.png"))
-```
+![Brexit collection for September 2019 on HSD](assets/HSD_Brexit_Sep19.png)
 
 
 
 
+One can also find the interactive version of the same chart on HSD by querying the existing 'Brexit' collection between 1-30 September or through this **[URL](http://hsapi-load-balancer-482031459.us-east-1.elb.amazonaws.com/1/2019-09-01%2000:00:00/2019-09-30%2021:00:00/line-chart)**. 
 
-# Conclusions
+
+Looking at this chart, we immediately observe seasonality effect on tweet counts and observe a diverging pattern between day and night time for all classifiers. It is expected to observe some seasonality as the 'Yes' class results are expected to differ in volume based on the number of tweets sent during particular minute (More tweets more likely to procude hate in absolute numbers). This does not mean our classification results are not simply a function of the tweets sent per minute. Our previous research findings have illustrated peaks and throughs following relavant offline events (e.g. terror attacks, offensive speech by influential political figures etc). 
+
+
+Although some seasonality is expected across all classifiers, we also expect independent trends for each classifier. It does not make much sense to observe exremely similar patterns across all classifiers using the Brexit tweets. One would reasonably expect classifiers trained on distinct topics, such as sexual orientation and anti-semitism, to have different patterns when same dataset is used over the same period of time. 
+
+
+Currently, this is not the case in the HSD. While antisemitism classifier displays less than 50 tweets (tpm) for almost any given minute, total number of tweets classified as any type of hate (i.e. Posts) are almost always over 300 tmp. On the surface, this might not be problematic per se. One could suggest antisemitism occurs less on Twitter compared to combination of all hate types, possibly indicating antisemitism classifier is less lenient than others. However, inspection of other classifiers suggests there is actually a problem. Especially the patterns for the Sexual Orientation and Antimuslim Classsifiers are interesting. To observe these two classifier results, it is necessary to turn off the 'Posts' line (combination of all classifiers) using the cyan legend. Once this is done, we see that Sexual Orientation and Anti-Muslim class are hidden behind it. This is because 'Posts',  Sexual Orientation and Antimuslim classifier results are very similar to each other. When the whole month is observed, it is almost impossible to distinguish the latter two classifiers from the 'Posts'. In fact, with a very minor margin of error, it can be suggested that Sexual Orientation and Antimuslim classification results are identical to each other and the 'Posts' (all HS tweets) are heavily influenced by these classifiers (as its a combination of all classes). It is not logical for same tweets to be classified as 'Yes' class by both antimuslim and sexual orientation classifier, especially for the whole month. Therefore, one can safely suggest that the outputs from these classifiers are not accurate in the HSD and they must be investigated. 
+
+For the XRW classifier, the number of tweets are close to 'Posts'. Moreover, the peak and trough patterns look identical to 'Posts' (and therefore anti muslim and sexual orientation classifiers). Same thing can be said for the the peak and trough patterns of far right classifier which has the same increase/decrease patterns as the XRW classifier but sticks to a different baseline. I'd like to remain conservative about commenting the performance of these classifiers as they are quite new (I have not observed how they behave on unseen datasets) but currently their outputs seem to be a function of the total number of tweets.   
+
+
+# Producing Same Chart Independently
+
+To test the accuracy of visualised classification results in the HSD, I decided to replicate all steps the HSD does independently and created the line chart. I started a data collection in COSMOS 1.5 using 'brexit' keyword. I then selected all tweets sent between September 01-30 and classified these tweets using 5 different classifiers that are deployed to dash and created a logical/boolean field for tweets that are classified as hate by any of the classifiers (Posts equivalent). Finally I aggregated tweets by minute and then visualised the results. If the deployment of our classifiers and all other procedures implemented in HSD are correct, I expect the line chart I create on my end independent of the HSD to be identical to the line chart in the HSD. If both visualisations are not exactly the same for each classifier, then we need to explore the descrepency further and maybe investigate the deployment of classifiers in HSD. You can see the chart I created here: ![Brexit collection for September 2019 created independently by me](assets/Sefa_brexit_Sep2019.png). The interactive version of the same plot which enables user to zoom in/out and turn on/off lines by clicking on the corresponsing legend can be found **[here](https://sefabey.github.io/hatelab_website/docs/dynamic_brexit_sep19.html)**. 
+
+As can be seen, we observe a same pattern for 
+
+
+
+
+#Conclusions
 
 We recognise that the classification performance of each classifier ( as observed by the F-measure) varies across the board. Some classifiers are expected to output more 
 

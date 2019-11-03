@@ -388,7 +388,7 @@ div.section {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -397,7 +397,7 @@ div.section {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -409,7 +409,7 @@ div.section {
 <strong>Last updated:</strong> 2019-11-03
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 1 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>hatelab_website/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -425,82 +425,22 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree485cb9d84f053cbe8c4477407dcec11ae8022d3btargetblank485cb9da"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sefabey/hatelab_website/tree/485cb9d84f053cbe8c4477407dcec11ae8022d3b" target="_blank">485cb9d</a> </a>
 </p>
 </div>
-<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
-<div class="panel-body">
-<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20191014code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20191014)</code> </a>
-</p>
-</div>
-<div id="strongSeedstrongcodesetseed20191014code" class="panel-collapse collapse">
-<div class="panel-body">
-<p>The command <code>set.seed(20191014)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
-</p>
-</div>
-<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
-<div class="panel-body">
-<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
-</p>
-</div>
-<div id="strongCachestrongnone" class="panel-collapse collapse">
-<div class="panel-body">
-<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
-</p>
-</div>
-<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
-<div class="panel-body">
-<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
-</div>
-</div>
-</div>
-<div class="panel panel-default">
-<div class="panel-heading">
-<p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetreea64dfd6c2b16c1554d7cf1c1d55916d5d148f7d1targetblanka64dfd6a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sefabey/hatelab_website/tree/a64dfd6c2b16c1554d7cf1c1d55916d5d148f7d1" target="_blank">a64dfd6</a> </a>
-</p>
-</div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetreea64dfd6c2b16c1554d7cf1c1d55916d5d148f7d1targetblanka64dfd6a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree485cb9d84f053cbe8c4477407dcec11ae8022d3btargetblank485cb9da" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -513,7 +453,19 @@ Ignored files:
     Ignored:    docs/.DS_Store
 
 Untracked files:
-    Untracked:  viz/
+    Untracked:  docs/assets/
+
+Unstaged changes:
+    Modified:   analysis/hatedash_check.Rmd
+    Modified:   code/brex_sep2019_wrangling_and_viz.R
+    Modified:   output/hatedash_static_Sep19.pdf
+    Deleted:    output/html_viz/Hate Speech Dashboard.htm
+    Deleted:    output/html_viz/Hate Speech Dashboard_files/all.css
+    Deleted:    output/html_viz/Hate Speech Dashboard_files/css
+    Deleted:    output/html_viz/Hate Speech Dashboard_files/main.9a50a41e7d85cf90d27a.js
+    Deleted:    output/html_viz/Hate Speech Dashboard_files/polyfills.681b44b3f292a3819611.js
+    Deleted:    output/html_viz/Hate Speech Dashboard_files/runtime.26209474bfa8dc87a77c.js
+    Deleted:    output/html_viz/Hate Speech Dashboard_files/styles.2c55fbc404b14f01ab1b.css
 
 </code></pre>
 <p>
@@ -552,6 +504,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sefabey/hatelab_website/485cb9d84f053cbe8c4477407dcec11ae8022d3b/docs/hatedash_check.html" target="_blank">485cb9d</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2019-11-03
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -799,57 +768,38 @@ wflow_publish(“analysis/hatedash_check.Rmd”)
 </div>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>Currently, line graphs in the Hate Speech Dashboards (HSD) for tweets classified with different classifiers are counter-intuitive. For most classifiers, the hate speech classsification results seem disproportunately high. This prompts us to think our HS classifiers perform poorly i.e. too many false positives are outputted. However, we are not sure if this is the case. Put simply, deployment of classifiers and post classification data aggregation might also be the culprits behind unreasonable trends observed.</p>
-<p>This document will present a fact checking excercise for the dashboard. Drawing on a dataset collected with COSMOS 1.5 using single ‘brexit’ keyword for teh whole month of September 2019, I will classify the tweets using same classifiers the dashboard uses, aggregate and visualise the results independent of the dashboard.</p>
+<p>Currently, line graphs in the Hate Speech Dashboards (HSD) for tweets classified with different classifiers look counter-intuitive. For most classifiers, classsification results seem disproportunately high. This has been prompting us to think our HS classifiers perform poorly i.e. too many false positives are outputted. Although this might be the case to a certain extent, we are not sure if this is the only culprit. Put simply, deployment of classifiers and post classification data aggregation might also be the reasons why we observe counter-intuitive trends.</p>
+<p>This document will present a fact checking excercise for the dashboard. Drawing on a same dataset collected with COSMOS 1.5 during September 2019, I will produce the same line charts as the HSD using same classifiers. The difference is, I will collect, process, classify and finally visualise the same dateset independently.</p>
 </div>
 <div id="what-does-the-hsd-output-and-whats-wrong-with-it" class="section level1">
 <h1>What Does the HSD Output and What’s Wrong With It?</h1>
-<p>Currently, the HSD visualises six different classification results over time: 1. Posts (all tweets classified as HS by any of the classiers) 2. Extreme Right Wing Classifier 3. Anti-Muslim Classifier 4. Far-right Classifier 5. Anti-Semitism Classifier 6. Sexual-orientation Classifier</p>
-<p>The ‘Brexit’ data collection is running since April 2019 on the dashboard. When we select dates from September 01 to September 31, we get the following visualisation.</p>
-<div class="figure" style="text-align: center">
-<img src="/Users/sefaozalp/Documents/Work/hatelab_website/output/HSD_Brexit_Sep19.png" alt="September 2019 from HSD" width="100%" />
-<p class="caption">
-September 2019 from HSD
-</p>
+<p>Currently, the HSD visualises six different classification results (counts of tweets classified as Yes class) over time on the same line chart. We have different lines representing:</p>
+<ol style="list-style-type: decimal">
+<li>Posts (all tweets classified as HS by any of the classiers)</li>
+<li>Extreme Right Wing Classifier</li>
+<li>Anti-Muslim Classifier</li>
+<li>Far-right Classifier</li>
+<li>Anti-Semitism Classifier</li>
+<li>Sexual-orientation Classifier</li>
+</ol>
+<p>The ‘Brexit’ data collection has been running since April 2019 on the HSD. When we select dates from September 01 to September 31, we get the following visualisation:</p>
+<div class="figure">
+<img src="assets/HSD_Brexit_Sep19.png" alt="Brexit collection for September 2019 on HSD" />
+<p class="caption">Brexit collection for September 2019 on HSD</p>
 </div>
+<p>One can also find the interactive version of the same chart on HSD by querying the existing ‘Brexit’ collection between 1-30 September or through this <strong><a href="http://hsapi-load-balancer-482031459.us-east-1.elb.amazonaws.com/1/2019-09-01%2000:00:00/2019-09-30%2021:00:00/line-chart">URL</a></strong>.</p>
+<p>Looking at this chart, we immediately observe seasonality effect on tweet counts and observe a diverging pattern between day and night time for all classifiers. It is expected to observe some seasonality as the ‘Yes’ class results are expected to differ in volume based on the number of tweets sent during particular minute (More tweets more likely to procude hate in absolute numbers). This does not mean our classification results are not simply a function of the tweets sent per minute. Our previous research findings have illustrated peaks and throughs following relavant offline events (e.g. terror attacks, offensive speech by influential political figures etc).</p>
+<p>Although some seasonality is expected across all classifiers, we also expect independent trends for each classifier. It does not make much sense to observe exremely similar patterns across all classifiers using the Brexit tweets. One would reasonably expect classifiers trained on distinct topics, such as sexual orientation and anti-semitism, to have different patterns when same dataset is used over the same period of time.</p>
+<p>Currently, this is not the case in the HSD. While antisemitism classifier displays less than 50 tweets (tpm) for almost any given minute, total number of tweets classified as any type of hate (i.e. Posts) are almost always over 300 tmp. On the surface, this might not be problematic per se. One could suggest antisemitism occurs less on Twitter compared to combination of all hate types, possibly indicating antisemitism classifier is less lenient than others. However, inspection of other classifiers suggests there is actually a problem. Especially the patterns for the Sexual Orientation and Antimuslim Classsifiers are interesting. To observe these two classifier results, it is necessary to turn off the ‘Posts’ line (combination of all classifiers) using the cyan legend. Once this is done, we see that Sexual Orientation and Anti-Muslim class are hidden behind it. This is because ‘Posts’, Sexual Orientation and Antimuslim classifier results are very similar to each other. When the whole month is observed, it is almost impossible to distinguish the latter two classifiers from the ‘Posts’. In fact, with a very minor margin of error, it can be suggested that Sexual Orientation and Antimuslim classification results are identical to each other and the ‘Posts’ (all HS tweets) are heavily influenced by these classifiers (as its a combination of all classes). It is not logical for same tweets to be classified as ‘Yes’ class by both antimuslim and sexual orientation classifier, especially for the whole month. Therefore, one can safely suggest that the outputs from these classifiers are not accurate in the HSD and they must be investigated.</p>
+<p>For the XRW classifier, the number of tweets are close to ‘Posts’. Moreover, the peak and trough patterns look identical to ‘Posts’ (and therefore anti muslim and sexual orientation classifiers). Same thing can be said for the the peak and trough patterns of far right classifier which has the same increase/decrease patterns as the XRW classifier but sticks to a different baseline. I’d like to remain conservative about commenting the performance of these classifiers as they are quite new (I have not observed how they behave on unseen datasets) but currently their outputs seem to be a function of the total number of tweets.</p>
 </div>
-<div id="conclusions" class="section level1">
-<h1>Conclusions</h1>
+<div id="producing-same-chart-independently" class="section level1">
+<h1>Producing Same Chart Independently</h1>
+<p>To test the accuracy of visualised classification results in the HSD, I decided to replicate all steps the HSD does independently and created the line chart. I started a data collection in COSMOS 1.5 using ‘brexit’ keyword. I then selected all tweets sent between September 01-30 and classified these tweets using 5 different classifiers that are deployed to dash and created a logical/boolean field for tweets that are classified as hate by any of the classifiers (Posts equivalent). Finally I aggregated tweets by minute and then visualised the results. If the deployment of our classifiers and all other procedures implemented in HSD are correct, I expect the line chart I create on my end independent of the HSD to be identical to the line chart in the HSD. If both visualisations are not exactly the same for each classifier, then we need to explore the descrepency further and maybe investigate the deployment of classifiers in HSD. You can see the chart I created here: <img src="assets/Sefa_brexit_Sep2019.png" alt="Brexit collection for September 2019 created independently by me" />. The interactive version of the same plot which enables user to zoom in/out and turn on/off lines by clicking on the corresponsing legend can be found <strong><a href="https://sefabey.github.io/hatelab_website/docs/dynamic_brexit_sep19.html">here</a></strong>.</p>
+<p>As can be seen, we observe a same pattern for</p>
+<p>#Conclusions</p>
 <p>We recognise that the classification performance of each classifier ( as observed by the F-measure) varies across the board. Some classifiers are expected to output more</p>
 <p>We also know that, despite some classifiers classify tweets more le</p>
-<br>
-<p>
-<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
-<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
-</button>
-</p>
-<div id="workflowr-sessioninfo" class="collapse">
-<pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 3.6.1 (2019-07-05)
-Platform: x86_64-apple-darwin15.6.0 (64-bit)
-Running under: macOS Mojave 10.14.6
-
-Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.0.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib
-
-locale:
-[1] en_GB.UTF-8/en_GB.UTF-8/en_GB.UTF-8/C/en_GB.UTF-8/en_GB.UTF-8
-
-attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
-
-other attached packages:
-[1] png_0.1-7
-
-loaded via a namespace (and not attached):
- [1] workflowr_1.4.0 Rcpp_1.0.2      here_0.1        digest_0.6.21  
- [5] rprojroot_1.3-2 backports_1.1.4 git2r_0.26.1    magrittr_1.5   
- [9] evaluate_0.14   highr_0.8       stringi_1.4.3   fs_1.3.1       
-[13] whisker_0.4     rmarkdown_1.15  tools_3.6.1     stringr_1.4.0  
-[17] glue_1.3.1      xfun_0.9        yaml_2.2.0      compiler_3.6.1 
-[21] htmltools_0.3.6 knitr_1.25     </code></pre>
-</div>
 </div>
 
 
