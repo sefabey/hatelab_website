@@ -92,18 +92,31 @@ final_hate_counts <- hate_counts %>%
   replace_na(list( is_hate_n=0, antimuslim_n=0, antisemitism_n=0, sex_orient_n=0, farright_n=0, xrw_n=0))
 
 
+
+
+# colours using ://pinetools.com/image-color-picker
+allpost_col <- "#23d2cd"
+xrw_col <- "#637480"
+antimuslim_col <- "#1da747"
+fr_col <- "#51a5de"
+antisem_col <- "#a21da7"
+sexorient_col <- "#f5a623"
+
+
 # visualisations=======
 static_plot <- final_hate_counts %>%
   ggplot(aes(x=date_minutes))+
-  geom_line(aes(y=is_hate_n), colour= "aquamarine3",size=0.5)+
-  geom_line(aes(y=antimuslim_n), colour= "chartreuse3",size=0.5)+
-  geom_line(aes(y=antisemitism_n), colour= "darkorchid2",size=0.5)+
-  geom_line(aes(y=sex_orient_n), colour= "darkorange",size=0.5)+
-  geom_line(aes(y=farright_n), colour= "deepskyblue2",size=0.5)+
-  geom_line(aes(y=xrw_n), colour= "darkslategrey",size=0.5) +
+  geom_line(aes(y=is_hate_n), colour= allpost_col, size=0.5)+
+  geom_line(aes(y=antimuslim_n), colour= antimuslim_col, size=0.5)+
+  geom_line(aes(y=antisemitism_n), colour= antisem_col, size=0.5)+
+  geom_line(aes(y=sex_orient_n), colour= sexorient_col,size=0.5)+
+  geom_line(aes(y=farright_n), colour= fr_col, size=0.5)+
+  geom_line(aes(y=xrw_n), colour= xrw_col, size=0.5) +
   hrbrthemes::theme_ipsum_rc()
 
-static_plot
+
+
+
 
 static_plot2 <- final_hate_counts %>%
   ggplot(aes(x=date_minutes))+
@@ -117,7 +130,7 @@ static_plot2 <- final_hate_counts %>%
 
   hrbrthemes::theme_ipsum_rc()+
   scale_colour_manual(name = "Classifier",
-                      values = c( "Any Hate Class"="darkred", "Antimuslim"="deepskyblue2", "Antisemitism"="darkorchid2", "Sexual Orientation"="darkorange", "Far Right"="chartreuse3", "XRW"=  "darkslategrey")
+                      values = c( "Any Hate Class"=allpost_col, "Antimuslim"=antimuslim_col, "Antisemitism"=antisem_col, "Sexual Orientation"=sexorient_col, "Far Right"=fr_col, "XRW"=  xrw_col)
                       )+
   theme(legend.position="bottom")+
   guides(colour = guide_legend(override.aes = list(size=3,linetype=1)))+
@@ -137,5 +150,27 @@ ggsave(static_plot2,
        height = 9, width = 16,dpi = 500)
 
 
-# Aggregate Hourly======
+# plotly
 
+library(plotly)
+
+Sys.setenv("plotly_username"="sefaozalp")
+Sys.setenv("plotly_api_key"="NWCWC9SNztKHswl3sAXS")
+
+static_plot3 <- final_hate_counts %>%
+  ggplot(aes(x=date_minutes))+
+  geom_line(aes(y=is_hate_n, colour= "Any Hate Class"),size=0.5)+
+  geom_line(aes(y=farright_n, colour= "Far Right"),size=0.5)+
+  geom_line(aes(y=xrw_n, colour="XRW"),size=0.5) +
+  geom_line(aes(y=antisemitism_n, colour= "Antisemitism") ,size=0.5)+
+  geom_line(aes(y=antimuslim_n, colour="Antimuslim"),size=0.5)+
+  geom_line(aes(y=sex_orient_n, colour= "Sexual Orientation"),size=0.5)+
+  hrbrthemes::theme_ipsum_rc()+
+  scale_colour_manual(name = "Classifier",
+                      values = c( "Any Hate Class"=allpost_col, "Antimuslim"=antimuslim_col, "Antisemitism"=antisem_col, "Sexual Orientation"=sexorient_col, "Far Right"=fr_col, "XRW"=  xrw_col)
+  )+
+  theme(legend.position="bottom")
+
+dynamic_plot1 <- ggplotly(static_plot3) %>%
+  layout(legend = list(orientation = 'h', x = 100, y = -0.1))
+dynamic_plot1

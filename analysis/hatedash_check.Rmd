@@ -28,23 +28,6 @@ Currently, the HSD visualises six different classification results over time:
 The 'Brexit' data collection is running since April 2019 on the dashboard. When we select 
 
 
-[this]("../output/html_viz/dynamic_brex_sep19.html")
-
-
-```{r, eval=T}
-htmltools::tags$iframe(title = "My embedded document", src = here::here( "/output/html_viz/dynamic_brexit_sep19.html"))
-
-getwd()
-
-
-file_test("-f",here::here("../output/html_viz/dynamic_brexit_sep19.html")) 
-
-file_test("-f","/Users/sefaozalp/Documents/Work/hatelab_website/output/html_viz/dynamic_brexit_sep19.html")
-```
-
-
-<iframe src="../output/html_viz/Hate Speech Dashboard.htm" width="100%" height="400" id="igraph" scrolling="no" seamless="seamless" frameBorder="0"> </iframe>
-```
 
 # Conclusions
 
