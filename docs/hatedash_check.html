@@ -388,7 +388,7 @@ div.section {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -397,7 +397,7 @@ div.section {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -406,10 +406,10 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2019-11-03
+<strong>Last updated:</strong> 2019-11-04
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 1 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>hatelab_website/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -425,22 +425,22 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree485cb9d84f053cbe8c4477407dcec11ae8022d3btargetblank485cb9da"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sefabey/hatelab_website/tree/485cb9d84f053cbe8c4477407dcec11ae8022d3b" target="_blank">485cb9d</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetreefd875c545481b4ed57a5bb5aed26ff2c98318968targetblankfd875c5a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sefabey/hatelab_website/tree/fd875c545481b4ed57a5bb5aed26ff2c98318968" target="_blank">fd875c5</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree485cb9d84f053cbe8c4477407dcec11ae8022d3btargetblank485cb9da" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetreefd875c545481b4ed57a5bb5aed26ff2c98318968targetblankfd875c5a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -451,21 +451,7 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    docs/.DS_Store
-
-Untracked files:
-    Untracked:  docs/assets/
-
-Unstaged changes:
-    Modified:   analysis/hatedash_check.Rmd
-    Modified:   code/brex_sep2019_wrangling_and_viz.R
-    Modified:   output/hatedash_static_Sep19.pdf
-    Deleted:    output/html_viz/Hate Speech Dashboard.htm
-    Deleted:    output/html_viz/Hate Speech Dashboard_files/all.css
-    Deleted:    output/html_viz/Hate Speech Dashboard_files/css
-    Deleted:    output/html_viz/Hate Speech Dashboard_files/main.9a50a41e7d85cf90d27a.js
-    Deleted:    output/html_viz/Hate Speech Dashboard_files/polyfills.681b44b3f292a3819611.js
-    Deleted:    output/html_viz/Hate Speech Dashboard_files/runtime.26209474bfa8dc87a77c.js
-    Deleted:    output/html_viz/Hate Speech Dashboard_files/styles.2c55fbc404b14f01ab1b.css
+    Ignored:    docs/assets/.DS_Store
 
 </code></pre>
 <p>
@@ -504,6 +490,57 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sefabey/hatelab_website/blob/fd875c545481b4ed57a5bb5aed26ff2c98318968/analysis/hatedash_check.Rmd" target="_blank">fd875c5</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2019-11-04
+</td>
+<td>
+finalise hatedash check and edit index
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sefabey/hatelab_website/blob/f8a196be2e615ac569f2b72e0d5a7810a2a3c0f8/analysis/hatedash_check.Rmd" target="_blank">f8a196b</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2019-11-03
+</td>
+<td>
+add html viz from dash and from plotly
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sefabey/hatelab_website/f8a196be2e615ac569f2b72e0d5a7810a2a3c0f8/docs/hatedash_check.html" target="_blank">f8a196b</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2019-11-03
+</td>
+<td>
+add html viz from dash and from plotly
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -768,14 +805,14 @@ wflow_publish(“analysis/hatedash_check.Rmd”)
 </div>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>Currently, line graphs in the Hate Speech Dashboards (HSD) for tweets classified with different classifiers look counter-intuitive. For most classifiers, classsification results seem disproportunately high. This has been prompting us to think our HS classifiers perform poorly i.e. too many false positives are outputted. Although this might be the case to a certain extent, we are not sure if this is the only culprit. Put simply, deployment of classifiers and post classification data aggregation might also be the reasons why we observe counter-intuitive trends.</p>
-<p>This document will present a fact checking excercise for the dashboard. Drawing on a same dataset collected with COSMOS 1.5 during September 2019, I will produce the same line charts as the HSD using same classifiers. The difference is, I will collect, process, classify and finally visualise the same dateset independently.</p>
+<p>Currently, line graphs in the Hate Speech Dashboards (HSD) for tweets classified with different classifiers look counter-intuitive. For most classifiers, classification results seem disproportionately high. This has been prompting us to think our HS classifiers perform poorly i.e. too many false positives are outputted. Although this might be the case to a certain extent, we are not sure if this is the only culprit. Put simply, deployment of classifiers and post classification data aggregation might also be the reasons why we observe counter-intuitive trends.</p>
+<p>This document will present a fact checking exercise for the dashboard. Drawing on a same dataset collected with COSMOS 1.5 during September 2019, I will produce the same line charts as the HSD using same classifiers. The difference is, I will collect, process, classify and finally visualise the same dataset independently.</p>
 </div>
 <div id="what-does-the-hsd-output-and-whats-wrong-with-it" class="section level1">
 <h1>What Does the HSD Output and What’s Wrong With It?</h1>
 <p>Currently, the HSD visualises six different classification results (counts of tweets classified as Yes class) over time on the same line chart. We have different lines representing:</p>
 <ol style="list-style-type: decimal">
-<li>Posts (all tweets classified as HS by any of the classiers)</li>
+<li>Posts (all tweets classified as HS by any of the classier)</li>
 <li>Extreme Right Wing Classifier</li>
 <li>Anti-Muslim Classifier</li>
 <li>Far-right Classifier</li>
@@ -788,18 +825,21 @@ wflow_publish(“analysis/hatedash_check.Rmd”)
 <p class="caption">Brexit collection for September 2019 on HSD</p>
 </div>
 <p>One can also find the interactive version of the same chart on HSD by querying the existing ‘Brexit’ collection between 1-30 September or through this <strong><a href="http://hsapi-load-balancer-482031459.us-east-1.elb.amazonaws.com/1/2019-09-01%2000:00:00/2019-09-30%2021:00:00/line-chart">URL</a></strong>.</p>
-<p>Looking at this chart, we immediately observe seasonality effect on tweet counts and observe a diverging pattern between day and night time for all classifiers. It is expected to observe some seasonality as the ‘Yes’ class results are expected to differ in volume based on the number of tweets sent during particular minute (More tweets more likely to procude hate in absolute numbers). This does not mean our classification results are not simply a function of the tweets sent per minute. Our previous research findings have illustrated peaks and throughs following relavant offline events (e.g. terror attacks, offensive speech by influential political figures etc).</p>
-<p>Although some seasonality is expected across all classifiers, we also expect independent trends for each classifier. It does not make much sense to observe exremely similar patterns across all classifiers using the Brexit tweets. One would reasonably expect classifiers trained on distinct topics, such as sexual orientation and anti-semitism, to have different patterns when same dataset is used over the same period of time.</p>
-<p>Currently, this is not the case in the HSD. While antisemitism classifier displays less than 50 tweets (tpm) for almost any given minute, total number of tweets classified as any type of hate (i.e. Posts) are almost always over 300 tmp. On the surface, this might not be problematic per se. One could suggest antisemitism occurs less on Twitter compared to combination of all hate types, possibly indicating antisemitism classifier is less lenient than others. However, inspection of other classifiers suggests there is actually a problem. Especially the patterns for the Sexual Orientation and Antimuslim Classsifiers are interesting. To observe these two classifier results, it is necessary to turn off the ‘Posts’ line (combination of all classifiers) using the cyan legend. Once this is done, we see that Sexual Orientation and Anti-Muslim class are hidden behind it. This is because ‘Posts’, Sexual Orientation and Antimuslim classifier results are very similar to each other. When the whole month is observed, it is almost impossible to distinguish the latter two classifiers from the ‘Posts’. In fact, with a very minor margin of error, it can be suggested that Sexual Orientation and Antimuslim classification results are identical to each other and the ‘Posts’ (all HS tweets) are heavily influenced by these classifiers (as its a combination of all classes). It is not logical for same tweets to be classified as ‘Yes’ class by both antimuslim and sexual orientation classifier, especially for the whole month. Therefore, one can safely suggest that the outputs from these classifiers are not accurate in the HSD and they must be investigated.</p>
-<p>For the XRW classifier, the number of tweets are close to ‘Posts’. Moreover, the peak and trough patterns look identical to ‘Posts’ (and therefore anti muslim and sexual orientation classifiers). Same thing can be said for the the peak and trough patterns of far right classifier which has the same increase/decrease patterns as the XRW classifier but sticks to a different baseline. I’d like to remain conservative about commenting the performance of these classifiers as they are quite new (I have not observed how they behave on unseen datasets) but currently their outputs seem to be a function of the total number of tweets.</p>
+<p>Looking at this chart, we immediately observe seasonality effect on tweet counts and observe a diverging pattern between day and night time for all classifiers. It is expected to observe some seasonality as the ‘Yes’ class results are expected to differ in volume based on the number of tweets sent during particular minute (More tweets more likely to produce hate in absolute numbers). This does not mean our classification results are not simply a function of the tweets sent per minute. Our previous research findings have illustrated peaks and troughs following relevant offline events (e.g. terror attacks, offensive speech by influential political figures etc).</p>
+<p>Although some seasonality is expected across all classifiers, we also expect independent trends for each classifier. It does not make much sense to observe extremely similar patterns across all classifiers using the Brexit tweets. One would reasonably expect classifiers trained on distinct topics, such as sexual orientation and anti-Semitism, to have different patterns when same dataset is used over the same period of time.</p>
+<p>Currently, this is not the case in the HSD. While anti-Semitism classifier displays less than 50 tweets (tpm) for almost any given minute, total number of tweets classified as any type of hate (i.e. Posts) are almost always over 300 tmp. On the surface, this might not be problematic per se. One could suggest anti-Semitism occurs less on Twitter compared to combination of all hate types, possibly indicating anti-Semitism classifier is less lenient than others. However, inspection of other classifiers suggests there is actually a problem. Especially the patterns for the Sexual Orientation and Antimuslim classifiers are interesting. To observe these two classifier results, it is necessary to turn off the ‘Posts’ line (combination of all classifiers) using the cyan legend. Once this is done, we see that Sexual Orientation and Anti-Muslim class are hidden behind it. This is because ‘Posts’, Sexual Orientation and Antimuslim classifier results are very similar to each other. When the whole month is observed, it is almost impossible to distinguish the latter two classifiers from the ‘Posts’. In fact, with a very minor margin of error, it can be suggested that Sexual Orientation and Antimuslim classification results are identical to each other and the ‘Posts’ (all HS tweets) are heavily influenced by these classifiers (as its a combination of all classes). It is not logical for same tweets to be classified as ‘Yes’ class by both Antimuslim and sexual orientation classifier, especially for the whole month. Therefore, one can safely suggest that the outputs from these classifiers are not accurate in the HSD and they must be investigated.</p>
+<p>For the XRW classifier, the number of tweets are close to ‘Posts’. Moreover, the peak and trough patterns look identical to ‘Posts’ (and therefore Antimuslim and sexual orientation classifiers). Same thing can be said for the the peak and trough patterns of far right classifier which has the same increase/decrease patterns as the XRW classifier but sticks to a different baseline. I’d like to remain conservative about commenting the performance of these classifiers as they are quite new (I have not observed how they behave on unseen datasets) but currently their outputs seem to be a function of the total number of tweets.</p>
 </div>
 <div id="producing-same-chart-independently" class="section level1">
 <h1>Producing Same Chart Independently</h1>
-<p>To test the accuracy of visualised classification results in the HSD, I decided to replicate all steps the HSD does independently and created the line chart. I started a data collection in COSMOS 1.5 using ‘brexit’ keyword. I then selected all tweets sent between September 01-30 and classified these tweets using 5 different classifiers that are deployed to dash and created a logical/boolean field for tweets that are classified as hate by any of the classifiers (Posts equivalent). Finally I aggregated tweets by minute and then visualised the results. If the deployment of our classifiers and all other procedures implemented in HSD are correct, I expect the line chart I create on my end independent of the HSD to be identical to the line chart in the HSD. If both visualisations are not exactly the same for each classifier, then we need to explore the descrepency further and maybe investigate the deployment of classifiers in HSD. You can see the chart I created here: <img src="assets/Sefa_brexit_Sep2019.png" alt="Brexit collection for September 2019 created independently by me" />. The interactive version of the same plot which enables user to zoom in/out and turn on/off lines by clicking on the corresponsing legend can be found <strong><a href="https://sefabey.github.io/hatelab_website/docs/dynamic_brexit_sep19.html">here</a></strong>.</p>
-<p>As can be seen, we observe a same pattern for</p>
-<p>#Conclusions</p>
-<p>We recognise that the classification performance of each classifier ( as observed by the F-measure) varies across the board. Some classifiers are expected to output more</p>
-<p>We also know that, despite some classifiers classify tweets more le</p>
+<p>To test the accuracy of visualised classification results in the HSD, I decided to replicate all steps the HSD does independently and created the line chart. I started a data collection in COSMOS 1.5 using ‘brexit’ keyword. I then selected all tweets sent between September 01-30 and classified these tweets using 5 different classifiers that are deployed to dash and created a logical/boolean field for tweets that are classified as hate by any of the classifiers (Posts equivalent). Finally I aggregated tweets by minute and then visualised the results. To achieve maximum visual similarity, I’ve used same colours as the HSD. If the deployment of our classifiers and all other procedures implemented in HSD are correct, I expect the line chart I created independent of the HSD to be identical to the line chart in the HSD. If both visualisations are not exactly the same for each classifier, then we need to explore the discrepency further and maybe investigate the deployment of classifiers in HSD. You can see the chart I created here: <img src="assets/Sefa_brexit_Sep2019.png" alt="Brexit collection for September 2019 created independently by me" />. The interactive version of the same plot which enables user to zoom in/out and turn on/off lines by clicking on the corresponding legend can be found <strong><a href="https://sefabey.github.io/hatelab_website/docs/dynamic_brexit_sep19.html">here</a></strong>.</p>
+<p>As can be seen in the interactive plot, the line chart I created contains many differences to the HSD. Although we observe a seasonality pattern to the line chart in the HSD, almost all classifiers except the anti-Semitism one looks different. First, the Far Right classifier displays the highest number of tweets amongst all classifiers. In fact, now the any hate class (‘Posts’ in the dash legend) seems to be heavily influenced by the FR class. XRW class has the second highest numbers. What’s interesting is in the HSD, XRW had consistently higher numbers than FR classifier. This might be a simple name mismatch when both these classifiers are deployed.</p>
+<p>The biggest difference between my results and the HSD are observed for Sexual Orientation and Antimuslim classifiers. In the HSD, these classifiers had identical peak and trough patterns and had highest number of tweets per minute compared to all other classifiers. In the line chart I created, these classifiers are close to bottom of the Y axis. Their patterns look similar but, this is mostly because of their small numbers per minute relative to FR and XRW classifiers. When zoomed in, one can see they display different patterns.</p>
+</div>
+<div id="conclusions" class="section level1">
+<h1>Conclusions</h1>
+<p>I recognise that the classification performance of each classifier ( as observed by the F-measure) varies across the board. Some classifiers are experimental and expected to output more ‘Yes’ class. I also recognise that we will observe some seasonality in tweets classified as HS as we are displaying absolute numbers (rather than ratios per minute). Similarly, FR and XRW classifiers seem to have different patterns in the HSD but this might be a simple misnaming issue. Still an important one that warrants an inspection though.</p>
+<p>Considering above, I believe the deployment of classifiers in the HSD warrants an investigation by both HateLab (classification performance) and GoFore team (deployment of classifiers). For the former, my suggestion is to investigate all classifiers and how they perform on unseen data, especially focusing on the FR and XRW as they seem to output much more ‘yes’ class compared to other classifiers. For the latter, my suggestion is to inspect the deployment of models as either the deployment or post-classification aggregation of results might be resulting in problematic numbers .</p>
 </div>
 
 
