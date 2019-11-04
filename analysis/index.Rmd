@@ -10,8 +10,12 @@ editor_options:
 
 This is a website for hosting HateLab's hate speech tracker data on GitHub.
 
+# Analysis 1
 Click on this [link](initial_numbers.html) to see the number of tweets in the multiple-keyword Brexit dataset classified as hate speech by the anti-Muslim classifier and the hate-speech to all tweets ratio.
 
+# Analysis 2
 Click on this [link](brexit_single_keyword_initial_numbers.html) to see the number of tweets in the Brexit dataset, which was collected with only using the keyword "Brexit", classified as hate speech by the HateLab's anti-Muslim classifier and the hate-speech to all tweets ratio.
 
-Click on this [link](dynamic_brexit_sep19.html) to see the dynamic plot. Click on this [link](HSD_brex_sep19.html) to see the Hate Speech Dashboard visualisation of the same data.
+#Analysis 3
+
+[Here](hatedash_check.html) is my write-up for comparing the classification results in Hate Speech Dashboard to my offline, independent analysis using the single-keyword Brexit dataset from September 2019. Related ducuments are this [link](dynamic_brexit_sep19.html), which is the dynamic plot of Brexit dataset classifications produced by me, and this [link](HSD_brex_sep19.html) which is the Hate Speech Dashboard visualisation of the same data.
