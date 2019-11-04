@@ -388,7 +388,7 @@ div.section {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -397,7 +397,7 @@ div.section {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -409,7 +409,7 @@ div.section {
 <strong>Last updated:</strong> 2019-11-04
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>hatelab_website/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -473,18 +473,12 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongdetected"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>Cache:</strong> detected </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
 </p>
 </div>
-<div id="strongCachestrongdetected" class="panel-collapse collapse">
+<div id="strongCachestrongnone" class="panel-collapse collapse">
 <div class="panel-body">
-The following chunks had caches available:
-<ul>
-<li>
-data input
-</li>
-</ul>
-<p>To ensure reproducibility of the results, delete the cache directory <code>hatedash_check_cache</code> and re-run the analysis. To have workflowr automatically delete the cache directory prior to building the file, set <code>delete_cache = TRUE</code> when running <code>wflow_build()</code> or <code>wflow_publish()</code>.</p>
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
 </div>
 </div>
 </div>
@@ -503,10 +497,10 @@ data input
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree41fe9f356b7aa5a984541a20b7a9b491bb7a84f0targetblank41fe9f3a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sefabey/hatelab_website/tree/41fe9f356b7aa5a984541a20b7a9b491bb7a84f0" target="_blank">41fe9f3</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree8ab40855958c9484e2a105fb737ea76d15e62938targetblank8ab4085a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sefabey/hatelab_website/tree/8ab40855958c9484e2a105fb737ea76d15e62938" target="_blank">8ab4085</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree41fe9f356b7aa5a984541a20b7a9b491bb7a84f0targetblank41fe9f3a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree8ab40855958c9484e2a105fb737ea76d15e62938targetblank8ab4085a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -516,7 +510,6 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-    Ignored:    analysis/hatedash_check_cache/
     Ignored:    docs/.DS_Store
     Ignored:    docs/assets/.DS_Store
 
@@ -560,6 +553,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sefabey/hatelab_website/blob/8ab40855958c9484e2a105fb737ea76d15e62938/analysis/hatedash_check.Rmd" target="_blank">8ab4085</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2019-11-04
+</td>
+<td>
+add Han’s comments
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sefabey/hatelab_website/727cdf38f4061bfa95caaa8351a6576d6776e849/docs/hatedash_check.html" target="_blank">727cdf3</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2019-11-04
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -965,6 +992,10 @@ Variable type: POSIXct
 <p>Finally I joined all classification results with the raw dataset, aggregated tweets by minute and then visualised the results. To achieve maximum visual similarity, I’ve used same colours as the HSD. If the deployment of our classifiers and all other procedures implemented in HSD are correct, I expect the line chart I created independent of the HSD to be identical to the line chart in the HSD. If both visualisations are not exactly the same for each classifier, then we need to explore the discrepency further and maybe investigate the deployment of classifiers in HSD. You can see the chart I created here: <img src="assets/Sefa_brexit_Sep2019.png" alt="Brexit collection for September 2019 created independently by me" />. The interactive version of the same plot which enables user to zoom in/out and turn on/off lines by clicking on the corresponding legend can be found <strong><a href="https://sefabey.github.io/hatelab_website/docs/dynamic_brexit_sep19.html">here</a></strong>.</p>
 <p>As can be seen in the interactive plot, the line chart I created contains many differences to the HSD. Although we observe a seasonality pattern to the line chart in the HSD, almost all classifiers except the anti-Semitism one looks different. First, the Far Right classifier displays the highest number of tweets amongst all classifiers. In fact, now the any hate class (‘Posts’ in the dash legend) seems to be heavily influenced by the FR class. XRW class has the second highest numbers. What’s interesting is in the HSD, XRW had consistently higher numbers than FR classifier. This might be a simple name mismatch when both these classifiers are deployed.</p>
 <p>The biggest difference between my results and the HSD are observed for Sexual Orientation and Antimuslim classifiers. In the HSD, these classifiers had identical peak and trough patterns and had highest number of tweets per minute compared to all other classifiers. In the line chart I created, these classifiers are close to bottom of the Y axis. Their patterns look similar but, this is mostly because of their small numbers per minute relative to FR and XRW classifiers. When zoomed in, one can see they display different patterns.</p>
+<p>I’ve checked the mismatch between HSD and with a member of HateLab, Han Liu, who developing the .model files and his comments are:</p>
+<blockquote>
+<p>I have looked at the chart and Sefa’s write-up. If the same .model files have been used, I have no idea why the charts created by Sefa and the ones created by the dashboard are very different. The only thing I can guess is that there may be different forms of outputs that they used, i.e. the class output can be in string (‘No’ and ‘Yes’) or in index (0.0 or 1.0), which may cause that an output with the ‘No’ class is treated as an output with the ‘Yes’ class if the output is in the form of an index. However, Mo and I have previously made it consistent by setting the index of the ‘No’ class to 0.0 and the index of the ‘Yes’ class to 1.0 for all the data sets and the model files. Therefore, we do not know why the differences occur.</p>
+</blockquote>
 </div>
 <div id="conclusions" class="section level1">
 <h1>Conclusions</h1>
