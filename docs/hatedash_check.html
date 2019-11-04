@@ -388,7 +388,7 @@ div.section {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -397,7 +397,7 @@ div.section {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -409,7 +409,7 @@ div.section {
 <strong>Last updated:</strong> 2019-11-04
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>hatelab_website/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -437,10 +437,76 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetreefd875c545481b4ed57a5bb5aed26ff2c98318968targetblankfd875c5a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sefabey/hatelab_website/tree/fd875c545481b4ed57a5bb5aed26ff2c98318968" target="_blank">fd875c5</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetreefd875c545481b4ed57a5bb5aed26ff2c98318968targetblankfd875c5a" class="panel-collapse collapse">
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20191014code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20191014)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20191014code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20191014)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongdetected"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>Cache:</strong> detected </a>
+</p>
+</div>
+<div id="strongCachestrongdetected" class="panel-collapse collapse">
+<div class="panel-body">
+The following chunks had caches available:
+<ul>
+<li>
+data input
+</li>
+</ul>
+<p>To ensure reproducibility of the results, delete the cache directory <code>hatedash_check_cache</code> and re-run the analysis. To have workflowr automatically delete the cache directory prior to building the file, set <code>delete_cache = TRUE</code> when running <code>wflow_build()</code> or <code>wflow_publish()</code>.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree41fe9f356b7aa5a984541a20b7a9b491bb7a84f0targetblank41fe9f3a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sefabey/hatelab_website/tree/41fe9f356b7aa5a984541a20b7a9b491bb7a84f0" target="_blank">41fe9f3</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree41fe9f356b7aa5a984541a20b7a9b491bb7a84f0targetblank41fe9f3a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -450,8 +516,12 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
+    Ignored:    analysis/hatedash_check_cache/
     Ignored:    docs/.DS_Store
     Ignored:    docs/assets/.DS_Store
+
+Untracked files:
+    Untracked:  data/hatedash_comparison_skim.rds
 
 </code></pre>
 <p>
@@ -490,6 +560,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sefabey/hatelab_website/blob/41fe9f356b7aa5a984541a20b7a9b491bb7a84f0/analysis/hatedash_check.Rmd" target="_blank">41fe9f3</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2019-11-04
+</td>
+<td>
+add summary stats and java code
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sefabey/hatelab_website/9f030c9e7698c2bc13e5c34848b0ae15dd095a77/docs/hatedash_check.html" target="_blank">9f030c9</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2019-11-04
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -832,14 +936,83 @@ wflow_publish(“analysis/hatedash_check.Rmd”)
 </div>
 <div id="producing-same-chart-independently" class="section level1">
 <h1>Producing Same Chart Independently</h1>
-<p>To test the accuracy of visualised classification results in the HSD, I decided to replicate all steps the HSD does independently and created the line chart. I started a data collection in COSMOS 1.5 using ‘brexit’ keyword. I then selected all tweets sent between September 01-30 and classified these tweets using 5 different classifiers that are deployed to dash and created a logical/boolean field for tweets that are classified as hate by any of the classifiers (Posts equivalent). Finally I aggregated tweets by minute and then visualised the results. To achieve maximum visual similarity, I’ve used same colours as the HSD. If the deployment of our classifiers and all other procedures implemented in HSD are correct, I expect the line chart I created independent of the HSD to be identical to the line chart in the HSD. If both visualisations are not exactly the same for each classifier, then we need to explore the discrepency further and maybe investigate the deployment of classifiers in HSD. You can see the chart I created here: <img src="assets/Sefa_brexit_Sep2019.png" alt="Brexit collection for September 2019 created independently by me" />. The interactive version of the same plot which enables user to zoom in/out and turn on/off lines by clicking on the corresponding legend can be found <strong><a href="https://sefabey.github.io/hatelab_website/docs/dynamic_brexit_sep19.html">here</a></strong>.</p>
+<p>To test the accuracy of visualised classification results in the HSD, I decided to replicate all steps the HSD does independently and created the line chart. I started a data collection in COSMOS 1.5 using ‘brexit’ keyword. I then selected all tweets sent between September 01-30. This resulted in a dataset with 15.3M tweets. The descriptive stats for this dataset is provided below:</p>
+<pre><code>Skim summary statistics  
+ n obs: 15300184    
+ n variables: 5    
+
+Variable type: character
+
+ variable     missing    complete       n        min    max     empty    n_unique 
+-----------  ---------  ----------  ----------  -----  ------  -------  ----------
+  id_str         0       15300184    15300184    19      19       0      15300183 
+ text_long       0       15300184    15300184     1     1012      0      4073907  
+
+Variable type: logical
+
+  variable     missing    complete       n        mean                   count                
+------------  ---------  ----------  ----------  -------  ------------------------------------
+  is_reply        0       15300184    15300184    0.097    FAL: 13819919, TRU: 1480265, NA: 0 
+ is_retweet       0       15300184    15300184    0.75     TRU: 11548394, FAL: 3751790, NA: 0 
+
+Variable type: POSIXct
+
+     variable        missing    complete       n           min           max          median      n_unique 
+------------------  ---------  ----------  ----------  ------------  ------------  ------------  ----------
+ timestamp_parsed       0       15300184    15300184    2019-09-01    2019-09-30    2019-09-12    2385462  </code></pre>
+<p>Next, I classified these tweets using 5 different classifiers that are deployed to dash and created a logical/boolean field for tweets that are classified as hate by any of the classifiers (Posts equivalent). To call classifiers (.model files), I used the following code which uses the index of the ‘No’ class to 0.0 and the index of the ‘Yes’ class to 1.0 while calling the classifiers. Here is a sample code calling the AntiMuslim classifier on a csv file that contains all 15.3M tweets.</p>
+<pre class="bash"><code>java -jar /scratch/scwc0004/RandProject/JARFiles/classifiers_csv.jar /scratch/c.c1541911/brexit_sole_keyword/data/dash_comparison/ /scratch/scwc0004/RandProject/Classifiers/Anti-muslimClassifier.model Anti-muslimClassifier 1 0 No,Yes</code></pre>
+<p>Finally I joined all classification results with the raw dataset, aggregated tweets by minute and then visualised the results. To achieve maximum visual similarity, I’ve used same colours as the HSD. If the deployment of our classifiers and all other procedures implemented in HSD are correct, I expect the line chart I created independent of the HSD to be identical to the line chart in the HSD. If both visualisations are not exactly the same for each classifier, then we need to explore the discrepency further and maybe investigate the deployment of classifiers in HSD. You can see the chart I created here: <img src="assets/Sefa_brexit_Sep2019.png" alt="Brexit collection for September 2019 created independently by me" />. The interactive version of the same plot which enables user to zoom in/out and turn on/off lines by clicking on the corresponding legend can be found <strong><a href="https://sefabey.github.io/hatelab_website/docs/dynamic_brexit_sep19.html">here</a></strong>.</p>
 <p>As can be seen in the interactive plot, the line chart I created contains many differences to the HSD. Although we observe a seasonality pattern to the line chart in the HSD, almost all classifiers except the anti-Semitism one looks different. First, the Far Right classifier displays the highest number of tweets amongst all classifiers. In fact, now the any hate class (‘Posts’ in the dash legend) seems to be heavily influenced by the FR class. XRW class has the second highest numbers. What’s interesting is in the HSD, XRW had consistently higher numbers than FR classifier. This might be a simple name mismatch when both these classifiers are deployed.</p>
 <p>The biggest difference between my results and the HSD are observed for Sexual Orientation and Antimuslim classifiers. In the HSD, these classifiers had identical peak and trough patterns and had highest number of tweets per minute compared to all other classifiers. In the line chart I created, these classifiers are close to bottom of the Y axis. Their patterns look similar but, this is mostly because of their small numbers per minute relative to FR and XRW classifiers. When zoomed in, one can see they display different patterns.</p>
 </div>
 <div id="conclusions" class="section level1">
 <h1>Conclusions</h1>
 <p>I recognise that the classification performance of each classifier ( as observed by the F-measure) varies across the board. Some classifiers are experimental and expected to output more ‘Yes’ class. I also recognise that we will observe some seasonality in tweets classified as HS as we are displaying absolute numbers (rather than ratios per minute). Similarly, FR and XRW classifiers seem to have different patterns in the HSD but this might be a simple misnaming issue. Still an important one that warrants an inspection though.</p>
-<p>Considering above, I believe the deployment of classifiers in the HSD warrants an investigation by both HateLab (classification performance) and GoFore team (deployment of classifiers). For the former, my suggestion is to investigate all classifiers and how they perform on unseen data, especially focusing on the FR and XRW as they seem to output much more ‘yes’ class compared to other classifiers. For the latter, my suggestion is to inspect the deployment of models as either the deployment or post-classification aggregation of results might be resulting in problematic numbers .</p>
+<p>Considering above, I believe the deployment of classifiers in the HSD warrants an investigation by both HateLab (classification performance) and GoFore team (deployment of classifiers). For the former, my suggestion is to investigate all classifiers and how they perform on unseen data, especially focusing on the FR and XRW as they seem to output much more ‘yes’ class compared to other classifiers. For the latter, my suggestion is to inspect the deployment of models as either the deployment or post-classification aggregation of results might be resulting in problematic numbers.</p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 3.6.1 (2019-07-05)
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+Running under: macOS Mojave 10.14.6
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_GB.UTF-8/en_GB.UTF-8/en_GB.UTF-8/C/en_GB.UTF-8/en_GB.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] forcats_0.4.0   stringr_1.4.0   dplyr_0.8.3     purrr_0.3.2    
+ [5] readr_1.3.1     tidyr_1.0.0     tibble_2.1.3    ggplot2_3.2.1  
+ [9] tidyverse_1.2.1 skimr_1.0.7    
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.2       highr_0.8        cellranger_1.1.0 pillar_1.4.2    
+ [5] compiler_3.6.1   git2r_0.26.1     workflowr_1.4.0  tools_3.6.1     
+ [9] zeallot_0.1.0    digest_0.6.21    lubridate_1.7.4  jsonlite_1.6    
+[13] evaluate_0.14    lifecycle_0.1.0  nlme_3.1-141     gtable_0.3.0    
+[17] lattice_0.20-38  pkgconfig_2.0.3  rlang_0.4.0      cli_1.1.0       
+[21] rstudioapi_0.10  yaml_2.2.0       haven_2.1.1      xfun_0.9        
+[25] withr_2.1.2      xml2_1.2.2       httr_1.4.1       knitr_1.25      
+[29] hms_0.5.1        generics_0.0.2   fs_1.3.1         vctrs_0.2.0     
+[33] rprojroot_1.3-2  grid_3.6.1       tidyselect_0.2.5 glue_1.3.1      
+[37] R6_2.4.0         readxl_1.3.1     rmarkdown_1.15   modelr_0.1.5    
+[41] magrittr_1.5     whisker_0.4      scales_1.0.0     backports_1.1.4 
+[45] htmltools_0.3.6  rvest_0.3.4      assertthat_0.2.1 colorspace_1.4-1
+[49] stringi_1.4.3    lazyeval_0.2.2   munsell_0.5.0    broom_0.5.2     
+[53] crayon_1.3.4    </code></pre>
+</div>
 </div>
 
 
