@@ -96,6 +96,12 @@ As can be seen in the interactive plot, the line chart I created contains many d
 
 The biggest difference between my results and the HSD are observed for Sexual Orientation and Antimuslim classifiers. In the HSD, these classifiers had identical peak and trough patterns and had highest number of tweets per minute compared to all other classifiers. In the line chart I created, these classifiers are close to bottom of the Y axis. Their patterns look similar but, this is mostly because of their small numbers per minute relative to FR and XRW classifiers. When zoomed in, one can see they display different patterns. 
 
+I've checked the mismatch between HSD and with a member of HateLab, Han Liu, who developing the .model files and his comments are:
+
+>I have looked at the chart and Sefa's write-up. If the same .model files have been used, I have no idea why the charts created by Sefa and the ones created by the dashboard are very different. The only thing I can guess is that there may be different forms of outputs that they used, i.e. the class output can be in string ('No' and 'Yes') or in index (0.0 or 1.0), which may cause that an output with the 'No' class is treated as an output with the 'Yes' class if the output is in the form of an index. However, Mo and I have previously made it consistent by setting the index of the 'No' class to 0.0 and the index of the 'Yes' class to 1.0 for all the data sets and the model files. Therefore, we do not know why the differences occur.
+
+
+
 # Conclusions
 
 I recognise that the classification performance of each classifier ( as observed by the F-measure) varies across the board.  Some classifiers are experimental and expected to output more 'Yes' class. I also recognise that we will observe some seasonality in tweets classified as HS as we are displaying absolute numbers (rather than ratios per minute). Similarly, FR and XRW classifiers seem to have different patterns in the HSD but this might be a simple misnaming issue. Still an important one that warrants an inspection though.  
