@@ -49,7 +49,48 @@ For the XRW classifier, the number of tweets are close to 'Posts'. Moreover, the
 
 # Producing Same Chart Independently
 
-To test the accuracy of visualised classification results in the HSD, I decided to replicate all steps the HSD does independently and created the line chart. I started a data collection in COSMOS 1.5 using 'brexit' keyword. I then selected all tweets sent between September 01-30 and classified these tweets using 5 different classifiers that are deployed to dash and created a logical/boolean field for tweets that are classified as hate by any of the classifiers (Posts equivalent). Finally I aggregated tweets by minute and then visualised the results. To achieve maximum visual similarity, I've used same colours as the HSD. If the deployment of our classifiers and all other procedures implemented in HSD are correct, I expect the line chart I created independent of the HSD to be identical to the line chart in the HSD. If both visualisations are not exactly the same for each classifier, then we need to explore the discrepency further and maybe investigate the deployment of classifiers in HSD. You can see the chart I created here: ![Brexit collection for September 2019 created independently by me](assets/Sefa_brexit_Sep2019.png). The interactive version of the same plot which enables user to zoom in/out and turn on/off lines by clicking on the corresponding legend can be found **[here](https://sefabey.github.io/hatelab_website/docs/dynamic_brexit_sep19.html)**. 
+To test the accuracy of visualised classification results in the HSD, I decided to replicate all steps the HSD does independently and created the line chart. I started a data collection in COSMOS 1.5 using 'brexit' keyword. I then selected all tweets sent between September 01-30. This resulted in a dataset with 15.3M tweets. The descriptive stats for this dataset is provided below: 
+
+
+```{r data input, eval=FALSE,echo=FALSE}
+library(tidyverse)
+library(fs)
+library(skimr)
+library(lubridate)
+# Data Import=====
+folder <- "/Users/sefaozalp/Desktop/dash_comparison" #without forward slash
+
+# read the csv file to be classified
+data_raw <- dir_ls(folder, type = "file") %>%
+  read_csv(col_types = cols(id_str = col_character())) 
+
+data_raw_sept <- data_raw %>% 
+  filter(timestamp_parsed> dmy("01-09-2019") & timestamp_parsed< dmy("01-10-2019"))
+
+tweet_count <- nrow(data_raw_sept)
+
+dataset_summary <- skimr::skim(data_raw_sept)
+dataset_summary %>% write_rds("data/hatedash_comparison_skim.rds")
+```
+
+```{r, echo=FALSE, message=FALSE}
+library(skimr)
+library(tidyverse)
+
+dataset_summary <- read_rds("data/hatedash_comparison_skim.rds")
+dataset_summary %>% skimr::kable()
+```
+
+
+Next, I classified these tweets using 5 different classifiers that are deployed to dash and created a logical/boolean field for tweets that are classified as hate by any of the classifiers (Posts equivalent). To call classifiers (.model files), I used the following code which uses the index of the 'No' class to 0.0 and the index of the 'Yes' class to 1.0 while calling the classifiers. Here is a sample code calling the AntiMuslim classifier on a csv file that contains all 15.3M tweets.
+
+
+```{bash, eval=FALSE}
+java -jar /scratch/scwc0004/RandProject/JARFiles/classifiers_csv.jar /scratch/c.c1541911/brexit_sole_keyword/data/dash_comparison/ /scratch/scwc0004/RandProject/Classifiers/Anti-muslimClassifier.model Anti-muslimClassifier 1 0 No,Yes
+```
+
+
+Finally I joined all classification results with the raw dataset, aggregated tweets by minute and then visualised the results. To achieve maximum visual similarity, I've used same colours as the HSD. If the deployment of our classifiers and all other procedures implemented in HSD are correct, I expect the line chart I created independent of the HSD to be identical to the line chart in the HSD. If both visualisations are not exactly the same for each classifier, then we need to explore the discrepency further and maybe investigate the deployment of classifiers in HSD. You can see the chart I created here: ![Brexit collection for September 2019 created independently by me](assets/Sefa_brexit_Sep2019.png). The interactive version of the same plot which enables user to zoom in/out and turn on/off lines by clicking on the corresponding legend can be found **[here](https://sefabey.github.io/hatelab_website/docs/dynamic_brexit_sep19.html)**. 
 
 As can be seen in the interactive plot, the line chart I created contains many differences to the HSD.  Although we observe a seasonality pattern to the line chart in the HSD, almost all classifiers except the anti-Semitism one looks different. First, the Far Right classifier displays the highest number of tweets amongst all classifiers. In fact, now the any hate class ('Posts' in the dash legend) seems to be heavily influenced by the FR class. XRW class has the second highest numbers. What's interesting is in the HSD, XRW had consistently higher numbers than FR classifier. This might be a simple name mismatch when both these classifiers are deployed. 
 
@@ -60,4 +101,4 @@ The biggest difference between my results and the HSD are observed for Sexual Or
 I recognise that the classification performance of each classifier ( as observed by the F-measure) varies across the board.  Some classifiers are experimental and expected to output more 'Yes' class. I also recognise that we will observe some seasonality in tweets classified as HS as we are displaying absolute numbers (rather than ratios per minute). Similarly, FR and XRW classifiers seem to have different patterns in the HSD but this might be a simple misnaming issue. Still an important one that warrants an inspection though.  
 
 
-Considering above, I believe the deployment of classifiers in the HSD warrants an investigation by both HateLab (classification performance) and GoFore team (deployment of classifiers). For the former, my suggestion is to investigate all classifiers and how they perform on unseen data, especially focusing on the FR and XRW as they seem to output much more 'yes' class compared to other classifiers. For the latter, my suggestion is to inspect the deployment of models as either the deployment or post-classification aggregation of results might be resulting in problematic numbers .
+Considering above, I believe the deployment of classifiers in the HSD warrants an investigation by both HateLab (classification performance) and GoFore team (deployment of classifiers). For the former, my suggestion is to investigate all classifiers and how they perform on unseen data, especially focusing on the FR and XRW as they seem to output much more 'yes' class compared to other classifiers. For the latter, my suggestion is to inspect the deployment of models as either the deployment or post-classification aggregation of results might be resulting in problematic numbers.
