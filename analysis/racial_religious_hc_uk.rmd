@@ -1,0 +1,48 @@
+---
+title: "racial_religious_hc_uk"
+author: "Sefa Ozalp"
+date: "2019-11-28"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+
+This document will replicate the 'Figure 2: Number of racially or religiously aggravated offences recorded by the police by month, April 2013 to March 2019' from the Hate Crime, Englad and Wales [publication]() of the Home Office (2019). Next, the data will be detrended by months and quarters and visualised again. 
+
+
+```{r packages, warning=F, message=F}
+library(tidyverse)
+library(lubridate)
+library(scales)
+```
+
+```{r}
+data <- read_csv(here::here("/data/home_office_rrao.csv")) %>% 
+  janitor::clean_names() %>% 
+  pivot_longer(cols=starts_with("x"), names_to = "year",values_to = "hc_count") %>% 
+  mutate(year=str_remove(year, "x")) %>% 
+  mutate(date= paste("01",month,year,sep =  "-"), date_parsed=dmy(date))
+
+
+```
+
+
+# Reproduce the Figure
+```{r reproduction, fig.width=8, fig.height=6}
+data %>% 
+  ggplot(aes(date_parsed, hc_count))+
+  geom_line(size=0.8, colour="purple3")+
+  hrbrthemes::theme_ipsum_rc()+
+  scale_y_continuous(labels=scales::comma, minor_breaks = NULL, breaks = seq(0,7000, 1000), limits = c(0,7000))+
+  scale_x_date(breaks = "3 month",minor_breaks = NULL,expand = c(0,0) , limits = c(dmy("01-04-2013"), dmy("01-04-2019")), date_labels = "%b-%Y" )+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  labs(title = "Number of racially or religiously aggravated offences recorded by the
+police by month, April 2013 to March 2019",subtitle= "Source: Police Recorded Crime, Home Office (2019)",
+x="month", y="Number of Offences")
+  
+```
+
+# Detrend

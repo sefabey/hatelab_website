@@ -19,3 +19,7 @@ Click on this [link](brexit_single_keyword_initial_numbers.html) to see the numb
 # Analysis 3
 
 [Here](hatedash_check.html) is my write-up for comparing the classification results in Hate Speech Dashboard to my offline, independent analysis using the single-keyword Brexit dataset from September 2019. Related ducuments are this [link](dynamic_brexit_sep19.html), which is the dynamic plot of Brexit dataset classifications produced by me, and this [link](HSD_brex_sep19.html) which is the Hate Speech Dashboard visualisation of the same data.
+
+# Analysis 4
+
+[Here](racial_religious_hc_uk.html) is the reproduction of the Racial and Religiously aggravated offence figures collated by the Home Office. In addition, this document introduces a detrended time series visualisation using the same data.
