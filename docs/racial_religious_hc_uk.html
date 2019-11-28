@@ -10,9 +10,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Sefa Ozalp" />
 
+<meta name="date" content="2019-11-28" />
 
-<title>Home</title>
+<title>racial_religious_hc_uk</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,6 +22,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -250,6 +255,63 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -257,6 +319,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -307,7 +379,9 @@ div.section {
 
 
 
-<h1 class="title toc-ignore">Home</h1>
+<h1 class="title toc-ignore">racial_religious_hc_uk</h1>
+<h4 class="author">Sefa Ozalp</h4>
+<h4 class="date">2019-11-28</h4>
 
 </div>
 
@@ -335,7 +409,7 @@ div.section {
 <strong>Last updated:</strong> 2019-11-28
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>hatelab_website/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -363,6 +437,66 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20191014code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20191014)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20191014code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20191014)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
 <a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree09640e0e5c96d8d55ffc616fe002b60172f27817targetblank09640e0a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sefabey/hatelab_website/tree/09640e0e5c96d8d55ffc616fe002b60172f27817" target="_blank">09640e0</a> </a>
 </p>
 </div>
@@ -383,7 +517,6 @@ Ignored files:
 Untracked files:
     Untracked:  data/hatedash_comparison_skim.rds
     Untracked:  data/home_office_rrao.csv
-    Untracked:  docs/figure/racial_religious_hc_uk.rmd/
 
 </code></pre>
 <p>
@@ -424,10 +557,10 @@ Message
 <tbody>
 <tr>
 <td>
-Rmd
+rmd
 </td>
 <td>
-<a href="https://github.com/sefabey/hatelab_website/blob/09640e0e5c96d8d55ffc616fe002b60172f27817/analysis/index.Rmd" target="_blank">09640e0</a>
+<a href="https://github.com/sefabey/hatelab_website/blob/09640e0e5c96d8d55ffc616fe002b60172f27817/analysis/racial_religious_hc_uk.rmd" target="_blank">09640e0</a>
 </td>
 <td>
 Sefa Ozalp
@@ -439,448 +572,6 @@ Sefa Ozalp
 wflow_publish(c(“analysis/index.Rmd”, “analysis/racial_religious_hc_uk.rmd”))
 </td>
 </tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sefabey/hatelab_website/420d2e1df56426bfbb3208a50426943b302ea656/docs/index.html" target="_blank">420d2e1</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-11-04
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/sefabey/hatelab_website/blob/f2c5f8f6eb07d0a8a98e95a1da8edd9ae1703656/analysis/index.Rmd" target="_blank">f2c5f8f</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-11-04
-</td>
-<td>
-finalise hatedash check and edit index
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sefabey/hatelab_website/9f030c9e7698c2bc13e5c34848b0ae15dd095a77/docs/index.html" target="_blank">9f030c9</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-11-04
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/sefabey/hatelab_website/blob/fd875c545481b4ed57a5bb5aed26ff2c98318968/analysis/index.Rmd" target="_blank">fd875c5</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-11-04
-</td>
-<td>
-finalise hatedash check and edit index
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sefabey/hatelab_website/b1c504f7095a03b5664304f2b431e10510b472f8/docs/index.html" target="_blank">b1c504f</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-11-03
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/sefabey/hatelab_website/blob/552470bee86b8903af2ef06df7d445a86e943373/analysis/index.Rmd" target="_blank">552470b</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-11-03
-</td>
-<td>
-wflow_publish(“analysis/index.Rmd”)
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sefabey/hatelab_website/552470bee86b8903af2ef06df7d445a86e943373/docs/index.html" target="_blank">552470b</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-11-03
-</td>
-<td>
-wflow_publish(“analysis/index.Rmd”)
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sefabey/hatelab_website/bc357079b3c051059584d055bc9b00bf4b60670e/docs/index.html" target="_blank">bc35707</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-10-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sefabey/hatelab_website/2a4870a4cba601ba932f20cbfe21454da428a2c6/docs/index.html" target="_blank">2a4870a</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-10-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sefabey/hatelab_website/a284453cfcadd4652adb1d94d9f82fab194f6215/docs/index.html" target="_blank">a284453</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-10-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sefabey/hatelab_website/74b6bbb86235b769e6055b13bc75df836a336672/docs/index.html" target="_blank">74b6bbb</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-10-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sefabey/hatelab_website/b2da95976a4b0fb888cbeb68e4a61f3efa6e6d09/docs/index.html" target="_blank">b2da959</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-10-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sefabey/hatelab_website/83f6ee7afbe4672fd73e5976a9a17c502e0e13ed/docs/index.html" target="_blank">83f6ee7</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-10-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sefabey/hatelab_website/2ea96560c1120f66743e3cad39412137cb0e4f9c/docs/index.html" target="_blank">2ea9656</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-10-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sefabey/hatelab_website/7553a29104dcc4302f41c0142ce64e6e33c49bfd/docs/index.html" target="_blank">7553a29</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-10-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sefabey/hatelab_website/99e28b765fa811a263417a0f0a3d723a039f1b17/docs/index.html" target="_blank">99e28b7</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-10-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sefabey/hatelab_website/9432c06a980248bbe7ff6bb933ae539aa2337cc4/docs/index.html" target="_blank">9432c06</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-10-18
-</td>
-<td>
-edit index
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/sefabey/hatelab_website/blob/fd669bf102b5159d6fccda43cf98395ebc740eab/analysis/index.Rmd" target="_blank">fd669bf</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-10-18
-</td>
-<td>
-edit index
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/sefabey/hatelab_website/blob/c7046d31f7e4821e68c7d091c84d7ba78ddff3ec/analysis/index.Rmd" target="_blank">c7046d3</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-10-18
-</td>
-<td>
-wflow_git_commit(all = TRUE)
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sefabey/hatelab_website/c7046d31f7e4821e68c7d091c84d7ba78ddff3ec/docs/index.html" target="_blank">c7046d3</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-10-18
-</td>
-<td>
-wflow_git_commit(all = TRUE)
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sefabey/hatelab_website/2bbc99553c0f336ea34238386ac209579c20a239/docs/index.html" target="_blank">2bbc995</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-10-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sefabey/hatelab_website/2517f44e5914acb6869490cd31d23c5073c3225d/docs/index.html" target="_blank">2517f44</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-10-18
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/sefabey/hatelab_website/blob/0f0f782f487ffc621fc4addf6f586048382532a6/analysis/index.Rmd" target="_blank">0f0f782</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-10-18
-</td>
-<td>
-wflow_publish(c(“analysis/index.Rmd”,
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/sefabey/hatelab_website/1cc7d11dfd488c4f99316dc78dfb325fb112627e/docs/index.html" target="_blank">1cc7d11</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-10-14
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/sefabey/hatelab_website/blob/b64a55b3247d6388dde2aa2594417b7038efa1fb/analysis/index.Rmd" target="_blank">b64a55b</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-10-14
-</td>
-<td>
-wflow_git_commit(all = TRUE)
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/sefabey/hatelab_website/blob/9c4329902536206422f683d1a097211b581f9fd8/analysis/index.Rmd" target="_blank">9c43299</a>
-</td>
-<td>
-Sefa Ozalp
-</td>
-<td>
-2019-10-14
-</td>
-<td>
-Start workflowr project.
-</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -888,22 +579,95 @@ Start workflowr project.
 </div>
 </div>
 </div>
-<p>This is a website for hosting HateLab’s hate speech tracker data on GitHub.</p>
-<div id="analysis-1" class="section level1">
-<h1>Analysis 1</h1>
-<p>Click on this <a href="initial_numbers.html">link</a> to see the number of tweets in the multiple-keyword Brexit dataset classified as hate speech by the anti-Muslim classifier and the hate-speech to all tweets ratio.</p>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>This document will replicate the ‘Figure 2: Number of racially or religiously aggravated offences recorded by the police by month, April 2013 to March 2019’ from the Hate Crime, Englad and Wales <a href="">publication</a> of the Home Office (2019). Next, the data will be detrended by months and quarters and visualised again.</p>
+<pre class="r"><code>library(tidyverse)
+library(lubridate)
+library(scales)</code></pre>
+<pre class="r"><code>data &lt;- read_csv(here::here(&quot;/data/home_office_rrao.csv&quot;)) %&gt;% 
+  janitor::clean_names() %&gt;% 
+  pivot_longer(cols=starts_with(&quot;x&quot;), names_to = &quot;year&quot;,values_to = &quot;hc_count&quot;) %&gt;% 
+  mutate(year=str_remove(year, &quot;x&quot;)) %&gt;% 
+  mutate(date= paste(&quot;01&quot;,month,year,sep =  &quot;-&quot;), date_parsed=dmy(date))</code></pre>
+<pre><code>Parsed with column specification:
+cols(
+  month = col_character(),
+  `2013` = col_number(),
+  `2014` = col_number(),
+  `2015` = col_number(),
+  `2016` = col_number(),
+  `2017` = col_number(),
+  `2018` = col_number(),
+  `2019` = col_number()
+)</code></pre>
 </div>
-<div id="analysis-2" class="section level1">
-<h1>Analysis 2</h1>
-<p>Click on this <a href="brexit_single_keyword_initial_numbers.html">link</a> to see the number of tweets in the Brexit dataset, which was collected with only using the keyword “Brexit”, classified as hate speech by the HateLab’s anti-Muslim classifier and the hate-speech to all tweets ratio.</p>
+<div id="reproduce-the-figure" class="section level1">
+<h1>Reproduce the Figure</h1>
+<pre class="r"><code>data %&gt;% 
+  ggplot(aes(date_parsed, hc_count))+
+  geom_line(size=0.8, colour=&quot;purple3&quot;)+
+  hrbrthemes::theme_ipsum_rc()+
+  scale_y_continuous(labels=scales::comma, minor_breaks = NULL, breaks = seq(0,7000, 1000), limits = c(0,7000))+
+  scale_x_date(breaks = &quot;3 month&quot;,minor_breaks = NULL,expand = c(0,0) , limits = c(dmy(&quot;01-04-2013&quot;), dmy(&quot;01-04-2019&quot;)), date_labels = &quot;%b-%Y&quot; )+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  labs(title = &quot;Number of racially or religiously aggravated offences recorded by the
+police by month, April 2013 to March 2019&quot;,subtitle= &quot;Source: Police Recorded Crime, Home Office (2019)&quot;,
+x=&quot;month&quot;, y=&quot;Number of Offences&quot;)</code></pre>
+<pre><code>Warning: Removed 12 rows containing missing values (geom_path).</code></pre>
+<p><img src="figure/racial_religious_hc_uk.rmd/reproduction-1.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
-<div id="analysis-3" class="section level1">
-<h1>Analysis 3</h1>
-<p><a href="hatedash_check.html">Here</a> is my write-up for comparing the classification results in Hate Speech Dashboard to my offline, independent analysis using the single-keyword Brexit dataset from September 2019. Related ducuments are this <a href="dynamic_brexit_sep19.html">link</a>, which is the dynamic plot of Brexit dataset classifications produced by me, and this <a href="HSD_brex_sep19.html">link</a> which is the Hate Speech Dashboard visualisation of the same data.</p>
+<div id="detrend" class="section level1">
+<h1>Detrend</h1>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 3.6.1 (2019-07-05)
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+Running under: macOS Mojave 10.14.6
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRblas.0.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_GB.UTF-8/en_GB.UTF-8/en_GB.UTF-8/C/en_GB.UTF-8/en_GB.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] scales_1.0.0    lubridate_1.7.4 forcats_0.4.0   stringr_1.4.0  
+ [5] dplyr_0.8.3     purrr_0.3.2     readr_1.3.1     tidyr_1.0.0    
+ [9] tibble_2.1.3    ggplot2_3.2.1   tidyverse_1.2.1
+
+loaded via a namespace (and not attached):
+ [1] hrbrthemes_0.6.0  tidyselect_0.2.5  xfun_0.9         
+ [4] janitor_1.2.0     haven_2.1.1       lattice_0.20-38  
+ [7] snakecase_0.11.0  colorspace_1.4-1  vctrs_0.2.0      
+[10] generics_0.0.2    htmltools_0.3.6   yaml_2.2.0       
+[13] rlang_0.4.0       pillar_1.4.2      glue_1.3.1       
+[16] withr_2.1.2       gdtools_0.2.0     modelr_0.1.5     
+[19] readxl_1.3.1      lifecycle_0.1.0   munsell_0.5.0    
+[22] gtable_0.3.0      workflowr_1.4.0   cellranger_1.1.0 
+[25] rvest_0.3.4       evaluate_0.14     knitr_1.25       
+[28] extrafont_0.17    Rttf2pt1_1.3.7    broom_0.5.2      
+[31] Rcpp_1.0.2        backports_1.1.4   jsonlite_1.6     
+[34] systemfonts_0.1.1 fs_1.3.1          hms_0.5.1        
+[37] digest_0.6.21     stringi_1.4.3     grid_3.6.1       
+[40] rprojroot_1.3-2   here_0.1          cli_1.1.0        
+[43] tools_3.6.1       magrittr_1.5      lazyeval_0.2.2   
+[46] extrafontdb_1.0   crayon_1.3.4      whisker_0.4      
+[49] pkgconfig_2.0.3   zeallot_0.1.0     xml2_1.2.2       
+[52] assertthat_0.2.1  rmarkdown_1.15    httr_1.4.1       
+[55] rstudioapi_0.10   R6_2.4.0          nlme_3.1-141     
+[58] git2r_0.26.1      compiler_3.6.1   </code></pre>
 </div>
-<div id="analysis-4" class="section level1">
-<h1>Analysis 4</h1>
-<p><a href="racial_religious_hc_uk.html">Here</a> is the reproduction of the Racial and Religiously aggravated offence figures collated by the Home Office. In addition, this document introduces a detrended time series visualisation using the same data.</p>
 </div>
 
 
@@ -920,6 +684,8 @@ footer is added to webpages before the MathJax javascript. -->
 </script>
 
 
+</div>
+</div>
 
 </div>
 
@@ -952,6 +718,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
