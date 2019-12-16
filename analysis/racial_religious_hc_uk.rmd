@@ -1,16 +1,23 @@
 ---
-title: "racial_religious_hc_uk"
+title: "Time Series Analysis of RRA Offences Recorded by the Police in the UK"
 author: "Sefa Ozalp"
 date: "2019-11-28"
-output: workflowr::wflow_html
+output: 
+  workflowr::wflow_html:
+    toc: yes
+    toc_float: yes
+    theme: cosmo
+    highlight: textmate
+    pandoc_args: ["--bibliography=FBI_hate_crimes.bib"]
+bibliography: FBI_hate_crimes.bib
 editor_options:
   chunk_output_type: console
 ---
 
-## Introduction
+# Introduction
 
 
-This document will replicate the 'Figure 2: Number of racially or religiously aggravated offences recorded by the police by month, April 2013 to March 2019' from the Hate Crime, Englad and Wales [publication]() of the Home Office (2019). Next, the data will be detrended by months and quarters and visualised again. 
+This document will replicate the 'Figure 2: Number of racially or religiously aggravated offences recorded by the police by month, April 2013 to March 2019' from the Hate Crime, England and Wales publication of the Home Office (2019). Next, the data will be detrended by months and quarters and visualised again.  ![Figure 2: Number of racially or religiously aggravated offences in the UK](assets/ho_figure2.png) 
 
 
 ```{r packages, warning=F, message=F}
@@ -30,19 +37,216 @@ data <- read_csv(here::here("/data/home_office_rrao.csv")) %>%
 ```
 
 
+
 # Reproduce the Figure
-```{r reproduction, fig.width=8, fig.height=6}
+
+
+```{r vlines_dates}
+vlines_dates <- tibble::tribble(
+     ~date,                    ~Event,
+    "22 May 2013",           "Lee Rigby\nMurder",
+    "15 June 2014",          "Conflict in Israel\nand Gaza",
+    "07 January 2015",       "Charlie Hebdo\nshooting",
+    "15 April 2016",         "EU Referendum\ncampaign begins",
+    "24 June 2016",          "EU Referendum\nresult",
+    "22 March 2017",         "Westminster Bridge",
+    "22 May 2017",           "Manchester Arena",
+    "03 June 2017",          "London Bridge",
+    "19 June 2017",          "Finsbury Park",
+    "15 September 2017",     "Parsons Green")
+
+vlines_dates_p <- vlines_dates %>% 
+  mutate(dates_parsed=lubridate::dmy(date))
+```
+
+## With mean
+```{r reproduction_of_ho_plot_mean, fig.width=12, fig.height=8, fig.retina=T}
+
 data %>% 
-  ggplot(aes(date_parsed, hc_count))+
-  geom_line(size=0.8, colour="purple3")+
+  filter(!is.na(hc_count)) %>% 
+  mutate(mean_hc=mean(hc_count)) %>% 
+  ggplot()+
+  geom_line(aes(date_parsed, hc_count,  group=1, 
+                linetype = "RRA Offence Counts"
+                ), 
+            size=0.8,colour="black"
+            )+
+  geom_line(aes(date_parsed, y=mean_hc,  group=2, 
+                linetype = "Mean RRA Offence\nCounts"
+                ),
+            size=0.8, colour="gray35")+
   hrbrthemes::theme_ipsum_rc()+
   scale_y_continuous(labels=scales::comma, minor_breaks = NULL, breaks = seq(0,7000, 1000), limits = c(0,7000))+
   scale_x_date(breaks = "3 month",minor_breaks = NULL,expand = c(0,0) , limits = c(dmy("01-04-2013"), dmy("01-04-2019")), date_labels = "%b-%Y" )+
   theme(axis.text.x = element_text(angle = 45, hjust = 1))+
   labs(title = "Number of racially or religiously aggravated offences recorded by the
-police by month, April 2013 to March 2019",subtitle= "Source: Police Recorded Crime, Home Office (2019)",
-x="month", y="Number of Offences")
+police by month, April 2013 to March 2019",
+subtitle= "Source: Police Recorded Crime, Home Office (2019)",
+x="Month", 
+y="Number of Offences",
+caption = "Hate Lab, by @SefaOzalp, 2019")+
+  geom_vline(xintercept=as.numeric(vlines_dates_p$dates_parsed),
+             # colour="purple1",
+             colour="black",
+             linetype = "dashed")+
+  annotate("text", label= vlines_dates_p$Event[1], x=vlines_dates_p$dates_parsed[1]+150, y=6400, colour="black", hjust=0)+
+  annotate("text", label= vlines_dates_p$Event[2], x=vlines_dates_p$dates_parsed[2]-300, y=1000, colour="black", hjust=0)+
+  annotate("text", label= vlines_dates_p$Event[3], x=vlines_dates_p$dates_parsed[3]+200, y=5400, colour="black", hjust=0)+
+  annotate("text", label= vlines_dates_p$Event[4], x=vlines_dates_p$dates_parsed[4]-400, y=1700, colour="black", hjust=0)+
+  annotate("text", label= vlines_dates_p$Event[5], x=vlines_dates_p$dates_parsed[5]-400, y=700, colour="black", hjust=0)+
+  annotate("text", x = vlines_dates_p$dates_parsed[10]+150, y = seq(2500,500,by=-500), label =vlines_dates_p$Event[6:10],hjust=0) +
+  annotate("text", x = vlines_dates_p$dates_parsed[10]+150, y = 3000, label = "Terrorist Attacks 2017:", fontface =2,hjust=0) +
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[1]+150-10, y=6400, xend=vlines_dates_p$dates_parsed[1]+10, yend=6400), arrow=arrow(length=unit(2, "mm")), size=0.3, color="black")+
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[2]-150, y=1020, xend=vlines_dates_p$dates_parsed[2]-10, yend=1020),arrow=arrow(length=unit(2, "mm")), size=0.3, color="black")+
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[3]+200-10, y=5400, xend=vlines_dates_p$dates_parsed[3]+10, yend=5400),arrow=arrow(length=unit(2, "mm")), size=0.3, color="black")+
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[4]-150, y=1700, xend=vlines_dates_p$dates_parsed[4]-10, yend=1700),arrow=arrow(length=unit(2, "mm")), size=0.3, color="black")+
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[5]-150, y=700, xend=vlines_dates_p$dates_parsed[5]-10, yend=700),arrow=arrow(length=unit(2, "mm")), size=0.3, color="black")+
+  annotate("text", x = vlines_dates_p$dates_parsed[10]+80, y = 1700, label = '{', angle = 0, size = 40, family = 'Helvetica Neue UltraLight')+
+   scale_linetype_manual(name = "Legend",  values= c("twodash", "solid"), labels = c( "Mean RRA Offence\nCounts", "RRA Offence Counts") 
+                           )+
+  NULL
+
   
 ```
 
-# Detrend
+## With lm line 
+
+```{r reproduction_of_ho_plot_regression, fig.width=12, fig.height=8, fig.retina=T}
+
+data %>% 
+  filter(!is.na(hc_count)) %>% 
+  mutate(mean_hc=mean(hc_count)) %>% 
+  ggplot(aes(date_parsed, hc_count))+
+  geom_line( size=0.8,colour="black")+
+  # geom_line(aes(date_parsed, y=mean_hc,  group=2, 
+  #               linetype = "Mean RRA Offence\nCounts"
+  #               ),
+  #           size=0.8, colour="gray35")+
+  hrbrthemes::theme_ipsum_rc()+
+  scale_y_continuous(labels=scales::comma, minor_breaks = NULL, breaks = seq(0,7000, 1000), limits = c(0,7000))+
+  scale_x_date(breaks = "3 month",minor_breaks = NULL,expand = c(0,0) , limits = c(dmy("01-04-2013"), dmy("01-04-2019")), date_labels = "%b-%Y" )+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  labs(title = "Number of racially or religiously aggravated offences recorded by the
+police by month, April 2013 to March 2019",
+subtitle= "Source: Police Recorded Crime, Home Office (2019)",
+x="Month", 
+y="Number of Offences",
+caption = "Hate Lab, by @SefaOzalp, 2019")+
+  geom_vline(xintercept=as.numeric(vlines_dates_p$dates_parsed),
+             # colour="purple1",
+             colour="black",
+             linetype = "dashed")+
+  annotate("text", label= vlines_dates_p$Event[1], x=vlines_dates_p$dates_parsed[1]+150, y=6400, colour="black", hjust=0)+
+  annotate("text", label= vlines_dates_p$Event[2], x=vlines_dates_p$dates_parsed[2]-300, y=1000, colour="black", hjust=0)+
+  annotate("text", label= vlines_dates_p$Event[3], x=vlines_dates_p$dates_parsed[3]+200, y=5400, colour="black", hjust=0)+
+  annotate("text", label= vlines_dates_p$Event[4], x=vlines_dates_p$dates_parsed[4]-400, y=1700, colour="black", hjust=0)+
+  annotate("text", label= vlines_dates_p$Event[5], x=vlines_dates_p$dates_parsed[5]-400, y=700, colour="black", hjust=0)+
+  annotate("text", x = vlines_dates_p$dates_parsed[10]+150, y = seq(2500,500,by=-500), label =vlines_dates_p$Event[6:10],hjust=0) +
+  annotate("text", x = vlines_dates_p$dates_parsed[10]+150, y = 3000, label = "Terrorist Attacks 2017:", fontface =2,hjust=0) +
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[1]+150-10, y=6400, xend=vlines_dates_p$dates_parsed[1]+10, yend=6400),arrow=arrow(length=unit(2, "mm")), size=0.3, color="black")+
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[2]-150, y=1020, xend=vlines_dates_p$dates_parsed[2]-10, yend=1020),arrow=arrow(length=unit(2, "mm")), size=0.3, color="black")+
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[3]+200-10, y=5400, xend=vlines_dates_p$dates_parsed[3]+10, yend=5400),arrow=arrow(length=unit(2, "mm")), size=0.3, color="black")+
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[4]-150, y=1700, xend=vlines_dates_p$dates_parsed[4]-10, yend=1700),arrow=arrow(length=unit(2, "mm")), size=0.3, color="black")+
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[5]-150, y=700, xend=vlines_dates_p$dates_parsed[5]-10, yend=700),arrow=arrow(length=unit(2, "mm")), size=0.3, color="black")+
+  annotate("text", x = vlines_dates_p$dates_parsed[10]+80, y = 1700, label = '{', angle = 0, size = 40, family = 'Helvetica Neue UltraLight')+
+  geom_smooth(method = "lm")+
+  # scale_linetype(name = "Legend")+
+  NULL
+
+  
+```
+
+
+# Detrend and Re-plot the Data
+
+Detrend the data using methodology described in [@rushin-2018-EffectPresidentTrump-sej]. 
+
+### Process data
+```{r}
+data_processed <- data %>% 
+  filter(!is.na(hc_count)) %>% 
+  arrange(year) %>% 
+  mutate(quarter= lubridate::quarter(date_parsed,with_year = T), 
+         quarter_fct= as.factor(lubridate::quarter(date_parsed,with_year = F)), year_fct=as.factor(year)) 
+
+
+lm_ho_hc <- lm(hc_count~ year_fct + quarter_fct, data = data_processed) # model
+
+summary(lm_ho_hc) # summaries
+
+# Interesting that all Qs and years are significant.
+
+#Detrend
+
+data_processed2 <- data_processed
+
+
+data_processed2$predictions= predict(lm_ho_hc, data_processed)
+data_processed2$residuals= resid(lm_ho_hc)
+data_processed2$mean= mean(data_processed2$hc_count)
+data_processed2$hatedetrend=data_processed2$residuals+data_processed2$mean
+
+
+dp_tidy <- data_processed %>% 
+  mutate(predictions= predict(lm_ho_hc)) %>% 
+  mutate(residuals= resid(lm_ho_hc)) %>% 
+  mutate(mean=mean(hc_count)) %>% 
+  mutate(hatedetrend=residuals+mean)
+
+testthat::expect_equivalent(dp_tidy, data_processed2) #attribute errors, using ttest to make sure
+t.test(data_processed2$hatedetrend, dp_tidy$hatedetrend) # ttest shows data are the same
+
+dp_tidy2 <- data_processed %>% 
+  mutate(predictions= predict(lm_ho_hc),
+         residuals= resid(lm_ho_hc),
+         mean=mean(hc_count),
+         hatedetrend=residuals+mean)
+
+testthat::expect_equivalent(dp_tidy, dp_tidy2)
+
+```
+
+
+### Reproduce the Plot Using Detrended Data
+
+```{r detrended_ho_plot, fig.width=12, fig.height=8, fig.retina=T}
+
+dp_tidy2 %>% 
+  ggplot(aes(date_parsed, hatedetrend))+
+  geom_line(size=0.8, 
+            # colour="purple3"
+            colour="black"
+            )+
+  hrbrthemes::theme_ipsum_rc()+
+  scale_y_continuous(labels=scales::comma, minor_breaks = NULL, breaks = seq(0,7000, 500), limits = c(00,7000))+
+  scale_x_date(breaks = "3 month",minor_breaks = NULL,expand = c(0,0) , limits = c(dmy("01-04-2013"), dmy("01-04-2019")), date_labels = "%b-%Y" )+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  labs(title = "Detrended number of racially or religiously aggravated offences recorded by the
+police by month, April 2013 to March 2019",
+subtitle= "Source: Police Recorded Crime, Home Office (2019)",
+x="Month", 
+y="Number of Offences",
+caption = "Hate Lab, by @SefaOzalp, 2019")+
+  geom_vline(xintercept=as.numeric(vlines_dates_p$dates_parsed),
+             # colour="purple1",
+             colour="black",
+             linetype = "dashed")+
+  annotate("text", label= vlines_dates_p$Event[1], x=vlines_dates_p$dates_parsed[1]+150, y=6400, colour="black", hjust=0)+
+  annotate("text", label= vlines_dates_p$Event[2], x=vlines_dates_p$dates_parsed[2]-300, y=1000, colour="black", hjust=0)+
+  annotate("text", label= vlines_dates_p$Event[3], x=vlines_dates_p$dates_parsed[3]+200, y=5400, colour="black", hjust=0)+
+  annotate("text", label= vlines_dates_p$Event[4], x=vlines_dates_p$dates_parsed[4]-400, y=1700, colour="black", hjust=0)+
+  annotate("text", label= vlines_dates_p$Event[5], x=vlines_dates_p$dates_parsed[5]-400, y=700, colour="black", hjust=0)+
+  annotate("text", x = vlines_dates_p$dates_parsed[10]+150, y = seq(2500,500,by=-500), label =vlines_dates_p$Event[6:10],hjust=0) +
+  annotate("text", x = vlines_dates_p$dates_parsed[10]+150, y = 3000, label = "Terrorist Attacks 2017:", fontface =2,hjust=0) +
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[1]+150-10, y=6400, xend=vlines_dates_p$dates_parsed[1]+10, yend=6400),arrow=arrow(length=unit(2, "mm")), size=0.3, color="black")+
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[2]-150, y=1020, xend=vlines_dates_p$dates_parsed[2]-10, yend=1020),arrow=arrow(length=unit(2, "mm")), size=0.3, color="black")+
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[3]+200-10, y=5400, xend=vlines_dates_p$dates_parsed[3]+10, yend=5400),arrow=arrow(length=unit(2, "mm")), size=0.3, color="black")+
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[4]-150, y=1700, xend=vlines_dates_p$dates_parsed[4]-10, yend=1700),arrow=arrow(length=unit(2, "mm")), size=0.3, color="black")+
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[5]-150, y=700, xend=vlines_dates_p$dates_parsed[5]-10, yend=700),arrow=arrow(length=unit(2, "mm")), size=0.3, color="black")+
+  annotate("text", x = vlines_dates_p$dates_parsed[10]+80, y = 1700, label = '{', angle = 0, size = 40, family = 'Helvetica Neue UltraLight')+
+  NULL
+```
+
+After detrending the data with time series regression with quarters and years as control [@rushin-2018-EffectPresidentTrump-sej], we still observe peaks after EU referendum results and successive terror attacks in the summer of 2017. This indicates these events had statistically significant increase effect on racially and religiously aggravated offences even after controlling for seasonality. It is also important to note other notable events such as Lee Rigby murder, conflict in Israel and Gaza, Charlie Hebdo Shooting did not have such an effect. 
+
+## References
