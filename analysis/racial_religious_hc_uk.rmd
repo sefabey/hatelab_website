@@ -249,4 +249,4 @@ caption = "Hate Lab, by @SefaOzalp, 2019")+
 
 After detrending the data with time series regression with quarters and years as control [@rushin-2018-EffectPresidentTrump-sej], we still observe peaks after EU referendum results and successive terror attacks in the summer of 2017. This indicates these events had statistically significant increase effect on racially and religiously aggravated offences even after controlling for seasonality. It is also important to note other notable events such as Lee Rigby murder, conflict in Israel and Gaza, Charlie Hebdo Shooting did not have such an effect. 
 
-## References
+# References
