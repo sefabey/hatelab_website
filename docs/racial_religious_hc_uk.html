@@ -14,7 +14,7 @@
 
 <meta name="date" content="2019-11-28" />
 
-<title>racial_religious_hc_uk</title>
+<title>Time Series Analysis of RRA Offences Recorded by the Police in the UK</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -379,7 +379,7 @@ div.section {
 
 
 
-<h1 class="title toc-ignore">racial_religious_hc_uk</h1>
+<h1 class="title toc-ignore">Time Series Analysis of RRA Offences Recorded by the Police in the UK</h1>
 <h4 class="author">Sefa Ozalp</h4>
 <h4 class="date">2019-11-28</h4>
 
@@ -406,7 +406,7 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2019-11-28
+<strong>Last updated:</strong> 2019-12-16
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -497,10 +497,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree09640e0e5c96d8d55ffc616fe002b60172f27817targetblank09640e0a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sefabey/hatelab_website/tree/09640e0e5c96d8d55ffc616fe002b60172f27817" target="_blank">09640e0</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree5265e833403a4437da4e3be83cc841849cdad526targetblank5265e83a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sefabey/hatelab_website/tree/5265e833403a4437da4e3be83cc841849cdad526" target="_blank">5265e83</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree09640e0e5c96d8d55ffc616fe002b60172f27817targetblank09640e0a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree5265e833403a4437da4e3be83cc841849cdad526targetblank5265e83a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -511,12 +511,17 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    analysis/.DS_Store
+    Ignored:    data/.DS_Store
     Ignored:    docs/.DS_Store
     Ignored:    docs/assets/.DS_Store
 
 Untracked files:
+    Untracked:  analysis/FBI_hate_crimes.bib
+    Untracked:  analysis/trump_muslim.rmd
     Untracked:  data/hatedash_comparison_skim.rds
     Untracked:  data/home_office_rrao.csv
+    Untracked:  data/trump_tweets_islam.json
+    Untracked:  data/trump_tweets_islam_muslim.csv
 
 </code></pre>
 <p>
@@ -560,6 +565,40 @@ Message
 rmd
 </td>
 <td>
+<a href="https://github.com/sefabey/hatelab_website/blob/5265e833403a4437da4e3be83cc841849cdad526/analysis/racial_religious_hc_uk.rmd" target="_blank">5265e83</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2019-12-16
+</td>
+<td>
+finalise reproduction and add detrended plot
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sefabey/hatelab_website/4fb46023de9029e54f73b01b76554188a30b14e1/docs/racial_religious_hc_uk.html" target="_blank">4fb4602</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2019-11-28
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+rmd
+</td>
+<td>
 <a href="https://github.com/sefabey/hatelab_website/blob/09640e0e5c96d8d55ffc616fe002b60172f27817/analysis/racial_religious_hc_uk.rmd" target="_blank">09640e0</a>
 </td>
 <td>
@@ -579,9 +618,9 @@ wflow_publish(c(“analysis/index.Rmd”, “analysis/racial_religious_hc_uk.rmd
 </div>
 </div>
 </div>
-<div id="introduction" class="section level2">
-<h2>Introduction</h2>
-<p>This document will replicate the ‘Figure 2: Number of racially or religiously aggravated offences recorded by the police by month, April 2013 to March 2019’ from the Hate Crime, Englad and Wales <a href="">publication</a> of the Home Office (2019). Next, the data will be detrended by months and quarters and visualised again.</p>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>This document will replicate the ‘Figure 2: Number of racially or religiously aggravated offences recorded by the police by month, April 2013 to March 2019’ from the Hate Crime, England and Wales publication of the Home Office (2019). Next, the data will be detrended by months and quarters and visualised again. <img src="assets/ho_figure2.png" alt="Figure 2: Number of racially or religiously aggravated offences in the UK" /></p>
 <pre class="r"><code>library(tidyverse)
 library(lubridate)
 library(scales)</code></pre>
@@ -604,21 +643,244 @@ cols(
 </div>
 <div id="reproduce-the-figure" class="section level1">
 <h1>Reproduce the Figure</h1>
+<pre class="r"><code>vlines_dates &lt;- tibble::tribble(
+     ~date,                    ~Event,
+    &quot;22 May 2013&quot;,           &quot;Lee Rigby\nMurder&quot;,
+    &quot;15 June 2014&quot;,          &quot;Conflict in Israel\nand Gaza&quot;,
+    &quot;07 January 2015&quot;,       &quot;Charlie Hebdo\nshooting&quot;,
+    &quot;15 April 2016&quot;,         &quot;EU Referendum\ncampaign begins&quot;,
+    &quot;24 June 2016&quot;,          &quot;EU Referendum\nresult&quot;,
+    &quot;22 March 2017&quot;,         &quot;Westminster Bridge&quot;,
+    &quot;22 May 2017&quot;,           &quot;Manchester Arena&quot;,
+    &quot;03 June 2017&quot;,          &quot;London Bridge&quot;,
+    &quot;19 June 2017&quot;,          &quot;Finsbury Park&quot;,
+    &quot;15 September 2017&quot;,     &quot;Parsons Green&quot;)
+
+vlines_dates_p &lt;- vlines_dates %&gt;% 
+  mutate(dates_parsed=lubridate::dmy(date))</code></pre>
+<div id="with-mean" class="section level2">
+<h2>With mean</h2>
 <pre class="r"><code>data %&gt;% 
-  ggplot(aes(date_parsed, hc_count))+
-  geom_line(size=0.8, colour=&quot;purple3&quot;)+
+  filter(!is.na(hc_count)) %&gt;% 
+  mutate(mean_hc=mean(hc_count)) %&gt;% 
+  ggplot()+
+  geom_line(aes(date_parsed, hc_count,  group=1, 
+                linetype = &quot;RRA Offence Counts&quot;
+                ), 
+            size=0.8,colour=&quot;black&quot;
+            )+
+  geom_line(aes(date_parsed, y=mean_hc,  group=2, 
+                linetype = &quot;Mean RRA Offence\nCounts&quot;
+                ),
+            size=0.8, colour=&quot;gray35&quot;)+
   hrbrthemes::theme_ipsum_rc()+
   scale_y_continuous(labels=scales::comma, minor_breaks = NULL, breaks = seq(0,7000, 1000), limits = c(0,7000))+
   scale_x_date(breaks = &quot;3 month&quot;,minor_breaks = NULL,expand = c(0,0) , limits = c(dmy(&quot;01-04-2013&quot;), dmy(&quot;01-04-2019&quot;)), date_labels = &quot;%b-%Y&quot; )+
   theme(axis.text.x = element_text(angle = 45, hjust = 1))+
   labs(title = &quot;Number of racially or religiously aggravated offences recorded by the
-police by month, April 2013 to March 2019&quot;,subtitle= &quot;Source: Police Recorded Crime, Home Office (2019)&quot;,
-x=&quot;month&quot;, y=&quot;Number of Offences&quot;)</code></pre>
-<pre><code>Warning: Removed 12 rows containing missing values (geom_path).</code></pre>
-<p><img src="figure/racial_religious_hc_uk.rmd/reproduction-1.png" width="768" style="display: block; margin: auto;" /></p>
+police by month, April 2013 to March 2019&quot;,
+subtitle= &quot;Source: Police Recorded Crime, Home Office (2019)&quot;,
+x=&quot;Month&quot;, 
+y=&quot;Number of Offences&quot;,
+caption = &quot;Hate Lab, by @SefaOzalp, 2019&quot;)+
+  geom_vline(xintercept=as.numeric(vlines_dates_p$dates_parsed),
+             # colour=&quot;purple1&quot;,
+             colour=&quot;black&quot;,
+             linetype = &quot;dashed&quot;)+
+  annotate(&quot;text&quot;, label= vlines_dates_p$Event[1], x=vlines_dates_p$dates_parsed[1]+150, y=6400, colour=&quot;black&quot;, hjust=0)+
+  annotate(&quot;text&quot;, label= vlines_dates_p$Event[2], x=vlines_dates_p$dates_parsed[2]-300, y=1000, colour=&quot;black&quot;, hjust=0)+
+  annotate(&quot;text&quot;, label= vlines_dates_p$Event[3], x=vlines_dates_p$dates_parsed[3]+200, y=5400, colour=&quot;black&quot;, hjust=0)+
+  annotate(&quot;text&quot;, label= vlines_dates_p$Event[4], x=vlines_dates_p$dates_parsed[4]-400, y=1700, colour=&quot;black&quot;, hjust=0)+
+  annotate(&quot;text&quot;, label= vlines_dates_p$Event[5], x=vlines_dates_p$dates_parsed[5]-400, y=700, colour=&quot;black&quot;, hjust=0)+
+  annotate(&quot;text&quot;, x = vlines_dates_p$dates_parsed[10]+150, y = seq(2500,500,by=-500), label =vlines_dates_p$Event[6:10],hjust=0) +
+  annotate(&quot;text&quot;, x = vlines_dates_p$dates_parsed[10]+150, y = 3000, label = &quot;Terrorist Attacks 2017:&quot;, fontface =2,hjust=0) +
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[1]+150-10, y=6400, xend=vlines_dates_p$dates_parsed[1]+10, yend=6400), arrow=arrow(length=unit(2, &quot;mm&quot;)), size=0.3, color=&quot;black&quot;)+
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[2]-150, y=1020, xend=vlines_dates_p$dates_parsed[2]-10, yend=1020),arrow=arrow(length=unit(2, &quot;mm&quot;)), size=0.3, color=&quot;black&quot;)+
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[3]+200-10, y=5400, xend=vlines_dates_p$dates_parsed[3]+10, yend=5400),arrow=arrow(length=unit(2, &quot;mm&quot;)), size=0.3, color=&quot;black&quot;)+
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[4]-150, y=1700, xend=vlines_dates_p$dates_parsed[4]-10, yend=1700),arrow=arrow(length=unit(2, &quot;mm&quot;)), size=0.3, color=&quot;black&quot;)+
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[5]-150, y=700, xend=vlines_dates_p$dates_parsed[5]-10, yend=700),arrow=arrow(length=unit(2, &quot;mm&quot;)), size=0.3, color=&quot;black&quot;)+
+  annotate(&quot;text&quot;, x = vlines_dates_p$dates_parsed[10]+80, y = 1700, label = &#39;{&#39;, angle = 0, size = 40, family = &#39;Helvetica Neue UltraLight&#39;)+
+   scale_linetype_manual(name = &quot;Legend&quot;,  values= c(&quot;twodash&quot;, &quot;solid&quot;), labels = c( &quot;Mean RRA Offence\nCounts&quot;, &quot;RRA Offence Counts&quot;) 
+                           )+
+  NULL</code></pre>
+<p><img src="figure/racial_religious_hc_uk.rmd/reproduction_of_ho_plot_mean-1.png" style="display: block; margin: auto;" /></p>
 </div>
-<div id="detrend" class="section level1">
-<h1>Detrend</h1>
+<div id="with-lm-line" class="section level2">
+<h2>With lm line</h2>
+<pre class="r"><code>data %&gt;% 
+  filter(!is.na(hc_count)) %&gt;% 
+  mutate(mean_hc=mean(hc_count)) %&gt;% 
+  ggplot(aes(date_parsed, hc_count))+
+  geom_line( size=0.8,colour=&quot;black&quot;)+
+  # geom_line(aes(date_parsed, y=mean_hc,  group=2, 
+  #               linetype = &quot;Mean RRA Offence\nCounts&quot;
+  #               ),
+  #           size=0.8, colour=&quot;gray35&quot;)+
+  hrbrthemes::theme_ipsum_rc()+
+  scale_y_continuous(labels=scales::comma, minor_breaks = NULL, breaks = seq(0,7000, 1000), limits = c(0,7000))+
+  scale_x_date(breaks = &quot;3 month&quot;,minor_breaks = NULL,expand = c(0,0) , limits = c(dmy(&quot;01-04-2013&quot;), dmy(&quot;01-04-2019&quot;)), date_labels = &quot;%b-%Y&quot; )+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  labs(title = &quot;Number of racially or religiously aggravated offences recorded by the
+police by month, April 2013 to March 2019&quot;,
+subtitle= &quot;Source: Police Recorded Crime, Home Office (2019)&quot;,
+x=&quot;Month&quot;, 
+y=&quot;Number of Offences&quot;,
+caption = &quot;Hate Lab, by @SefaOzalp, 2019&quot;)+
+  geom_vline(xintercept=as.numeric(vlines_dates_p$dates_parsed),
+             # colour=&quot;purple1&quot;,
+             colour=&quot;black&quot;,
+             linetype = &quot;dashed&quot;)+
+  annotate(&quot;text&quot;, label= vlines_dates_p$Event[1], x=vlines_dates_p$dates_parsed[1]+150, y=6400, colour=&quot;black&quot;, hjust=0)+
+  annotate(&quot;text&quot;, label= vlines_dates_p$Event[2], x=vlines_dates_p$dates_parsed[2]-300, y=1000, colour=&quot;black&quot;, hjust=0)+
+  annotate(&quot;text&quot;, label= vlines_dates_p$Event[3], x=vlines_dates_p$dates_parsed[3]+200, y=5400, colour=&quot;black&quot;, hjust=0)+
+  annotate(&quot;text&quot;, label= vlines_dates_p$Event[4], x=vlines_dates_p$dates_parsed[4]-400, y=1700, colour=&quot;black&quot;, hjust=0)+
+  annotate(&quot;text&quot;, label= vlines_dates_p$Event[5], x=vlines_dates_p$dates_parsed[5]-400, y=700, colour=&quot;black&quot;, hjust=0)+
+  annotate(&quot;text&quot;, x = vlines_dates_p$dates_parsed[10]+150, y = seq(2500,500,by=-500), label =vlines_dates_p$Event[6:10],hjust=0) +
+  annotate(&quot;text&quot;, x = vlines_dates_p$dates_parsed[10]+150, y = 3000, label = &quot;Terrorist Attacks 2017:&quot;, fontface =2,hjust=0) +
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[1]+150-10, y=6400, xend=vlines_dates_p$dates_parsed[1]+10, yend=6400),arrow=arrow(length=unit(2, &quot;mm&quot;)), size=0.3, color=&quot;black&quot;)+
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[2]-150, y=1020, xend=vlines_dates_p$dates_parsed[2]-10, yend=1020),arrow=arrow(length=unit(2, &quot;mm&quot;)), size=0.3, color=&quot;black&quot;)+
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[3]+200-10, y=5400, xend=vlines_dates_p$dates_parsed[3]+10, yend=5400),arrow=arrow(length=unit(2, &quot;mm&quot;)), size=0.3, color=&quot;black&quot;)+
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[4]-150, y=1700, xend=vlines_dates_p$dates_parsed[4]-10, yend=1700),arrow=arrow(length=unit(2, &quot;mm&quot;)), size=0.3, color=&quot;black&quot;)+
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[5]-150, y=700, xend=vlines_dates_p$dates_parsed[5]-10, yend=700),arrow=arrow(length=unit(2, &quot;mm&quot;)), size=0.3, color=&quot;black&quot;)+
+  annotate(&quot;text&quot;, x = vlines_dates_p$dates_parsed[10]+80, y = 1700, label = &#39;{&#39;, angle = 0, size = 40, family = &#39;Helvetica Neue UltraLight&#39;)+
+  geom_smooth(method = &quot;lm&quot;)+
+  # scale_linetype(name = &quot;Legend&quot;)+
+  NULL</code></pre>
+<p><img src="figure/racial_religious_hc_uk.rmd/reproduction_of_ho_plot_regression-1.png" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="detrend-and-re-plot-the-data" class="section level1">
+<h1>Detrend and Re-plot the Data</h1>
+<p>Detrend the data using methodology described in <span class="citation">(Rushin and Edwards 2018)</span>.</p>
+<div id="process-data" class="section level3">
+<h3>Process data</h3>
+<pre class="r"><code>data_processed &lt;- data %&gt;% 
+  filter(!is.na(hc_count)) %&gt;% 
+  arrange(year) %&gt;% 
+  mutate(quarter= lubridate::quarter(date_parsed,with_year = T), 
+         quarter_fct= as.factor(lubridate::quarter(date_parsed,with_year = F)), year_fct=as.factor(year)) 
+
+
+lm_ho_hc &lt;- lm(hc_count~ year_fct + quarter_fct, data = data_processed) # model
+
+summary(lm_ho_hc) # summaries</code></pre>
+<pre><code>
+Call:
+lm(formula = hc_count ~ year_fct + quarter_fct, data = data_processed)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-746.69 -298.40  -34.86  193.93 1303.31 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)    1945.7      194.1  10.023 1.37e-14 ***
+year_fct2014    470.9      194.1   2.426  0.01820 *  
+year_fct2015    937.1      194.1   4.827 9.42e-06 ***
+year_fct2016   1413.7      194.1   7.283 6.97e-10 ***
+year_fct2017   2051.8      194.1  10.569 1.68e-15 ***
+year_fct2018   2231.8      194.1  11.497  &lt; 2e-16 ***
+year_fct2019   2531.3      317.0   7.985 4.20e-11 ***
+quarter_fct2    741.3      154.0   4.812 9.94e-06 ***
+quarter_fct3    989.1      154.0   6.421 2.14e-08 ***
+quarter_fct4    497.6      154.0   3.230  0.00198 ** 
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 434.1 on 62 degrees of freedom
+Multiple R-squared:  0.8046,    Adjusted R-squared:  0.7762 
+F-statistic: 28.36 on 9 and 62 DF,  p-value: &lt; 2.2e-16</code></pre>
+<pre class="r"><code># Interesting that all Qs and years are significant.
+
+#Detrend
+
+data_processed2 &lt;- data_processed
+
+
+data_processed2$predictions= predict(lm_ho_hc, data_processed)
+data_processed2$residuals= resid(lm_ho_hc)
+data_processed2$mean= mean(data_processed2$hc_count)
+data_processed2$hatedetrend=data_processed2$residuals+data_processed2$mean
+
+
+dp_tidy &lt;- data_processed %&gt;% 
+  mutate(predictions= predict(lm_ho_hc)) %&gt;% 
+  mutate(residuals= resid(lm_ho_hc)) %&gt;% 
+  mutate(mean=mean(hc_count)) %&gt;% 
+  mutate(hatedetrend=residuals+mean)
+
+testthat::expect_equivalent(dp_tidy, data_processed2) #attribute errors, using ttest to make sure</code></pre>
+<pre><code>Warning: Column `predictions` has different attributes on LHS and RHS of
+join</code></pre>
+<pre><code>Warning: Column `residuals` has different attributes on LHS and RHS of join</code></pre>
+<pre><code>Warning: Column `hatedetrend` has different attributes on LHS and RHS of
+join</code></pre>
+<pre class="r"><code>t.test(data_processed2$hatedetrend, dp_tidy$hatedetrend) # ttest shows data are the same</code></pre>
+<pre><code>
+    Welch Two Sample t-test
+
+data:  data_processed2$hatedetrend and dp_tidy$hatedetrend
+t = 0, df = 142, p-value = 1
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -133.6462  133.6462
+sample estimates:
+mean of x mean of y 
+ 3792.361  3792.361 </code></pre>
+<pre class="r"><code>dp_tidy2 &lt;- data_processed %&gt;% 
+  mutate(predictions= predict(lm_ho_hc),
+         residuals= resid(lm_ho_hc),
+         mean=mean(hc_count),
+         hatedetrend=residuals+mean)
+
+testthat::expect_equivalent(dp_tidy, dp_tidy2)</code></pre>
+</div>
+<div id="reproduce-the-plot-using-detrended-data" class="section level3">
+<h3>Reproduce the Plot Using Detrended Data</h3>
+<pre class="r"><code>dp_tidy2 %&gt;% 
+  ggplot(aes(date_parsed, hatedetrend))+
+  geom_line(size=0.8, 
+            # colour=&quot;purple3&quot;
+            colour=&quot;black&quot;
+            )+
+  hrbrthemes::theme_ipsum_rc()+
+  scale_y_continuous(labels=scales::comma, minor_breaks = NULL, breaks = seq(0,7000, 500), limits = c(00,7000))+
+  scale_x_date(breaks = &quot;3 month&quot;,minor_breaks = NULL,expand = c(0,0) , limits = c(dmy(&quot;01-04-2013&quot;), dmy(&quot;01-04-2019&quot;)), date_labels = &quot;%b-%Y&quot; )+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  labs(title = &quot;Detrended number of racially or religiously aggravated offences recorded by the
+police by month, April 2013 to March 2019&quot;,
+subtitle= &quot;Source: Police Recorded Crime, Home Office (2019)&quot;,
+x=&quot;Month&quot;, 
+y=&quot;Number of Offences&quot;,
+caption = &quot;Hate Lab, by @SefaOzalp, 2019&quot;)+
+  geom_vline(xintercept=as.numeric(vlines_dates_p$dates_parsed),
+             # colour=&quot;purple1&quot;,
+             colour=&quot;black&quot;,
+             linetype = &quot;dashed&quot;)+
+  annotate(&quot;text&quot;, label= vlines_dates_p$Event[1], x=vlines_dates_p$dates_parsed[1]+150, y=6400, colour=&quot;black&quot;, hjust=0)+
+  annotate(&quot;text&quot;, label= vlines_dates_p$Event[2], x=vlines_dates_p$dates_parsed[2]-300, y=1000, colour=&quot;black&quot;, hjust=0)+
+  annotate(&quot;text&quot;, label= vlines_dates_p$Event[3], x=vlines_dates_p$dates_parsed[3]+200, y=5400, colour=&quot;black&quot;, hjust=0)+
+  annotate(&quot;text&quot;, label= vlines_dates_p$Event[4], x=vlines_dates_p$dates_parsed[4]-400, y=1700, colour=&quot;black&quot;, hjust=0)+
+  annotate(&quot;text&quot;, label= vlines_dates_p$Event[5], x=vlines_dates_p$dates_parsed[5]-400, y=700, colour=&quot;black&quot;, hjust=0)+
+  annotate(&quot;text&quot;, x = vlines_dates_p$dates_parsed[10]+150, y = seq(2500,500,by=-500), label =vlines_dates_p$Event[6:10],hjust=0) +
+  annotate(&quot;text&quot;, x = vlines_dates_p$dates_parsed[10]+150, y = 3000, label = &quot;Terrorist Attacks 2017:&quot;, fontface =2,hjust=0) +
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[1]+150-10, y=6400, xend=vlines_dates_p$dates_parsed[1]+10, yend=6400),arrow=arrow(length=unit(2, &quot;mm&quot;)), size=0.3, color=&quot;black&quot;)+
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[2]-150, y=1020, xend=vlines_dates_p$dates_parsed[2]-10, yend=1020),arrow=arrow(length=unit(2, &quot;mm&quot;)), size=0.3, color=&quot;black&quot;)+
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[3]+200-10, y=5400, xend=vlines_dates_p$dates_parsed[3]+10, yend=5400),arrow=arrow(length=unit(2, &quot;mm&quot;)), size=0.3, color=&quot;black&quot;)+
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[4]-150, y=1700, xend=vlines_dates_p$dates_parsed[4]-10, yend=1700),arrow=arrow(length=unit(2, &quot;mm&quot;)), size=0.3, color=&quot;black&quot;)+
+  geom_segment( mapping=aes(x=vlines_dates_p$dates_parsed[5]-150, y=700, xend=vlines_dates_p$dates_parsed[5]-10, yend=700),arrow=arrow(length=unit(2, &quot;mm&quot;)), size=0.3, color=&quot;black&quot;)+
+  annotate(&quot;text&quot;, x = vlines_dates_p$dates_parsed[10]+80, y = 1700, label = &#39;{&#39;, angle = 0, size = 40, family = &#39;Helvetica Neue UltraLight&#39;)+
+  NULL</code></pre>
+<p><img src="figure/racial_religious_hc_uk.rmd/detrended_ho_plot-1.png" style="display: block; margin: auto;" /></p>
+<p>After detrending the data with time series regression with quarters and years as control <span class="citation">(Rushin and Edwards 2018)</span>, we still observe peaks after EU referendum results and successive terror attacks in the summer of 2017. This indicates these events had statistically significant increase effect on racially and religiously aggravated offences even after controlling for seasonality. It is also important to note other notable events such as Lee Rigby murder, conflict in Israel and Gaza, Charlie Hebdo Shooting did not have such an effect.</p>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<div id="refs">
+<div id="ref-rushin-2018-EffectPresidentTrump-sej">
+<p>Rushin, Stephen, and Griffin Sims Edwards. 2018. “The Effect of President Trump’s Election on Hate Crimes.” <em>SSRN Electronic Journal</em>. <a href="https://doi.org/10.2139/ssrn.3102652">https://doi.org/10.2139/ssrn.3102652</a>.</p>
+</div>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -649,24 +911,25 @@ other attached packages:
 loaded via a namespace (and not attached):
  [1] hrbrthemes_0.6.0  tidyselect_0.2.5  xfun_0.9         
  [4] janitor_1.2.0     haven_2.1.1       lattice_0.20-38  
- [7] snakecase_0.11.0  colorspace_1.4-1  vctrs_0.2.0      
-[10] generics_0.0.2    htmltools_0.3.6   yaml_2.2.0       
-[13] rlang_0.4.0       pillar_1.4.2      glue_1.3.1       
-[16] withr_2.1.2       gdtools_0.2.0     modelr_0.1.5     
-[19] readxl_1.3.1      lifecycle_0.1.0   munsell_0.5.0    
-[22] gtable_0.3.0      workflowr_1.4.0   cellranger_1.1.0 
-[25] rvest_0.3.4       evaluate_0.14     knitr_1.25       
-[28] extrafont_0.17    Rttf2pt1_1.3.7    broom_0.5.2      
-[31] Rcpp_1.0.2        backports_1.1.4   jsonlite_1.6     
-[34] systemfonts_0.1.1 fs_1.3.1          hms_0.5.1        
-[37] digest_0.6.21     stringi_1.4.3     grid_3.6.1       
-[40] rprojroot_1.3-2   here_0.1          cli_1.1.0        
-[43] tools_3.6.1       magrittr_1.5      lazyeval_0.2.2   
-[46] extrafontdb_1.0   crayon_1.3.4      whisker_0.4      
-[49] pkgconfig_2.0.3   zeallot_0.1.0     xml2_1.2.2       
-[52] assertthat_0.2.1  rmarkdown_1.15    httr_1.4.1       
-[55] rstudioapi_0.10   R6_2.4.0          nlme_3.1-141     
-[58] git2r_0.26.1      compiler_3.6.1   </code></pre>
+ [7] snakecase_0.11.0  testthat_2.2.1    colorspace_1.4-1 
+[10] vctrs_0.2.0       generics_0.0.2    htmltools_0.3.6  
+[13] yaml_2.2.0        rlang_0.4.0       pillar_1.4.2     
+[16] glue_1.3.1        withr_2.1.2       gdtools_0.2.0    
+[19] modelr_0.1.5      readxl_1.3.1      lifecycle_0.1.0  
+[22] munsell_0.5.0     gtable_0.3.0      workflowr_1.4.0  
+[25] cellranger_1.1.0  rvest_0.3.4       evaluate_0.14    
+[28] knitr_1.25        extrafont_0.17    Rttf2pt1_1.3.7   
+[31] broom_0.5.2       Rcpp_1.0.2        backports_1.1.4  
+[34] jsonlite_1.6      systemfonts_0.1.1 fs_1.3.1         
+[37] hms_0.5.1         digest_0.6.21     stringi_1.4.3    
+[40] grid_3.6.1        rprojroot_1.3-2   here_0.1         
+[43] cli_1.1.0         tools_3.6.1       magrittr_1.5     
+[46] lazyeval_0.2.2    extrafontdb_1.0   crayon_1.3.4     
+[49] whisker_0.4       pkgconfig_2.0.3   zeallot_0.1.0    
+[52] xml2_1.2.2        assertthat_0.2.1  rmarkdown_1.15   
+[55] httr_1.4.1        rstudioapi_0.10   R6_2.4.0         
+[58] nlme_3.1-141      git2r_0.26.1      compiler_3.6.1   </code></pre>
+</div>
 </div>
 </div>
 
