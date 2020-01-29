@@ -20,7 +20,7 @@ editor_options:
 This document will replicate the 'Figure 2: Number of racially or religiously aggravated offences recorded by the police by month, April 2013 to March 2019' from the Hate Crime, England and Wales publication of the Home Office (2019). Next, the data will be detrended by months and quarters and visualised again.  ![Figure 2: Number of racially or religiously aggravated offences in the UK](assets/ho_figure2.png) 
 
 
-```{r packages, warning=F, message=F}
+```{r packages, warning=F, message=F,results = "hide"}
 library(tidyverse)
 library(lubridate)
 library(scales)
@@ -211,7 +211,7 @@ testthat::expect_equivalent(dp_tidy, dp_tidy2)
 
 ### Reproduce the Plot Using Detrended Data
 
-```{r detrended_ho_plot, fig.width=12, fig.height=8, fig.retina=T, dpi=800, dev=c ("cairo_pdf", "png", "svg") }
+```{r detrended_ho_plot, fig.width=12, fig.height=8, fig.retina=T, dpi=800, , error=FALSE, warning=F}
 
 
 dp_tidy2 %>% 
