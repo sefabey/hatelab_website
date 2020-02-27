@@ -16,6 +16,7 @@ library(fs)
 library(scales)
 library(hrbrthemes)
 library(gridExtra)
+knitr::opts_chunk$set(fig.width=12, fig.height=8)
 ```
 
 # Data I/O
@@ -170,7 +171,7 @@ initial_plot_ratio
 
 ## Plot HS counts and Ratio Together
 
-```{r}
+```{r, fig.height=12, fig.width=10}
 gridExtra::grid.arrange(initial_plot_hs, initial_plot_ratio,nrow=2)
 ```
 
