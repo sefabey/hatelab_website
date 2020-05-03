@@ -1,0 +1,177 @@
+---
+title: "corona_identity_filter_sizes"
+author: "Sefa Ozalp"
+date: "2020-05-01"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+# Introduction
+
+This document explores the ratio of the tweets that need to be classified for the HateDash fpr the COVID-19 collection. I've randomly selected 2020-04-10 and working with tweets sent that day. Given the number of tweets ingested are very consistent across hours and days within this particular dataset, we can confidently extrapolate findings from this day to the dataset.
+
+```{r, include=FALSE}
+knitr::opts_chunk$set( cache = TRUE,
+   echo = FALSE, fig.width = 6
+)
+```
+
+
+### Load packages
+```{r}
+library(tidyverse)
+library(fs)
+library(furrr)
+
+plan(multiprocess)
+```
+
+## Data IO
+```{r}
+dataset <- fs::dir_ls("data/export/") %>% 
+  map_df(~ read_rds(.x) %>% 
+           select(text, status_id, created_at, screen_name, is_quote, is_retweet, lang, retweet_text,retweet_status_id))
+```
+
+
+# Summary of the Data 
+
+```{r}
+dataset %>% 
+  skimr::skim()
+```
+We have `r nrow(dataset)` tweets this particular day. 
+
+# 1. Filter English Tweets Only
+```{r}
+dataset_eng <- dataset %>% 
+  filter(lang == "en")
+```
+By filtering Englihs tweets only, I reduced the size of tweets `r 1-nrow(dataset_eng)/nrow(dataset)`%.
+
+# 2. Filter by identity Related Keywords
+
+## 2.1 Chinese and Asian
+```{r}
+regex_chinese_slurs <- c( 'chinese', 'china', 'wuhan', 'oriental','asian',
+                                                 'kungflu', 'kung-flu', 'kung flu',
+                          'CCPVirus','DeepstateVirus','Depopulation',
+                          
+                          
+                                                 '\\bchapta\\b','\\bchaptas\\b',
+                                                 '\\bchigger\\b','\\bchiggers\\b',
+                                                 '\\bchink\\b','\\bchinks\\b', 
+                                                 '\\bching\\b', '\\bchings\\b',
+                                                 '\\bchonky\\b','\\bchork\\b', 
+                                                 'ching chong', 
+                                                 'chonk','chonks',
+                                                 '\\bchang\\b','\\bchangs\\b',
+                                                 'chank', 'cheena', 
+                                                 '\\bchunk\\b', '\\bchunks\\b',
+                                                 'nooger','slanty', 'slit eyes', 'slity eyes', 'yellow skin', 'squint', '\\bgook\\b', '\\bgooks\\b', '\\bnip\\b', '\\bnips\\b', 'chinki', '\\bginks\\b','\\bgink\\b',  'panface', 'pan face','lingling', 'chinazi', '\\bjap\\b','\\bjaps\\b', 'pancake', 'rice eater', 'curry muncher', 'egg head', 'egg-head', 'ironing board', 'coin slot', 'socket face', 'rice ball', 'rice-ball', '\\boreo\\b', 'pumphkin head', 'pumpkin-head', 'burnt rice',  'pan head', 'pan-head', 'bugland', 'chankoro' , 'insectoid' ,'bugmen', 'chingchong', 'chinkistan', 'chinkland', 'chiniggers', 'chinigger') %>% 
+  paste0(collapse = "|")
+
+```
+
+```{r}
+dataset_eng_chinese <-  dataset_eng %>% 
+  filter(str_detect(text, regex(regex_chinese_slurs,ignore_case = TRUE )) )%>% 
+  mutate(identity= "chinese")
+
+
+```
+
+There are `r nrow(dataset_eng_chinese)` tweets matched with Muslim identity pattern which constitute `r nrow(dataset_eng_chinese)/nrow(dataset)*100`% of all the tweets in the complete dataset. 
+## 2.2 Muslim Identity
+```{r}
+muslim_keywords <-c( 'muslim', 'muslims', 'islam', 'ramadan','hijab', 'paki', '\\barab\\b', '\\boarabs\\b', 'muzzie', 'burqa', 'burka' ,'Bengali', 'haji', 'hajis', 'hajji', 'sand nigger', 'sand niglet', 'seminigger', 'turk', 'camel fucker', 'derka derka', 'durka durka', 'geitenneuker', 'gerudos', 'jihadi', 'jihadis', 'jihadist', 'jihadists', 'kaffir', 'kaffirs', 'kafir', 'musla', 'muslamic', 'muslimal', 'mussie', 'mussies', 'mussy', 'muzzie', 'muzzies', 'muzzpig', 'muzzpigs', 'muzzrat', 'muzzrats', 'muzzy', 'pisslam', 'sand monkey', 'sand monkeys') %>% 
+  paste0(collapse = "|")
+
+muslim_keywords
+```
+
+```{r}
+dataset_eng_muslim <-  dataset_eng %>% 
+  filter(str_detect(text, regex(muslim_keywords,ignore_case = TRUE ))) %>% 
+  mutate(identity= "muslim")
+
+```
+
+
+There are `r nrow(dataset_eng_muslim)` tweets matched with Muslim identity pattern which constitute `r nrow(dataset_eng_muslim)/nrow(dataset)*100`% of all the tweets in the complete dataset. 
+
+## 2.3 Jewish Identity
+```{r}
+jewish_keywords <- read_csv('/Users/sefaozalp/Documents/Work/cyberhate/gofore_dashboard/jewish_identity/jewish_identity_keywords.csv') %>% 
+  mutate(value = ifelse(value == '(((', '\\(\\(\\(' ,value )) %>% # escaping (((
+  pull(value) %>% 
+  paste0(collapse = "|")
+jewish_keywords
+```
+
+```{r}
+dataset_eng_jewish <-  dataset_eng %>% 
+  filter(str_detect(text, regex(jewish_keywords,ignore_case = TRUE ))) %>% 
+  mutate(identity= "Jewish")
+
+```
+
+
+There are `r nrow(dataset_eng_jewish)` tweets matched with Muslim identity pattern which constitute `r nrow(dataset_eng_jewish)/nrow(dataset)*100`% of all the tweets in the complete dataset. 
+
+
+## 2.4. Merge all identity subsets
+
+Below, I join all three identity sub-datasets into a large dataset. Note that there will be duplicates. For instance, some tweets migth appear in Chinese and Muslim subset if they match keywords from both identity keyword lists, such as this fake tweet: 'Covid is the result of the chinese and muslims working to destroy USA!!!' I opt not to remove these because they will be seperately classified using each classifier. 
+
+
+```{r}
+dataset_eng_filtered <- dataset_eng_chinese %>% 
+  bind_rows(dataset_eng_muslim) %>% 
+  bind_rows(dataset_eng_jewish)
+```
+When all three identities are considered, there are `r nrow(dataset_eng_filtered)` tweets matched with any of the identity patterns. This constitutes `r nrow(dataset_eng_filtered)/nrow(dataset)*100`% of all the tweets in the complete dataset. 
+
+
+
+# 3. Not Classifying Retweets
+
+Retweets are verbatim duplications of original tweets but they appear as seperately in the Twitter data stream. It is redundant to classify retweets seperately, given our classification is costly. Therefore, it is better to classify original tweets and get the classification scores for retweets from original tweets. Below, I will demonstrate how to do this and how much classification cost it should save. Note that quotes (comment added to retweets) should be treated as original tweets.
+
+```{r}
+authored_tweets <- dataset_eng_filtered%>% 
+  filter(is.na(retweet_status_id))
+
+nrow(authored_tweets)
+```
+We can identify original tweets (authored_tweets) by filtering all observations where retweet_status_id is NA. We have `r nrow(authored_tweets)` authored (that are not retweets) tweets available in this dataset. Using the same logic in reverse, we can also find retweets by filtering the dataset where retweet_status_id is not NA. 
+
+```{r}
+retweets <- dataset_eng_filtered %>% 
+  filter(!is.na(retweet_status_id))
+
+nrow(retweets)
+```
+
+
+
+```{r}
+rt_counts <- retweets %>% # counting of RTs of original tweets
+  count(retweet_status_id, name = 'RT_count') %>% 
+  arrange(desc(RT_count))
+
+rt_counts
+
+rt_counts %>% skimr::skim()
+```
+
+Accordingly, `r nrow(retweets)` retweets are actually replications of `r nrow(rt_counts)`original/authored tweets which were retweeted between 1 and 8994 times, with mean RT count being (10.39). The histogram of RT counts look like the following:
+
+```{r}
+rt_counts %>% 
+  ggplot(aes(RT_count))+
+  geom_histogram(bins=50)
+```
+
+As seen, some tweets get retweeted thousands of times. We can reduce the classification cost by running the classification once on original/authored tweets and use these classification scores for RTs of the original/authored tweet. As this is a database operation, which is very cheap, by acquiring classification scores for RTs from original/authored tweets, we can save considerable amount of money.
