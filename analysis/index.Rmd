@@ -23,3 +23,7 @@ Click on this [link](brexit_single_keyword_initial_numbers.html) to see the numb
 # Analysis 4
 
 [Here](racial_religious_hc_uk.html) is the reproduction of the Racial and Religiously aggravated offence figures collated by the Home Office. In addition, this document introduces a detrended time series visualisation using the same data.
+
+# Analysis 5
+
+[Here](corona_identity_filter_sizes.html) is the experiment with multiple identity related keywords to filter covid dataset.

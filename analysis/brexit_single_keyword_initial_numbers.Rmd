@@ -179,7 +179,7 @@ initial_plot_ratio
 
 ## Plot HS counts and Ratio Together
 
-```{r, ratio_and_numbers_one_plot, fig.height=12, fig.width=10}
+```{r, ratio_and_numbers_one_plot, fig.heighwt=12, fig.width=10}
 gridExtra::grid.arrange(initial_plot_hs, initial_plot_ratio,nrow=2)
 ```
 
