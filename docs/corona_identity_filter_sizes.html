@@ -554,10 +554,10 @@ unnamed-chunk-9
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree25f3f9909447e6e47714257d0b6142e1d18b1dd7targetblank25f3f99a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sefabey/hatelab_website/tree/25f3f9909447e6e47714257d0b6142e1d18b1dd7" target="_blank">25f3f99</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree91ed348adaf9d1658a46185998de1f081d83556ftargetblank91ed348a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sefabey/hatelab_website/tree/91ed348adaf9d1658a46185998de1f081d83556f" target="_blank">91ed348</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree25f3f9909447e6e47714257d0b6142e1d18b1dd7targetblank25f3f99a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree91ed348adaf9d1658a46185998de1f081d83556ftargetblank91ed348a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -634,6 +634,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sefabey/hatelab_website/blob/91ed348adaf9d1658a46185998de1f081d83556f/analysis/corona_identity_filter_sizes.Rmd" target="_blank">91ed348</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2020-05-03
+</td>
+<td>
+wflow_publish(c(“analysis/corona_identity_filter_sizes.Rmd”,
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sefabey/hatelab_website/d66747dfe696aaf85323bc9d581118db0ee7278a/docs/corona_identity_filter_sizes.html" target="_blank">d66747d</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2020-05-03
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -728,7 +762,7 @@ wflow_publish(“analysis/corona_identity_filter_sizes.Rmd”)
 </div>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>This document explores the ratio of the tweets that need to be classified for the HateDash fpr the COVID-19 collection. I’ve randomly selected 2020-04-10 and working with tweets sent that day. Given the number of tweets ingested are very consistent across hours and days within this particular dataset, we can confidently extrapolate findings from this day to the dataset.</p>
+<p>This document explores the ratio of the tweets that need to be classified for the HateDash for the COVID-19 collection. I’ve randomly selected 2020-04-10 and working with tweets sent that day. Given the number of tweets ingested are very consistent across hours and days within this particular dataset, we can confidently extrapolate findings from this day to the dataset.</p>
 <div id="load-packages" class="section level3">
 <h3>Load packages</h3>
 <pre class="r"><code>library(tidyverse)
@@ -815,7 +849,7 @@ nrow(dataset_eng)</code></pre>
  created_at       0  2118157 2118157 2020-04-09 2020-04-10 2020-04-10
  n_unique
     86390</code></pre>
-<p>By filtering Englihs tweets only, I reduced the size of tweets <strong><em>0.4678024%</em></strong>. As much as this step might seem redundant as the keywords used for identities are predominantly in English, this is still necessary as many keywords referring to Chinese idenity is quite generic (i.e China, Asia, Wuhan etc) and they match with tweets from multiple languages.</p>
+<p>By filtering English tweets only, I reduced the size of tweets <strong><em>0.4678024%</em></strong>. As much as this step might seem redundant as the keywords used for identities are predominantly in English, this is still necessary as many keywords referring to Chinese identity is quite generic (i.e China, Asia, Wuhan etc) and they match with tweets from multiple languages.</p>
 </div>
 <div id="filter-by-identity-related-keywords" class="section level1">
 <h1>2. Filter by Identity Related Keywords</h1>
@@ -874,7 +908,7 @@ cols(
 </div>
 <div id="merge-all-identity-subsets" class="section level2">
 <h2>2.4. Merge all identity subsets</h2>
-<p>Below, I join all three identity sub-datasets into a large dataset. Note that there will be duplicates. Some tweets migth appear in multiple subsets if they match keywords from multiple identity keyword lists, such as the following fake tweet: ‘Covid is the result of the chinese and muslims working to destroy USA!!!’ I opt not to remove these because in the HateDash will appear in seperate identity subsets and seperately classified using the classifier pertaiing to each identity.</p>
+<p>Below, I join all three identity sub-datasets into a large dataset. Note that there will be duplicates. Some tweets might appear in multiple subsets if they match keywords from multiple identity keyword lists, such as the following fake tweet: ‘Covid is the result of the chinese and muslims working to destroy USA!!!’ I opt not to remove these because in the HateDash will appear in separate identity subsets and separately classified using the classifier pertaining to each identity.</p>
 <pre class="r"><code>dataset_eng_filtered &lt;- dataset_eng_chinese %&gt;% 
   bind_rows(dataset_eng_muslim) %&gt;% 
   bind_rows(dataset_eng_jewish)</code></pre>
@@ -883,7 +917,7 @@ cols(
 </div>
 <div id="not-classifying-retweets" class="section level1">
 <h1>3. Not Classifying Retweets</h1>
-<p>Retweets are verbatim duplications of original tweets but they appear as seperately in the Twitter data stream. It is redundant to classify retweets seperately, given our classification processes are costly. Therefore, it is better to identity original/authored tweets, classify them and get the classification scores for retweets from original tweets. Below, I will demonstrate a brief prototype of how to do this and how much classification this could save. Note that quotes (comment added to retweets) should be treated as original tweets.</p>
+<p>Retweets are verbatim duplications of original tweets but they appear as separately in the Twitter data stream. It is redundant to classify retweets separately, given our classification processes are costly. Therefore, it is better to identity original/authored tweets, classify them and get the classification scores for retweets from original tweets. Below, I will demonstrate a brief prototype of how to do this and how much classification this could save. Note that quotes (comment added to retweets) should be treated as original tweets.</p>
 <pre class="r"><code>authored_tweets &lt;- dataset_eng_filtered%&gt;% 
   filter(is.na(retweet_status_id))
 
@@ -896,7 +930,7 @@ nrow(authored_tweets)</code></pre>
 
 nrow(retweets)</code></pre>
 <pre><code>[1] 127160</code></pre>
-<p>Using the above logic in reverse, we can also find retweets by filtering the dataset where retweet_status_id is not NA. We have <strong><em>127160</em></strong> retweets tweets present which is <strong><em>20.1186034%</em></strong> of the subset filtered with identity keywords. We do not need to classify all of these as the classification from original tweets (where present) can be recyled. However, in some cases, retweets might be present but the original tweet might not appear in our dataset. This happens relatively rarely, such as when an older tweet is being revived by retweets or we simply don’t have the original tweet due to our collection being rate-limited. Although this is rare, HateDash should still account for this and classify retweets which the originals are not present. In such cases, we could classify first RT text and recycle this classification result for later retweets appearing in the dataset.</p>
+<p>Using the above logic in reverse, we can also find retweets by filtering the dataset where retweet_status_id is not NA. We have <strong><em>127160</em></strong> retweets tweets present which is <strong><em>20.1186034%</em></strong> of the subset filtered with identity keywords. We do not need to classify all of these as the classification from original tweets (where present) can be recycled. However, in some cases, retweets might be present but the original tweet might not appear in our dataset. This happens relatively rarely, such as when an older tweet is being revived by retweets or we simply don’t have the original tweet due to our collection being rate-limited. Although this is rare, HateDash should still account for this and classify retweets which the originals are not present. In such cases, we could classify first RT text and recycle this classification result for later retweets appearing in the dataset.</p>
 <pre class="r"><code>rt_counts &lt;- retweets %&gt;% # counting of RTs of original tweets
   count(retweet_status_id, name = &#39;RT_count&#39;) %&gt;% 
   arrange(desc(RT_count))
@@ -928,7 +962,7 @@ rt_counts</code></pre>
 ── Variable type:integer ───────────────────────────────────────────────
  variable missing complete     n  mean     sd p0 p25 p50 p75 p100     hist
  RT_count       0    12233 12233 10.39 125.99  1   1   1   3 8994 ▇▁▁▁▁▁▁▁</code></pre>
-<p>Accordingly, in the subset filtered with identity related keywords, <strong><em>127160</em></strong> retweets are actually replications of <strong><em>12233</em></strong> original/authored tweets. In this subset, the range of retweet counrs are <strong><em>1</em></strong> and <strong><em>8994</em></strong>, with mean RT count being <strong><em>10.39</em></strong>. The histogram of RT counts look like the following:</p>
+<p>Accordingly, in the subset filtered with identity related keywords, <strong><em>127160</em></strong> retweets are actually replications of <strong><em>12233</em></strong> original/authored tweets. In this subset, the range of retweet counts are <strong><em>1</em></strong> and <strong><em>8994</em></strong>, with mean RT count being <strong><em>10.39</em></strong>. The histogram of RT counts look like the following:</p>
 <pre class="r"><code>rt_counts %&gt;% 
   ggplot(aes(RT_count))+
   geom_histogram(bins=50)</code></pre>
