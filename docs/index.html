@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -234,6 +233,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -332,7 +332,7 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2019-11-28
+<strong>Last updated:</strong> 2020-05-03
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -363,10 +363,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree09640e0e5c96d8d55ffc616fe002b60172f27817targetblank09640e0a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sefabey/hatelab_website/tree/09640e0e5c96d8d55ffc616fe002b60172f27817" target="_blank">09640e0</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree2c11d4b39896a7c471810085dd88b1617ce9e66atargetblank2c11d4ba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sefabey/hatelab_website/tree/2c11d4b39896a7c471810085dd88b1617ce9e66a" target="_blank">2c11d4b</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree09640e0e5c96d8d55ffc616fe002b60172f27817targetblank09640e0a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree2c11d4b39896a7c471810085dd88b1617ce9e66atargetblank2c11d4ba" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -377,13 +377,42 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    analysis/.DS_Store
+    Ignored:    analysis/corona_identity_filter_sizes_cache/
+    Ignored:    data/.DS_Store
+    Ignored:    data/brexit_sole_keyword_ratios_dec19/.DS_Store
     Ignored:    docs/.DS_Store
-    Ignored:    docs/assets/.DS_Store
+    Ignored:    docs/figure/.DS_Store
 
 Untracked files:
+    Untracked:  analysis/trump_muslim.rmd
+    Untracked:  data/export/
     Untracked:  data/hatedash_comparison_skim.rds
-    Untracked:  data/home_office_rrao.csv
-    Untracked:  docs/figure/racial_religious_hc_uk.rmd/
+    Untracked:  data/trump_tweets_html_body.txt
+    Untracked:  data/trump_tweets_islam.json
+    Untracked:  data/trump_tweets_islam_muslim.csv
+
+Unstaged changes:
+    Deleted:    docs/HSD_brex_sep19_files/all.css
+    Deleted:    docs/HSD_brex_sep19_files/css
+    Deleted:    docs/HSD_brex_sep19_files/main.9a50a41e7d85cf90d27a.js
+    Deleted:    docs/HSD_brex_sep19_files/polyfills.681b44b3f292a3819611.js
+    Deleted:    docs/HSD_brex_sep19_files/runtime.26209474bfa8dc87a77c.js
+    Deleted:    docs/HSD_brex_sep19_files/styles.2c55fbc404b14f01ab1b.css
+    Deleted:    docs/assets/html_viz/Hate Speech Dashboard.htm
+    Deleted:    docs/assets/html_viz/Hate Speech Dashboard_files/all.css
+    Deleted:    docs/assets/html_viz/Hate Speech Dashboard_files/css
+    Deleted:    docs/assets/html_viz/Hate Speech Dashboard_files/main.9a50a41e7d85cf90d27a.js
+    Deleted:    docs/assets/html_viz/Hate Speech Dashboard_files/polyfills.681b44b3f292a3819611.js
+    Deleted:    docs/assets/html_viz/Hate Speech Dashboard_files/runtime.26209474bfa8dc87a77c.js
+    Deleted:    docs/assets/html_viz/Hate Speech Dashboard_files/styles.2c55fbc404b14f01ab1b.css
+    Deleted:    docs/figure/brexit_single_keyword_initial_numbers.Rmd/hate_speech_numbers-1.svg
+    Deleted:    docs/figure/brexit_single_keyword_initial_numbers.Rmd/hate_speech_ratio-1.eps
+    Deleted:    docs/figure/brexit_single_keyword_initial_numbers.Rmd/ratio_and_numbers_one_plot-1.eps
+    Deleted:    docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-12-1.eps
+    Deleted:    docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-12-1.svg
+    Deleted:    docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-13-1.svg
+    Deleted:    docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-14-1.svg
+    Deleted:    docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-15-1.svg
 
 </code></pre>
 <p>
@@ -422,6 +451,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sefabey/hatelab_website/blob/2c11d4b39896a7c471810085dd88b1617ce9e66a/analysis/index.Rmd" target="_blank">2c11d4b</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2020-05-03
+</td>
+<td>
+wflow_publish(“analysis/index.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sefabey/hatelab_website/4fb46023de9029e54f73b01b76554188a30b14e1/docs/index.html" target="_blank">4fb4602</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2019-11-28
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -904,6 +967,10 @@ Start workflowr project.
 <div id="analysis-4" class="section level1">
 <h1>Analysis 4</h1>
 <p><a href="racial_religious_hc_uk.html">Here</a> is the reproduction of the Racial and Religiously aggravated offence figures collated by the Home Office. In addition, this document introduces a detrended time series visualisation using the same data.</p>
+</div>
+<div id="analysis-5" class="section level1">
+<h1>Analysis 5</h1>
+<p><a href="corona_identity_filter_sizes.html">Here</a> is the experiment with multiple identity related keywords to filter covid dataset.</p>
 </div>
 
 

@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -240,6 +239,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -268,6 +268,12 @@ $(document).ready(function () {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -407,7 +413,7 @@ div.section {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-02-29
+<strong>Last updated:</strong> 2020-05-03
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -498,10 +504,10 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetreeacbc1c1cbadd6964cc7367d17789871a72c5ca09targetblankacbc1c1a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sefabey/hatelab_website/tree/acbc1c1cbadd6964cc7367d17789871a72c5ca09" target="_blank">acbc1c1</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree2c11d4b39896a7c471810085dd88b1617ce9e66atargetblank2c11d4ba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/sefabey/hatelab_website/tree/2c11d4b39896a7c471810085dd88b1617ce9e66a" target="_blank">2c11d4b</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetreeacbc1c1cbadd6964cc7367d17789871a72c5ca09targetblankacbc1c1a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomsefabeyhatelabwebsitetree2c11d4b39896a7c471810085dd88b1617ce9e66atargetblank2c11d4ba" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -512,18 +518,48 @@ Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
     Ignored:    analysis/.DS_Store
+    Ignored:    analysis/corona_identity_filter_sizes_cache/
     Ignored:    data/.DS_Store
     Ignored:    data/brexit_sole_keyword_ratios_dec19/.DS_Store
     Ignored:    docs/.DS_Store
-    Ignored:    docs/assets/.DS_Store
     Ignored:    docs/figure/.DS_Store
 
 Untracked files:
     Untracked:  analysis/trump_muslim.rmd
+    Untracked:  data/export/
     Untracked:  data/hatedash_comparison_skim.rds
     Untracked:  data/trump_tweets_html_body.txt
     Untracked:  data/trump_tweets_islam.json
     Untracked:  data/trump_tweets_islam_muslim.csv
+
+Unstaged changes:
+    Deleted:    docs/HSD_brex_sep19_files/all.css
+    Deleted:    docs/HSD_brex_sep19_files/css
+    Deleted:    docs/HSD_brex_sep19_files/main.9a50a41e7d85cf90d27a.js
+    Deleted:    docs/HSD_brex_sep19_files/polyfills.681b44b3f292a3819611.js
+    Deleted:    docs/HSD_brex_sep19_files/runtime.26209474bfa8dc87a77c.js
+    Deleted:    docs/HSD_brex_sep19_files/styles.2c55fbc404b14f01ab1b.css
+    Deleted:    docs/assets/html_viz/Hate Speech Dashboard.htm
+    Deleted:    docs/assets/html_viz/Hate Speech Dashboard_files/all.css
+    Deleted:    docs/assets/html_viz/Hate Speech Dashboard_files/css
+    Deleted:    docs/assets/html_viz/Hate Speech Dashboard_files/main.9a50a41e7d85cf90d27a.js
+    Deleted:    docs/assets/html_viz/Hate Speech Dashboard_files/polyfills.681b44b3f292a3819611.js
+    Deleted:    docs/assets/html_viz/Hate Speech Dashboard_files/runtime.26209474bfa8dc87a77c.js
+    Deleted:    docs/assets/html_viz/Hate Speech Dashboard_files/styles.2c55fbc404b14f01ab1b.css
+    Deleted:    docs/figure/brexit_single_keyword_initial_numbers.Rmd/hate_speech_numbers-1.eps
+    Deleted:    docs/figure/brexit_single_keyword_initial_numbers.Rmd/hate_speech_numbers-1.svg
+    Deleted:    docs/figure/brexit_single_keyword_initial_numbers.Rmd/hate_speech_ratio-1.eps
+    Deleted:    docs/figure/brexit_single_keyword_initial_numbers.Rmd/hate_speech_ratio-1.svg
+    Deleted:    docs/figure/brexit_single_keyword_initial_numbers.Rmd/ratio_and_numbers_one_plot-1.eps
+    Deleted:    docs/figure/brexit_single_keyword_initial_numbers.Rmd/ratio_and_numbers_one_plot-1.svg
+    Deleted:    docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-12-1.eps
+    Deleted:    docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-12-1.svg
+    Deleted:    docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-13-1.eps
+    Deleted:    docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-13-1.svg
+    Deleted:    docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-14-1.eps
+    Deleted:    docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-14-1.svg
+    Deleted:    docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-15-1.eps
+    Deleted:    docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-15-1.svg
 
 </code></pre>
 <p>
@@ -562,6 +598,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/sefabey/hatelab_website/blob/2c11d4b39896a7c471810085dd88b1617ce9e66a/analysis/brexit_single_keyword_initial_numbers.Rmd" target="_blank">2c11d4b</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2020-05-03
+</td>
+<td>
+wflow_publish(“analysis/index.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/sefabey/hatelab_website/8019932fadc60e4a75b8dddc9ee6c8ca9243286b/docs/brexit_single_keyword_initial_numbers.html" target="_blank">8019932</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2020-02-29
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1036,7 +1106,7 @@ brexit_data_processed %&gt;% nrow()</code></pre>
  n obs: 278 
  n variables: 5 
 
-── Variable type:numeric ───────────────────────────────
+── Variable type:numeric ───────────────────────────────────────────────
          variable missing complete   n       mean          sd         p0
  antimuslim_FALSE       0      278 278 371794.27  182943.5    59556     
   antimuslim_TRUE       0      278 278   5931.21    4209.84    1000     
@@ -1048,7 +1118,7 @@ brexit_data_processed %&gt;% nrow()</code></pre>
       0.011      0.014      0.017       0.06 ▇▅▂▁▁▁▁▁
  245021.25  330044.5   457663.5   1337654    ▃▇▃▂▁▁▁▁
 
-── Variable type:POSIXct ───────────────────────────────
+── Variable type:POSIXct ───────────────────────────────────────────────
  variable missing complete   n        min        max     median n_unique
       day       0      278 278 2019-03-14 2019-12-16 2019-07-30      278</code></pre>
 <p>##Total Number of Tweets in the Dataset</p>
@@ -1154,6 +1224,43 @@ highest_hs</code></pre>
 
 initial_plot_hs</code></pre>
 <p><img src="figure/brexit_single_keyword_initial_numbers.Rmd/hate_speech_numbers-1.png" width="6000" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-hate_speech_numbers-1">
+Past versions of hate_speech_numbers-1.png
+</button>
+</p>
+<div id="fig-hate_speech_numbers-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sefabey/hatelab_website/blob/8019932fadc60e4a75b8dddc9ee6c8ca9243286b/docs/figure/brexit_single_keyword_initial_numbers.Rmd/hate_speech_numbers-1.png" target="_blank">8019932</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2020-02-29
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="initial-plot-of-the-ratio-of-hate-speech" class="section level2">
 <h2><span class="header-section-number">4.2</span> Initial Plot of the Ratio of Hate Speech</h2>
@@ -1179,11 +1286,85 @@ initial_plot_hs</code></pre>
 
 initial_plot_ratio</code></pre>
 <p><img src="figure/brexit_single_keyword_initial_numbers.Rmd/hate_speech_ratio-1.png" width="6000" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-hate_speech_ratio-1">
+Past versions of hate_speech_ratio-1.png
+</button>
+</p>
+<div id="fig-hate_speech_ratio-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sefabey/hatelab_website/blob/8019932fadc60e4a75b8dddc9ee6c8ca9243286b/docs/figure/brexit_single_keyword_initial_numbers.Rmd/hate_speech_ratio-1.png" target="_blank">8019932</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2020-02-29
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="plot-hs-counts-and-ratio-together" class="section level2">
 <h2><span class="header-section-number">4.3</span> Plot HS counts and Ratio Together</h2>
 <pre class="r"><code>gridExtra::grid.arrange(initial_plot_hs, initial_plot_ratio,nrow=2)</code></pre>
 <p><img src="figure/brexit_single_keyword_initial_numbers.Rmd/ratio_and_numbers_one_plot-1.png" width="5000" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-ratio_and_numbers_one_plot-1">
+Past versions of ratio_and_numbers_one_plot-1.png
+</button>
+</p>
+<div id="fig-ratio_and_numbers_one_plot-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/sefabey/hatelab_website/blob/8019932fadc60e4a75b8dddc9ee6c8ca9243286b/docs/figure/brexit_single_keyword_initial_numbers.Rmd/ratio_and_numbers_one_plot-1.png" target="_blank">8019932</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2020-02-29
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="plot-of-count-of-hate-speech-faceted-by-month" class="section level2">
 <h2><span class="header-section-number">4.4</span> Plot of Count of Hate Speech Faceted by Month</h2>
@@ -1234,6 +1415,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/sefabey/hatelab_website/blob/8019932fadc60e4a75b8dddc9ee6c8ca9243286b/docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-12-1.png" target="_blank">8019932</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2020-02-29
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/sefabey/hatelab_website/blob/c755ea95040f978469533094f55903051c7bc203/docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-12-1.png" target="_blank">c755ea9</a>
@@ -1332,6 +1524,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/sefabey/hatelab_website/blob/8019932fadc60e4a75b8dddc9ee6c8ca9243286b/docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-13-1.png" target="_blank">8019932</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2020-02-29
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/sefabey/hatelab_website/blob/c755ea95040f978469533094f55903051c7bc203/docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-13-1.png" target="_blank">c755ea9</a>
 </td>
 <td>
@@ -1419,6 +1622,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/sefabey/hatelab_website/blob/8019932fadc60e4a75b8dddc9ee6c8ca9243286b/docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-14-1.png" target="_blank">8019932</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2020-02-29
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/sefabey/hatelab_website/blob/c755ea95040f978469533094f55903051c7bc203/docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-14-1.png" target="_blank">c755ea9</a>
 </td>
 <td>
@@ -1503,6 +1717,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/sefabey/hatelab_website/blob/8019932fadc60e4a75b8dddc9ee6c8ca9243286b/docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-15-1.png" target="_blank">8019932</a>
+</td>
+<td>
+Sefa Ozalp
+</td>
+<td>
+2020-02-29
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/sefabey/hatelab_website/blob/30cb8082729d7832d6dea09214de30fb8c305620/docs/figure/brexit_single_keyword_initial_numbers.Rmd/unnamed-chunk-15-1.png" target="_blank">30cb808</a>
 </td>
 <td>
@@ -1559,32 +1784,31 @@ attached base packages:
 
 other attached packages:
  [1] gridExtra_2.3    hrbrthemes_0.6.0 scales_1.0.0     fs_1.3.1        
- [5] lubridate_1.7.4  forcats_0.4.0    stringr_1.4.0    dplyr_0.8.4     
+ [5] lubridate_1.7.4  forcats_0.4.0    stringr_1.4.0    dplyr_0.8.5     
  [9] purrr_0.3.3      readr_1.3.1      tidyr_1.0.0      tibble_2.1.3    
-[13] ggplot2_3.2.1    tidyverse_1.2.1 
+[13] ggplot2_3.3.0    tidyverse_1.2.1 
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.3        here_0.1          lattice_0.20-38  
- [4] assertthat_0.2.1  zeallot_0.1.0     rprojroot_1.3-2  
- [7] digest_0.6.23     utf8_1.1.4        R6_2.4.0         
-[10] cellranger_1.1.0  plyr_1.8.4        backports_1.1.5  
-[13] evaluate_0.14     httr_1.4.1        pillar_1.4.3     
-[16] gdtools_0.2.0     rlang_0.4.4       lazyeval_0.2.2   
-[19] readxl_1.3.1      rstudioapi_0.11   whisker_0.4      
-[22] extrafontdb_1.0   rmarkdown_1.15    labeling_0.3     
-[25] extrafont_0.17    munsell_0.5.0     broom_0.5.4      
-[28] compiler_3.6.1    modelr_0.1.5      xfun_0.9         
-[31] pkgconfig_2.0.3   systemfonts_0.1.1 htmltools_0.3.6  
-[34] tidyselect_0.2.5  workflowr_1.4.0   fansi_0.4.0      
-[37] crayon_1.3.4      withr_2.1.2       grid_3.6.1       
-[40] nlme_3.1-141      jsonlite_1.6      Rttf2pt1_1.3.7   
-[43] gtable_0.3.0      lifecycle_0.1.0   git2r_0.26.1     
-[46] magrittr_1.5      cli_2.0.1         stringi_1.4.3    
-[49] reshape2_1.4.3    skimr_1.0.7       xml2_1.2.2       
-[52] generics_0.0.2    vctrs_0.2.1       tools_3.6.1      
-[55] glue_1.3.1        hms_0.5.2         yaml_2.2.0       
-[58] colorspace_1.4-1  rvest_0.3.4       knitr_1.25       
-[61] haven_2.1.1      </code></pre>
+ [1] tidyselect_0.2.5  xfun_0.9          haven_2.1.1      
+ [4] lattice_0.20-38   colorspace_1.4-1  vctrs_0.2.1      
+ [7] generics_0.0.2    htmltools_0.3.6   yaml_2.2.0       
+[10] utf8_1.1.4        rlang_0.4.4       pillar_1.4.3     
+[13] glue_1.3.1        withr_2.1.2       gdtools_0.2.0    
+[16] modelr_0.1.5      readxl_1.3.1      lifecycle_0.1.0  
+[19] munsell_0.5.0     gtable_0.3.0      workflowr_1.4.0  
+[22] cellranger_1.1.0  rvest_0.3.4       evaluate_0.14    
+[25] labeling_0.3      knitr_1.25        extrafont_0.17   
+[28] fansi_0.4.0       Rttf2pt1_1.3.7    broom_0.5.4      
+[31] Rcpp_1.0.3        backports_1.1.5   jsonlite_1.6     
+[34] systemfonts_0.1.1 hms_0.5.2         digest_0.6.23    
+[37] stringi_1.4.3     grid_3.6.1        rprojroot_1.3-2  
+[40] here_0.1          cli_2.0.1         tools_3.6.1      
+[43] magrittr_1.5      crayon_1.3.4      whisker_0.4      
+[46] extrafontdb_1.0   pkgconfig_2.0.3   zeallot_0.1.0    
+[49] xml2_1.2.2        skimr_1.0.7       assertthat_0.2.1 
+[52] rmarkdown_2.1     httr_1.4.1        rstudioapi_0.11  
+[55] R6_2.4.0          nlme_3.1-141      git2r_0.26.1     
+[58] compiler_3.6.1   </code></pre>
 </div>
 </div>
 
