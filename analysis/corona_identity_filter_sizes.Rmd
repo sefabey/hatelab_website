@@ -9,7 +9,7 @@ editor_options:
 
 # Introduction
 
-This document explores the ratio of the tweets that need to be classified for the HateDash fpr the COVID-19 collection. I've randomly selected 2020-04-10 and working with tweets sent that day. Given the number of tweets ingested are very consistent across hours and days within this particular dataset, we can confidently extrapolate findings from this day to the dataset.
+This document explores the ratio of the tweets that need to be classified for the HateDash for the COVID-19 collection. I've randomly selected 2020-04-10 and working with tweets sent that day. Given the number of tweets ingested are very consistent across hours and days within this particular dataset, we can confidently extrapolate findings from this day to the dataset.
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set( cache = TRUE,
@@ -53,7 +53,7 @@ nrow(dataset_eng)
 dataset_eng %>% 
   skimr::skim()
 ```
-By filtering Englihs tweets only, I reduced the size of tweets ***`r 1-nrow(dataset_eng)/nrow(dataset)`%***. As much as this step might seem redundant as the keywords used for identities are predominantly in English, this is still necessary as many keywords referring to Chinese idenity is quite generic (i.e China, Asia, Wuhan etc) and they match with tweets from multiple languages.
+By filtering English tweets only, I reduced the size of tweets ***`r 1-nrow(dataset_eng)/nrow(dataset)`%***. As much as this step might seem redundant as the keywords used for identities are predominantly in English, this is still necessary as many keywords referring to Chinese identity is quite generic (i.e China, Asia, Wuhan etc) and they match with tweets from multiple languages.
 
 # 2. Filter by Identity Related Keywords
 Below, I will demonstrate the regex patterns I use to filter tweets for each identity. Note some keywords in Chinese pattern are wrapped in `\\b` [anchor](https://www.regular-expressions.info/wordboundaries.html). This is to prevent pattern matching to detect identity related keywords within parts of the words in tweets but only when they are present as whole words. I also opt to ignore case for pattern matching.
@@ -124,7 +124,7 @@ There are ***`r nrow(dataset_eng_jewish)`*** tweets matched with Jewish identity
 
 ## 2.4. Merge all identity subsets
 
-Below, I join all three identity sub-datasets into a large dataset. Note that there will be duplicates. Some tweets migth appear in multiple subsets if they match keywords from multiple identity keyword lists, such as the following fake tweet: 'Covid is the result of the chinese and muslims working to destroy USA!!!' I opt not to remove these because in the HateDash will appear in seperate identity subsets and seperately classified using the classifier pertaiing to each identity. 
+Below, I join all three identity sub-datasets into a large dataset. Note that there will be duplicates. Some tweets might appear in multiple subsets if they match keywords from multiple identity keyword lists, such as the following fake tweet: 'Covid is the result of the chinese and muslims working to destroy USA!!!' I opt not to remove these because in the HateDash will appear in separate identity subsets and separately classified using the classifier pertaining to each identity. 
 
 
 ```{r}
@@ -139,7 +139,7 @@ When all three identities are considered, there are ***`r nrow(dataset_eng_filte
 
 # 3. Not Classifying Retweets
 
-Retweets are verbatim duplications of original tweets but they appear as seperately in the Twitter data stream. It is redundant to classify retweets seperately, given our classification processes are costly. Therefore, it is better to identity original/authored tweets, classify them and get the classification scores for retweets from original tweets. Below, I will demonstrate a brief prototype of how to do this and how much classification this could save. Note that quotes (comment added to retweets) should be treated as original tweets.
+Retweets are verbatim duplications of original tweets but they appear as separately in the Twitter data stream. It is redundant to classify retweets separately, given our classification processes are costly. Therefore, it is better to identity original/authored tweets, classify them and get the classification scores for retweets from original tweets. Below, I will demonstrate a brief prototype of how to do this and how much classification this could save. Note that quotes (comment added to retweets) should be treated as original tweets.
 
 ```{r}
 authored_tweets <- dataset_eng_filtered%>% 
@@ -160,7 +160,7 @@ retweets <- dataset_eng_filtered %>%
 nrow(retweets)
 ```
 
-Using the above logic in reverse, we can also find retweets by filtering the dataset where retweet_status_id is not NA. We have ***`r nrow(retweets)`*** retweets tweets present which is ***`r  nrow(authored_tweets)/nrow(dataset_eng_filtered)*100`%*** of the subset filtered with identity keywords. We do not need to classify all of these as the classification from original tweets (where present) can be recyled. However, in some cases, retweets might be present but the original tweet might not appear in our dataset. This happens relatively rarely, such as when an older tweet is being revived by retweets or we simply don't have the original tweet due to our collection being rate-limited. Although this is rare, HateDash should still account for this and classify retweets which the originals are not present. In such cases, we could classify first RT text and recycle this classification result for later retweets appearing in the dataset.
+Using the above logic in reverse, we can also find retweets by filtering the dataset where retweet_status_id is not NA. We have ***`r nrow(retweets)`*** retweets tweets present which is ***`r  nrow(authored_tweets)/nrow(dataset_eng_filtered)*100`%*** of the subset filtered with identity keywords. We do not need to classify all of these as the classification from original tweets (where present) can be recycled. However, in some cases, retweets might be present but the original tweet might not appear in our dataset. This happens relatively rarely, such as when an older tweet is being revived by retweets or we simply don't have the original tweet due to our collection being rate-limited. Although this is rare, HateDash should still account for this and classify retweets which the originals are not present. In such cases, we could classify first RT text and recycle this classification result for later retweets appearing in the dataset.
 
 
 ```{r}
@@ -173,7 +173,7 @@ rt_counts
 rt_counts %>% skimr::skim()
 ```
 
-Accordingly, in the subset filtered with identity related keywords, ***`r nrow(retweets)`*** retweets are actually replications of ***`r nrow(rt_counts)`*** original/authored tweets. In this subset, the range of retweet counrs are ***1*** and ***8994***, with mean RT count being ***10.39***. The histogram of RT counts look like the following:
+Accordingly, in the subset filtered with identity related keywords, ***`r nrow(retweets)`*** retweets are actually replications of ***`r nrow(rt_counts)`*** original/authored tweets. In this subset, the range of retweet counts are ***1*** and ***8994***, with mean RT count being ***10.39***. The histogram of RT counts look like the following:
 
 ```{r}
 rt_counts %>% 
