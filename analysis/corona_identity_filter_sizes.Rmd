@@ -13,7 +13,7 @@ This document explores the ratio of the tweets that need to be classified for th
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set( cache = TRUE,
-   echo = FALSE, fig.width = 6
+   echo = TRUE, fig.width = 6
 )
 ```
 
@@ -41,14 +41,14 @@ dataset <- fs::dir_ls("data/export/") %>%
 dataset %>% 
   skimr::skim()
 ```
-We have `r nrow(dataset)` tweets this particular day. 
+We have ***`r nrow(dataset)`*** tweets sent on this particular day. 
 
 # 1. Filter English Tweets Only
 ```{r}
 dataset_eng <- dataset %>% 
   filter(lang == "en")
 ```
-By filtering Englihs tweets only, I reduced the size of tweets `r 1-nrow(dataset_eng)/nrow(dataset)`%.
+By filtering Englihs tweets only, I reduced the size of tweets ***`r 1-nrow(dataset_eng)/nrow(dataset)`%***.
 
 # 2. Filter by identity Related Keywords
 
@@ -57,8 +57,6 @@ By filtering Englihs tweets only, I reduced the size of tweets `r 1-nrow(dataset
 regex_chinese_slurs <- c( 'chinese', 'china', 'wuhan', 'oriental','asian',
                                                  'kungflu', 'kung-flu', 'kung flu',
                           'CCPVirus','DeepstateVirus','Depopulation',
-                          
-                          
                                                  '\\bchapta\\b','\\bchaptas\\b',
                                                  '\\bchigger\\b','\\bchiggers\\b',
                                                  '\\bchink\\b','\\bchinks\\b', 
@@ -78,8 +76,6 @@ regex_chinese_slurs <- c( 'chinese', 'china', 'wuhan', 'oriental','asian',
 dataset_eng_chinese <-  dataset_eng %>% 
   filter(str_detect(text, regex(regex_chinese_slurs,ignore_case = TRUE )) )%>% 
   mutate(identity= "chinese")
-
-
 ```
 
 There are `r nrow(dataset_eng_chinese)` tweets matched with Muslim identity pattern which constitute `r nrow(dataset_eng_chinese)/nrow(dataset)*100`% of all the tweets in the complete dataset. 
@@ -95,7 +91,6 @@ muslim_keywords
 dataset_eng_muslim <-  dataset_eng %>% 
   filter(str_detect(text, regex(muslim_keywords,ignore_case = TRUE ))) %>% 
   mutate(identity= "muslim")
-
 ```
 
 
@@ -114,7 +109,6 @@ jewish_keywords
 dataset_eng_jewish <-  dataset_eng %>% 
   filter(str_detect(text, regex(jewish_keywords,ignore_case = TRUE ))) %>% 
   mutate(identity= "Jewish")
-
 ```
 
 
