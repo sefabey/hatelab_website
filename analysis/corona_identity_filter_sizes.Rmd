@@ -13,7 +13,7 @@ This document explores the ratio of the tweets that need to be classified for th
 
 ```{r, include=FALSE}
 knitr::opts_chunk$set( cache = TRUE,
-   echo = TRUE, fig.width = 6, autodep = TRUE
+   echo = TRUE, autodep = TRUE, fig.width = 10
 )
 ```
 
