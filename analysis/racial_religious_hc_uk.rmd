@@ -225,7 +225,7 @@ dp_tidy2 %>%
   scale_x_date(breaks = "3 month",minor_breaks = NULL,expand = c(0,0) , limits = c(dmy("01-04-2013"), dmy("01-04-2019")), date_labels = "%b-%Y" )+
   theme(axis.text.x = element_text(angle = 45, hjust = 1))+
   labs(title = "Detrended number of racially or religiously aggravated offences recorded by the
-police by month, April 2013 to March 2019",
+police by month in England and Wales, April 2013 to March 2019",
 subtitle= "Source: Police Recorded Crime, Home Office (2019)",
 x="Month", 
 y="Number of Offences",
